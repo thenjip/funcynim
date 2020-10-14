@@ -9,6 +9,7 @@ import funcynim/[
   nimnodes,
   operators,
   partialproc,
+  proctypes,
   unit
 ]
 
@@ -25,4 +26,5 @@ export
   nimnodes,
   operators,
   partialproc,
+  proctypes,
   unit
