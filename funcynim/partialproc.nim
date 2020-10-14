@@ -151,7 +151,6 @@ macro partial* (call: untyped{call}): untyped =
         position will be the one passed after the ``?:``.
 
     **Examples:**
-
       .. code-block:: nim
 
         import std/[sugar]
