@@ -1,0 +1,26 @@
+name: Docs
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    name: 'Build'
+    runs-on: ubuntu-latest
+    container: 'nimlang/nim:latest-alpine'
+    timeout-minutes: 10
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Build API doc'
+        run: nimble docs
+
+      - name: 'Deploy'
+        uses: 'peaceiris/actions-gh-pages@v3'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: '.nimcache/docs'
