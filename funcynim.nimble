@@ -1,19 +1,40 @@
+func srcDirName (): string =
+  "src"
+
+
+
 version = "0.1.0"
 author = "thenjip"
 description = "Utility library to ease functional programming in Nim."
 license = "MIT"
 
-requires "nim >= 1.2.0"
+srcDir = srcDirName()
+
+requires "nim >= 1.4.0"
+requires "https://github.com/thenjip/taskutils >= 0.1.0"
 
 
 
-import std/[macros, options, os, sequtils, strformat, strutils, sugar]
+import pkg/taskutils/[
+  cmdline,
+  dirs,
+  envtypes,
+  fileiters,
+  filetypes,
+  nimcmdline,
+  optional,
+  parseenv,
+  result,
+  unit
+]
+
+import std/[macros, os, sequtils, strformat, strutils, sugar]
 
 
 
 # Utils
 
-func findFirst [I, T](a: array[I, T]; predicate: T -> bool): Option[I] =
+func findFirst [I, T](a: array[I, T]; predicate: T -> bool): Optional[I] =
   result = I.none()
 
   for i, item in a:
@@ -22,48 +43,16 @@ func findFirst [I, T](a: array[I, T]; predicate: T -> bool): Option[I] =
 
 
 
-func stripTrailing (input: string; chars: set[char]): string =
-  result = input
-
-  result.removeSuffix(chars)
-
-
-func stripTrailing (input: string; c: char): string =
-  input.stripTrailing({c})
-
-
-
-func joinWithSpace (a: openArray[string]): string =
-  a.join($' ')
-
-
-
-# Paths
-
-type
-  AbsoluteDir = string
-  AbsoluteFile = string
-
-  RelativeDir = string
-  RelativeFile = string
-
-
-
 func nimbleProjectName (): string =
-  projectName().stripTrailing(Digits).stripTrailing('_')
-
-
-func nimcacheDirName (): string =
-  ".nimcache"
+  "funcynim"
 
 
 func binOutDirName (): string =
   "bin"
 
 
-
-func nimcacheDir (): AbsoluteDir =
-  projectDir() / nimcacheDirName()
+func nimbleCacheDir (): AbsoluteDir =
+  getCurrentDir() / nimbleCache()
 
 
 
@@ -72,37 +61,16 @@ proc tryRmDir (dir: AbsoluteDir) =
     dir.rmDir()
 
 
-
-iterator files (dir: AbsoluteDir; ext: string; relative: bool): RelativeFile =
-  for file in dir.walkDirRec(relative = relative):
-    if file.endsWith(fmt"{ExtSep}{ext}"):
-      yield file
-
-
-iterator nimModules (dir: AbsoluteDir): RelativeFile =
-  for file in dir.files("nim", true):
-    yield file
-
-
-iterator libNimModules (): RelativeFile =
-  yield fmt"{nimbleProjectName()}{ExtSep}nim"
-
-  for module in nimModules(projectDir() / nimbleProjectName()):
-    yield nimbleProjectName() / module
+proc findEnvValue (name: EnvVarName): Optional[EnvVarValue] =
+  name.findValue(existsEnv, (name) => name.getEnv())
 
 
 
-# Nim command line
+iterator libNimModules (): AbsoluteFile =
+  yield srcDirName() / nimbleProjectName().addFileExt(nimExt())
 
-func toNimLongOption (name, value: string): string =
-  fmt"--{name}:{value.quoteShell()}"
-
-
-
-func toNimLongOptions (
-  pairs: openArray[tuple[name, value: string]]
-): seq[string] =
-  pairs.map(pair => pair.name.toNimLongOption(pair.value))
+  for module in absoluteNimModules(srcDirName() / nimbleProjectName()):
+    yield module
 
 
 
@@ -117,29 +85,27 @@ type
     Cxx,
     Js
 
-  InvalidEnvVarValueError = object of CatchableError
 
 
-
-func shellNames (): array[EnvVar, string] =
+func envVarNames (): array[EnvVar, string] =
   const names = ["NIM_BACKEND"]
 
   names
 
 
-func shellName (self: EnvVar): string =
-  shellNames()[self]
+func name (self: EnvVar): string =
+  envVarNames()[self]
 
 
 
-func nimBackendShellValues (): array[Backend, string] =
-  const shellValues = ["c", "cxx", "js"]
+func nimBackendEnvVarValues (): array[Backend, string] =
+  const values = ["c", "cxx", "js"]
 
-  shellValues
+  values
 
 
-func shellValue (self: Backend): string =
-  nimBackendShellValues()[self]
+func envVarValue (self: Backend): string =
+  nimBackendEnvVarValues()[self]
 
 
 
@@ -154,49 +120,20 @@ func nimCmdName (self: Backend): string =
 
 
 
-func newInvalidEnvVarValueError (
-  name: string;
-  value: string
-): ref InvalidEnvVarValueError =
-  InvalidEnvVarValueError.newException(&"{name}=\"{value}\"")
+proc parseNimBackend (envValue: string): ParseEnvResult[Backend] =
+  func invalidValue (): ref ParseEnvError =
+    EnvVar.NimBackend.name().parseEnvError(fmt"Invalid backend: {envValue}")
+
+  nimBackendEnvVarValues()
+    .findFirst(val => val == envValue)
+    .ifSome(parseEnvSuccess, () => invalidValue.parseEnvFailure(Backend))
 
 
-func newInvalidEnvVarValueError (
-  self: EnvVar;
-  value: string
-): ref InvalidEnvVarValueError =
-  newInvalidEnvVarValueError(self.shellName(), value)
-
-
-
-proc getEnvOrEmpty (key: string): string =
-  key.getEnv()
-
-
-proc tryReadEnv (key: string): Option[string] =
-  key.some().filter(existsEnv).map(getEnvOrEmpty)
-
-
-proc tryReadEnv [T](self: EnvVar; parseValue: string -> T): Option[T] =
-  self
-    .shellName()
-    .tryReadEnv()
-    .map(parseValue)
-
-
-proc readNimBackendFromEnv (): Option[Backend] =
-  const envVar = EnvVar.NimBackend
-
-  func parseBackendOrError (envValue: string): Backend =
-    let found =
-      nimBackendShellValues().findFirst(expected => envValue == expected)
-
-    if found.isSome():
-      found.get()
-    else:
-      raise newInvalidEnvVarValueError(envVar, envValue)
-
-  envVar.tryReadEnv(parseBackendOrError)
+proc tryParseNimBackend (): Optional[ParseEnvResult[Backend]] =
+  EnvVar
+    .NimBackend
+    .name()
+    .tryParse(findEnvValue, parseNimBackend)
 
 
 
@@ -210,7 +147,7 @@ type
     CleanDocs
     Clean
 
-  OutputDirBuilder = proc (): Option[AbsoluteDir] {.nimcall, noSideEffect.}
+  OutputDirBuilder = proc (): Optional[AbsoluteDir] {.nimcall, noSideEffect.}
 
 
 
@@ -237,12 +174,12 @@ func identifier (self: Task): NimNode =
 
 func testTaskDescription (): string =
   func backendChoice (): string =
-    nimBackendShellValues().join($'|')
+    nimBackendEnvVarValues().join($'|')
 
   [
     "Build the tests and run them.",
     "The backend can be specified with the environment variable",
-    fmt""""{EnvVar.NimBackend.shellName()}=({backendChoice()})"."""
+    fmt""""{EnvVar.NimBackend.name()}=({backendChoice()})"."""
   ].join($' ')
 
 
@@ -268,20 +205,19 @@ func description (self: Task): string =
 
 
 
-func baseOutputDir (self: Task): AbsoluteDir =
-  nimCacheDir() / self.name()
-
-
-
 func noOutputDir (): Option[AbsoluteDir] =
   AbsoluteDir.none()
+
+
+func outputInCache (self: Task): AbsoluteDir =
+  self.name().outputDir(nimbleCacheDir())
 
 
 func taskOutputDirBuilders (): array[Task, OutputDirBuilder] =
   const builders =
     [
-      () => Task.Test.baseOutputDir().some(),
-      () => Task.Docs.baseOutputDir().some(),
+      () => Task.Test.outputInCache().some(),
+      () => Task.Docs.outputInCache().some(),
       noOutputDir,
       noOutputDir,
       noOutputDir
@@ -301,14 +237,15 @@ func outputDir (self: Task): Option[AbsoluteDir] =
 
 # Nimble tasks.
 
-macro define (self: static Task; body: untyped): untyped =
+macro define (self: static Task; body: proc (self: Task)): untyped =
   let
     selfIdent = self.identifier()
     selfLit = self.newLit()
+    taskBody = body.newCall(selfLit)
 
   quote do:
     task `selfIdent`, `selfLit`.description():
-      `body`
+      `taskBody`
 
 
 macro run (self: static Task) =
@@ -316,87 +253,94 @@ macro run (self: static Task) =
 
 
 
-define Task.Test:
-  func defaultBackend (): Backend =
-    Backend.C
+Task.Test.define(
+  proc (task: Task) =
+    func defaultBackend (): Backend =
+      Backend.C
+
+    func srcGenDir (backend: Backend): AbsoluteDir =
+      task
+        .outputDir()
+        .map(outputDir => outputDir / backend.envVarValue())
+        .map(
+          proc (backendDir: auto): auto =
+            if backend == Backend.Js:
+              backendDir
+            else:
+              backendDir.compilerCache()
+        ).get()
+
+    func jsFlags (backend: Backend): seq[string] =
+      if backend == Backend.Js:
+        @["-d:nodejs"]
+      else:
+        @[]
+
+    func buildCompileCmd (module: AbsoluteFile; backend: Backend): string =
+      let
+        srcGenDir = backend.srcGenDir()
+        binOutDir = srcGenDir / binOutDirName()
+        jsFlags = backend.jsFlags()
+        outDirOptions =
+          {"nimcache": srcGenDir, "outdir": binOutDir}.toNimLongOptions()
+
+      @[backend.nimCmdName(), "run".longOption()]
+        .concat(jsFlags, outDirOptions, @[module.quoteShell()])
+        .cmdLine()
+
+    tryParseNimBackend()
+      .getOr(() => defaultBackend().parseEnvSuccess())
+      .ifSuccess(
+        proc (backend: Backend): Unit =
+          for module in libNimModules():
+            module.buildCompileCmd(backend).selfExec()
+        ,
+        proc (fail: auto): Unit =
+          raise fail()
+      ).ignore()
+)
 
 
-  func buildSrcGenDir (module: RelativeFile; backend: Backend): AbsoluteDir =
-    Task.Test.outputDir().get() / backend.shellValue() / module
+Task.Docs.define(
+  proc (task: Task) =
+    func genDocCmd (): string =
+      const
+        mainGitBranch = "main"
+        mainModule = srcDirName() / nimbleProjectName().addFileExt(nimExt())
+
+      let
+        longOptions =
+          {
+            "outdir": Task.Docs.outputDir().get(),
+            "git.url": "https://github.com/thenjip/funcynim",
+            "git.devel": mainGitBranch,
+            "git.commit": mainGitBranch
+          }.toNimLongOptions()
+
+      @["doc"]
+        .concat(longOptions & "project".longOption(), @[mainModule.quoteShell()])
+        .cmdLine()
+
+    genDocCmd().selfExec()
+    withDir task.outputDir().get():
+      "theindex".addFileExt("html").cpFile("index".addFileExt("html"))
+)
 
 
-  func handleJsFlags (backend: Backend): seq[string] =
-    if backend == Backend.Js:
-      @["-d:nodejs"]
-    else:
-      @[]
+Task.CleanTest.define(
+  proc (_: Task) =
+    Task.Test.outputDir().get().tryRmDir()
+)
 
 
-  func buildCompileCmd (module: RelativeFile; backend: Backend): string =
-    let
-      srcGenDir = module.buildSrcGenDir(backend)
-      binOutDir = srcGenDir / binOutDirName()
-
-      jsFlags = backend.handleJsFlags()
-      outDirOptions =
-        [("nimcache", srcGenDir), ("outdir", binOutDir)].toNimLongOptions()
-
-    @[backend.nimCmdName(), "-r"]
-      .concat(jsFlags, outDirOptions, @[module.quoteShell()])
-      .join($' ')
+Task.CleanDocs.define(
+  proc (_: Task) =
+    Task.Docs.outputDir().get().tryRmDir()
+)
 
 
-  let backend = readNimBackendFromEnv().get(defaultBackend())
-
-  for module in libNimModules():
-    module.buildCompileCmd(backend).selfExec()
-
-
-
-define Task.Docs:
-  func buildCompileCmd (module: RelativeFile): string =
-    const
-      repoUrl = "https://github.com/thenjip/funcynim"
-      mainGitBranch = "main"
-
-    let longOptions =
-      [
-        ("index", "on"),
-        ("docRoot", projectDir()),
-        ("outdir", Task.Docs.outputDir().get()),
-        ("git.url", repoUrl),
-        ("git.devel", mainGitBranch),
-        ("git.commit", mainGitBranch)
-      ].toNimLongOptions()
-
-    @["doc"]
-      .concat(longOptions & "--project", @[module.quoteShell()])
-      .join($' ')
-
-
-  ($CurDir / fmt"{nimbleProjectName()}{ExtSep}nim").buildCompileCmd().selfExec()
-
-  withDir Task.Docs.outputDir().get():
-    const cmd = [
-      "buildIndex",
-      "out".toNimLongOption(fmt"index{ExtSep}html".quoteShell()),
-      CurDir.`$`().quoteShell()
-    ]
-
-    cmd.join($' ').selfExec()
-
-
-
-define Task.CleanTest:
-  Task.Test.outputDir().get().tryRmDir()
-
-
-
-define Task.CleanDocs:
-  Task.Docs.outputDir().get().tryRmDir()
-
-
-
-define Task.Clean:
-  Task.CleanTest.run()
-  Task.CleanDocs.run()
+Task.Clean.define(
+  proc (_: Task) =
+    Task.CleanTest.run()
+    Task.CleanDocs.run()
+)
