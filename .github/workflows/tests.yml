@@ -25,9 +25,10 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
 
+      - name: 'Install dependencies'
+        run: nimble install -dy
+
       - name: 'Build and run the tests'
         env:
           NIM_BACKEND: '${{ matrix.backend }}'
-        run: |
-          nimble install -dy
-          nimble test
+        run: nimble test
