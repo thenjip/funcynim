@@ -11,7 +11,7 @@ license = "MIT"
 srcDir = srcDirName()
 
 requires "nim >= 1.4.0"
-requires "https://github.com/thenjip/taskutils >= 0.1.0"
+requires "https://github.com/thenjip/taskutils >= 0.2.1"
 
 
 
@@ -61,7 +61,7 @@ proc tryRmDir (dir: AbsoluteDir) =
     dir.rmDir()
 
 
-proc findEnvValue (name: EnvVarName): Optional[EnvVarValue] =
+proc findInEnv (name: EnvVarName): Optional[EnvVarValue] =
   name.findValue(existsEnv, (name) => name.getEnv())
 
 
@@ -81,8 +81,8 @@ type
     NimBackend
 
   Backend {.pure.} = enum
-    C,
-    Cxx,
+    C
+    Cxx
     Js
 
 
@@ -133,7 +133,7 @@ proc tryParseNimBackend (): Optional[ParseEnvResult[Backend]] =
   EnvVar
     .NimBackend
     .name()
-    .tryParse(findEnvValue, parseNimBackend)
+    .tryParse(findInEnv, parseNimBackend)
 
 
 
@@ -179,7 +179,7 @@ func testTaskDescription (): string =
   [
     "Build the tests and run them.",
     "The backend can be specified with the environment variable",
-    fmt""""{EnvVar.NimBackend.name()}=({backendChoice()})"."""
+    fmt"""{EnvVar.NimBackend.name()}=({backendChoice()})."""
   ].join($' ')
 
 
@@ -210,7 +210,7 @@ func noOutputDir (): Option[AbsoluteDir] =
 
 
 func outputInCache (self: Task): AbsoluteDir =
-  self.name().outputDir(nimbleCacheDir())
+  self.name().outputIn(nimbleCacheDir())
 
 
 func taskOutputDirBuilders (): array[Task, OutputDirBuilder] =
@@ -237,15 +237,14 @@ func outputDir (self: Task): Option[AbsoluteDir] =
 
 # Nimble tasks.
 
-macro define (self: static Task; body: proc (self: Task)): untyped =
+macro define (self: static Task; body: Task -> void): untyped =
   let
     selfIdent = self.identifier()
     selfLit = self.newLit()
-    taskBody = body.newCall(selfLit)
 
   quote do:
     task `selfIdent`, `selfLit`.description():
-      `taskBody`
+      `body`(`selfLit`)
 
 
 macro run (self: static Task) =
@@ -267,7 +266,7 @@ Task.Test.define(
             if backend == Backend.Js:
               backendDir
             else:
-              backendDir.compilerCache()
+              backendDir.crossCompilerCache()
         ).get()
 
     func jsFlags (backend: Backend): seq[string] =
@@ -276,7 +275,7 @@ Task.Test.define(
       else:
         @[]
 
-    func buildCompileCmd (module: AbsoluteFile; backend: Backend): string =
+    func compileAndRunCmd (module: AbsoluteFile; backend: Backend): string =
       let
         srcGenDir = backend.srcGenDir()
         binOutDir = srcGenDir / binOutDirName()
@@ -284,20 +283,17 @@ Task.Test.define(
         outDirOptions =
           {"nimcache": srcGenDir, "outdir": binOutDir}.toNimLongOptions()
 
-      @[backend.nimCmdName(), "run".longOption()]
+      @[backend.nimCmdName(), "run".nimLongOption()]
         .concat(jsFlags, outDirOptions, @[module.quoteShell()])
         .cmdLine()
 
-    tryParseNimBackend()
-      .getOr(() => defaultBackend().parseEnvSuccess())
-      .ifSuccess(
-        proc (backend: Backend): Unit =
-          for module in libNimModules():
-            module.buildCompileCmd(backend).selfExec()
-        ,
-        proc (fail: auto): Unit =
-          raise fail()
-      ).ignore()
+    let backend =
+      tryParseNimBackend()
+        .getOr(() => defaultBackend().parseEnvSuccess())
+        .unboxSuccessOrRaise()
+
+    for module in libNimModules():
+      module.compileAndRunCmd(backend).selfExec()
 )
 
 
@@ -305,6 +301,7 @@ Task.Docs.define(
   proc (task: Task) =
     func genDocCmd (): string =
       const
+        repoUrl = "https://github.com/thenjip/funcynim"
         mainGitBranch = "main"
         mainModule = srcDirName() / nimbleProjectName().addFileExt(nimExt())
 
@@ -312,14 +309,17 @@ Task.Docs.define(
         longOptions =
           {
             "outdir": Task.Docs.outputDir().get(),
-            "git.url": "https://github.com/thenjip/funcynim",
+            "git.url": repoUrl,
             "git.devel": mainGitBranch,
             "git.commit": mainGitBranch
           }.toNimLongOptions()
 
       @["doc"]
-        .concat(longOptions & "project".longOption(), @[mainModule.quoteShell()])
-        .cmdLine()
+        .concat(
+          longOptions,
+          @["project".nimLongOption()],
+          @[mainModule.quoteShell()]
+        ).cmdLine()
 
     genDocCmd().selfExec()
     withDir task.outputDir().get():
