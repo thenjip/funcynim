@@ -16,12 +16,14 @@ This project focuses on maximum backend compatibility, that is:
 ## Installation
 
 ```sh
-nimble install 'https://github.com/thenjip/funcynim'
+nimble install 'https://github.com/thenjip/taskutils' 'https://github.com/thenjip/funcynim'
 ```
 
 ## Dependencies
 
-[`nim`](https://nim-lang.org/) >= `1.2.0`
+- [`nim`](https://nim-lang.org/) >= `1.4.0`
+- [`taskutils`](https://github.com/thenjip/taskutils) >= `0.2.1` (only for the
+  Nimble script.)
 
 ## Documentation
 
