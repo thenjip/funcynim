@@ -57,7 +57,7 @@ when isMainModule:
 
 
         type
-          SomeProc = ref NilAccessError -> seq[char]
+          SomeProc = ref NilAccessDefect -> seq[char]
           SomeGenericProc [T; R] = T -> R
 
 
@@ -70,8 +70,8 @@ when isMainModule:
           doTest((int, () -> tuple[]) -> pointer, pointer),
           doTest(SomeProc, seq[char]),
           doTest(
-            SomeGenericProc[float, ref FloatingPointError],
-            ref FloatingPointError
+            SomeGenericProc[float, ref FloatingPointDefect],
+            ref FloatingPointDefect
           ),
           doTest(() -> var int, var int)
         ]:

@@ -120,16 +120,13 @@ func splitArgs (callExpr: CallExpr): SplitArgPair =
     if arg.isPartialParamPrefixed():
       let paramName = nskParam.genSym(fmt"a{pos}")
 
-      result.partialParams.add(
-        pos,
-        lambdaParam(
-          paramName.strVal(),
+      result.partialParams[pos] =
+        paramName.strVal().lambdaParam(
           arg.firstChild().strVal().`==`(partialParamPrefix()).ifElse(
             () => ident"auto",
             () => arg.secondChild()
           )
         )
-      )
       result.callArgs.add(paramName.strVal().ident())
     else:
       result.callArgs.add(arg)

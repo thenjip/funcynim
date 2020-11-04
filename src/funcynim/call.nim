@@ -26,8 +26,8 @@ proc call* (p: proc () {.closure.}) =
   p()
 
 
-macro call* (p: proc; arg1: untyped; remaining: varargs[untyped]): untyped =
-  result = newCall(p, arg1)
+macro call* (p: proc; arg1: typed; remaining: varargs[typed]): untyped =
+  result = p.newCall(arg1)
 
   for arg in remaining:
     result.add(arg)
@@ -93,17 +93,18 @@ when isMainModule:
 
       test """"call()" should be usable in compile time expressions.""":
         proc doTest () =
+          func test2 (arg1: (int, int)): auto =
+            arg1[0]
+
+          func test4 (arg1: string, arg2: int, arg3: tuple[]): auto =
+            arg1
+
           const results =
             (
               call(() => 0),
-              call((arg1: (int, int)) => arg1[0], (-1, 5)),
+              call(test2, (-1, 5)),
               minus[Natural].call(10, 2),
-              call(
-                (arg1: string, arg2: int, arg3: tuple[]) => arg1,
-                "",
-                int.low(),
-                ()
-              )
+              call(test4, "", int.low(), ())
             )
 
           discard results

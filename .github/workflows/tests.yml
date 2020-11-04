@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        nim_version: ['1.2.0', '1.2.2', '1.2.4', '1.2.6']
+        nim_version: ['1.4.0']
         backend: ['c', 'cxx', 'js']
 
     name: 'Nim ${{ matrix.nim_version }}, backend ${{ matrix.backend }}'
@@ -25,9 +25,12 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
 
+      - name: 'Install dependencies'
+        run: |
+          nimble install -y 'https://github.com/thenjip/taskutils'
+          nimble install -dy
+
       - name: 'Build and run the tests'
         env:
           NIM_BACKEND: '${{ matrix.backend }}'
-        run: |
-          nimble install -dy
-          nimble test
+        run: nimble test
