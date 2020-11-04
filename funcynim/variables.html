@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>funcynim/chain</title>
+<title>funcynim/variables</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -62,7 +62,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">funcynim/chain</h1>
+    <h1 class="title">funcynim/variables</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -92,13 +92,35 @@ function main() {
   </div>
   <ul class="simple simple-toc" id="toc-list">
 <li>
+  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
+  <ul class="simple simple-toc-section">
+    
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
+  <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">modify
+      <li><a class="reference" href="#modify%2CT%2C"
+    title="modify[T](self: var T; f: T -&gt; T): var T">modify,T,<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#modify%2CT%2C_2"
+    title="modify[T](self: var T; f: var T -&gt; Unit): var T">modify,T,_2<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">write
+      <li><a class="reference" href="#write%2CT%2CT"
+    title="write[T](self: var T; value: T): var T">write,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+
+  </ul>
+</li>
+<li>
   <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">chain
-      <li><a class="reference" href="#chain%2C%2C"
-    title="chain[A; B; C](f: A -&gt; B; g: B -&gt; C): A -&gt; C">chain,,<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#chain%2C%2C_2"
-    title="chain[A; B](f: () -&gt; A; g: A -&gt; B): () -&gt; B">chain,,_2<span class="attachedType"></span></a></li>
+      <ul class="simple nested-toc-section">read
+      <li><a class="reference" href="#read%2CT"
+    title="read[T](self: var T): T">read,T<span class="attachedType"></span></a></li>
 
   </ul>
 
@@ -111,30 +133,64 @@ function main() {
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc">The bread and butter of functional programming: function composition. </p>
-  <div class="section" id="13">
-<h1><a class="toc-backref" href="#13">Funcs</a></h1>
+  <p class="module-desc"><p>Utilities to manipulate variables.</p>
+<p>Useful when composing procedures that use variables with others that do not. </p>
+</p>
+  <div class="section" id="6">
+<h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a id="chain,,"></a>
-<dt><pre><span class="Keyword">func</span> <a href="#chain%2C%2C"><span class="Identifier">chain</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">;</span> <span class="Identifier">C</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span><span class="Other">;</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="Identifier">B</span> <span class="Operator">-&gt;</span> <span class="Identifier">C</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">C</span></pre></dt>
+<a class="reference external" href="ignore.html">ignore</a>, <a class="reference external" href="unit.html">unit</a>
+</dl></div>
+<div class="section" id="12">
+<h1><a class="toc-backref" href="#12">Procs</a></h1>
+<dl class="item">
+<a id="write,T,T"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#write%2CT%2CT"><span class="Identifier">write</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/chain.nim#L11"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/variables.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/chain.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/variables.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="chain,,_2"></a>
-<dt><pre><span class="Keyword">func</span> <a href="#chain%2C%2C_2"><span class="Identifier">chain</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span></pre></dt>
+<a id="modify,T,"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#modify%2CT%2C"><span class="Identifier">modify</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Identifier">T</span> <span class="Operator">-&gt;</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/chain.nim#L16"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/variables.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/chain.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/variables.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="modify,T,_2"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#modify%2CT%2C_2"><span class="Identifier">modify</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span> <span class="Operator">-&gt;</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/variables.nim#L29"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/variables.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+
+</dl></div>
+<div class="section" id="13">
+<h1><a class="toc-backref" href="#13">Funcs</a></h1>
+<dl class="item">
+<a id="read,T"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#read%2CT"><span class="Identifier">read</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/variables.nim#L15"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/variables.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -147,7 +203,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 13:46:21 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 13:46:22 UTC</small>
       </div>
     </div>
   </div>

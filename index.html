@@ -63,7 +63,7 @@ function main() {
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="funcynim/call.html">funcynim/call</a>, <a href="funcynim/chain.html">funcynim/chain</a>, <a href="funcynim/convert.html">funcynim/convert</a>, <a href="funcynim/default.html">funcynim/default</a>, <a href="funcynim/ifelse.html">funcynim/ifelse</a>, <a href="funcynim/ignore.html">funcynim/ignore</a>, <a href="funcynim/lambda.html">funcynim/lambda</a>, <a href="funcynim/nimnodes.html">funcynim/nimnodes</a>, <a href="funcynim/operators.html">funcynim/operators</a>, <a href="funcynim/partialproc.html">funcynim/partialproc</a>, <a href="funcynim/proctypes.html">funcynim/proctypes</a>, <a href="funcynim/unit.html">funcynim/unit</a>.<br/><p /><h2>API symbols</h2>
+    Modules: <a href="funcynim/call.html">funcynim/call</a>, <a href="funcynim/chain.html">funcynim/chain</a>, <a href="funcynim/convert.html">funcynim/convert</a>, <a href="funcynim/default.html">funcynim/default</a>, <a href="funcynim/ifelse.html">funcynim/ifelse</a>, <a href="funcynim/ignore.html">funcynim/ignore</a>, <a href="funcynim/lambda.html">funcynim/lambda</a>, <a href="funcynim/nimnodes.html">funcynim/nimnodes</a>, <a href="funcynim/operators.html">funcynim/operators</a>, <a href="funcynim/partialproc.html">funcynim/partialproc</a>, <a href="funcynim/proctypes.html">funcynim/proctypes</a>, <a href="funcynim/unit.html">funcynim/unit</a>, <a href="funcynim/variables.html">funcynim/variables</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="call" href="#call"><span>call:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="call: call[T](p: proc (): T {.nimcall.}): T" href="funcynim/call.html#call%2Cproc%29">call: call[T](p: proc (): T {.nimcall.}): T</a></li>
@@ -170,6 +170,12 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="operators: minus[T](x, y: T): T" href="funcynim/operators.html#minus%2CT%2CT">operators: minus[T](x, y: T): T</a></li>
           </ul></dd>
+<dt><a name="modify" href="#modify"><span>modify:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="variables: modify[T](self: var T; f: T -&gt; T): var T" href="funcynim/variables.html#modify%2CT%2C">variables: modify[T](self: var T; f: T -&gt; T): var T</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="variables: modify[T](self: var T; f: var T -&gt; Unit): var T" href="funcynim/variables.html#modify%2CT%2C_2">variables: modify[T](self: var T; f: var T -&gt; Unit): var T</a></li>
+          </ul></dd>
 <dt><a name="modulo" href="#modulo"><span>modulo:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="operators: modulo[T: SomeInteger](x, y: T): T" href="funcynim/operators.html#modulo%2CT%2CT">operators: modulo[T: SomeInteger](x, y: T): T</a></li>
@@ -220,6 +226,10 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="operators: prev[T: Ordinal](x: T): T" href="funcynim/operators.html#prev%2CT">operators: prev[T: Ordinal](x: T): T</a></li>
           </ul></dd>
+<dt><a name="read" href="#read"><span>read:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="variables: read[T](self: var T): T" href="funcynim/variables.html#read%2CT">variables: read[T](self: var T): T</a></li>
+          </ul></dd>
 <dt><a name="resultType" href="#resultType"><span>resultType:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="proctypes: resultType(T: typedesc[proc]): typedesc" href="funcynim/proctypes.html#resultType.m%2Ctypedesc%5Bproc%5D">proctypes: resultType(T: typedesc[proc]): typedesc</a></li>
@@ -244,12 +254,16 @@ function main() {
 <li><a class="reference external"
           data-doc-search-tag="unit: unit(): Unit" href="funcynim/unit.html#unit_2">unit: unit(): Unit</a></li>
           </ul></dd>
+<dt><a name="write" href="#write"><span>write:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="variables: write[T](self: var T; value: T): var T" href="funcynim/variables.html#write%2CT%2CT">variables: write[T](self: var T; value: T): var T</a></li>
+          </ul></dd>
 </dl>
     <div class="row">
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 10:59:53 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 13:46:22 UTC</small>
       </div>
     </div>
   </div>
