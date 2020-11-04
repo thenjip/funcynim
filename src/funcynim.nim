@@ -10,7 +10,8 @@ import funcynim/[
   operators,
   partialproc,
   proctypes,
-  unit
+  unit,
+  variables
 ]
 
 
@@ -27,4 +28,5 @@ export
   operators,
   partialproc,
   proctypes,
-  unit
+  unit,
+  variables
