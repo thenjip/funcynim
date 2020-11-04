@@ -20,7 +20,7 @@
 <title>funcynim/proctypes</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
-<script type="text/javascript" src="dochack.js"></script>
+<script type="text/javascript" src="../dochack.js"></script>
 
 <script type="text/javascript">
 function main() {
@@ -47,21 +47,12 @@ function main() {
 
   toggleSwitch.addEventListener('change', switchTheme, false);
 
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', "dark");
-    toggleSwitch.checked = true;
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.documentElement.setAttribute('data-theme', "light");
-    toggleSwitch.checked = false;
-  } else {
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
     }
   }
 }
@@ -83,6 +74,9 @@ function main() {
   </div>
   <div id="global-links">
     <ul class="simple">
+    <li>
+      <a href="../theindex.html">Index</a>
+    </li>
     </ul>
   </div>
   <div id="searchInputDiv">
@@ -108,7 +102,7 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#resultType.m%2Ctypedesc%5Bproc%5D"
     title="resultType(T: typedesc[proc]): typedesc"><wbr />result<wbr />Type<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#paramType.m%2Ctypedesc%5Bproc%5D%2C"
+  <li><a class="reference" href="#paramType.m%2Ctypedesc%5Bproc%5D%2CstaticNatural"
     title="paramType(T: typedesc[proc]; position: static Natural): typedesc"><wbr />param<wbr />Type<span class="attachedType"></span></a></li>
 
   </ul>
@@ -118,7 +112,7 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#resultType.t%2Cproc"
     title="resultType(p: proc): typedesc"><wbr />result<wbr />Type<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#paramType.t%2Cproc%2C"
+  <li><a class="reference" href="#paramType.t%2Cproc%2CstaticNatural"
     title="paramType(p: proc; position: static Natural): typedesc"><wbr />param<wbr />Type<span class="attachedType"></span></a></li>
 
   </ul>
@@ -145,20 +139,20 @@ function main() {
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/proctypes.nim#L12"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/proctypes.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/proctypes.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/proctypes.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="paramType.m,typedesc[proc],"></a>
-<dt><pre><span class="Keyword">macro</span> <a href="#paramType.m%2Ctypedesc%5Bproc%5D%2C"><span class="Identifier">paramType</span></a><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Keyword">proc</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">position</span><span class="Other">:</span> <span class="Identifier">static</span> <span class="Identifier">Natural</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">typedesc</span></pre></dt>
+<a id="paramType.m,typedesc[proc],staticNatural"></a>
+<dt><pre><span class="Keyword">macro</span> <a href="#paramType.m%2Ctypedesc%5Bproc%5D%2CstaticNatural"><span class="Identifier">paramType</span></a><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Keyword">proc</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">position</span><span class="Other">:</span> <span class="Identifier">static</span> <span class="Identifier">Natural</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">typedesc</span></pre></dt>
 <dd>
 
 Parameter positions start at 0. 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/proctypes.nim#L21"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/proctypes.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/proctypes.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/proctypes.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -172,20 +166,20 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/proctypes.nim#L16"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/proctypes.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/proctypes.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/proctypes.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="paramType.t,proc,"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#paramType.t%2Cproc%2C"><span class="Identifier">paramType</span></a><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <span class="Keyword">proc</span><span class="Other">;</span> <span class="Identifier">position</span><span class="Other">:</span> <span class="Identifier">static</span> <span class="Identifier">Natural</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">typedesc</span></pre></dt>
+<a id="paramType.t,proc,staticNatural"></a>
+<dt><pre><span class="Keyword">template</span> <a href="#paramType.t%2Cproc%2CstaticNatural"><span class="Identifier">paramType</span></a><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <span class="Keyword">proc</span><span class="Other">;</span> <span class="Identifier">position</span><span class="Other">:</span> <span class="Identifier">static</span> <span class="Identifier">Natural</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">typedesc</span></pre></dt>
 <dd>
 
 Parameter positions start at 0. 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/proctypes.nim#L33"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/proctypes.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/proctypes.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/proctypes.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -198,7 +192,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-10-15 07:26:40 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 10:59:53 UTC</small>
       </div>
     </div>
   </div>

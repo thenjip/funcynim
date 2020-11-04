@@ -20,7 +20,7 @@
 <title>funcynim/partialproc</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
-<script type="text/javascript" src="dochack.js"></script>
+<script type="text/javascript" src="../dochack.js"></script>
 
 <script type="text/javascript">
 function main() {
@@ -47,21 +47,12 @@ function main() {
 
   toggleSwitch.addEventListener('change', switchTheme, false);
 
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', "dark");
-    toggleSwitch.checked = true;
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.documentElement.setAttribute('data-theme', "light");
-    toggleSwitch.checked = false;
-  } else {
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
     }
   }
 }
@@ -83,6 +74,9 @@ function main() {
   </div>
   <div id="global-links">
     <ul class="simple">
+    <li>
+      <a href="../theindex.html">Index</a>
+    </li>
     </ul>
   </div>
   <div id="searchInputDiv">
@@ -106,14 +100,26 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">isUnderscore
+      <li><a class="reference" href="#isUnderscore%2CNimNode"
+    title="isUnderscore(n: NimNode): bool">isUnderscore,NimNode<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">newLambda
+      <li><a class="reference" href="#newLambda%2Cseq%5BNimNode%5D%2CNimNode%2CNimNode"
+    title="newLambda(params: seq[NimNode]; body: NimNode; returnType: NimNode): NimNode">newLambda,seq[NimNode],NimNode,NimNode<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">partialTypedParamPrefix
+      <li><a class="reference" href="#partialTypedParamPrefix"
+    title="partialTypedParamPrefix(): string">partialTypedParamPrefix<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">partialParamPrefix
       <li><a class="reference" href="#partialParamPrefix"
-    title="partialParamPrefix(): string"><wbr />partial<wbr />Param<wbr />Prefix<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#partialTypedParamPrefix"
-    title="partialTypedParamPrefix(): string"><wbr />partial<wbr />Typed<wbr />Param<wbr />Prefix<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#newLambda%2Cseq%5BNimNode%5D%2CNimNode%2CNimNode"
-    title="newLambda(params: seq[NimNode]; body: NimNode; returnType: NimNode): NimNode"><wbr />new<wbr />Lambda<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#isUnderscore%2CNimNode"
-    title="isUnderscore(n: NimNode): bool"><wbr />is<wbr />Underscore<span class="attachedType"></span></a></li>
+    title="partialParamPrefix(): string">partialParamPrefix<span class="attachedType"></span></a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -149,9 +155,9 @@ function main() {
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/partialproc.nim#L40"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/partialproc.nim#L40"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/partialproc.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/partialproc.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="partialTypedParamPrefix"></a>
@@ -160,9 +166,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/partialproc.nim#L44"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/partialproc.nim#L44"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/partialproc.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/partialproc.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="newLambda,seq[NimNode],NimNode,NimNode"></a>
@@ -172,9 +178,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/partialproc.nim#L49"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/partialproc.nim#L49"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/partialproc.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/partialproc.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="isUnderscore,NimNode"></a>
@@ -183,9 +189,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/partialproc.nim#L58"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/partialproc.nim#L58"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/partialproc.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/partialproc.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -233,9 +239,9 @@ Transforms a call expression of any kind into a lambda expression.<dl class="doc
 </dl>
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/partialproc.nim#L139"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/partialproc.nim#L136"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/partialproc.nim#L139" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/partialproc.nim#L136" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -248,7 +254,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-10-15 07:26:40 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 10:59:53 UTC</small>
       </div>
     </div>
   </div>

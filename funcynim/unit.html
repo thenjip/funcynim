@@ -20,7 +20,7 @@
 <title>funcynim/unit</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
-<script type="text/javascript" src="dochack.js"></script>
+<script type="text/javascript" src="../dochack.js"></script>
 
 <script type="text/javascript">
 function main() {
@@ -47,21 +47,12 @@ function main() {
 
   toggleSwitch.addEventListener('change', switchTheme, false);
 
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', "dark");
-    toggleSwitch.checked = true;
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.documentElement.setAttribute('data-theme', "light");
-    toggleSwitch.checked = false;
-  } else {
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
     }
   }
 }
@@ -83,6 +74,9 @@ function main() {
   </div>
   <div id="global-links">
     <ul class="simple">
+    <li>
+      <a href="../theindex.html">Index</a>
+    </li>
     </ul>
   </div>
   <div id="searchInputDiv">
@@ -108,12 +102,21 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">unit
       <li><a class="reference" href="#unit_2"
-    title="unit(): Unit"><wbr />unit<span class="attachedType">Unit</span></a></li>
-  <li><a class="reference" href="#default%2Ctypedesc%5BUnit%5D"
-    title="default(T: typedesc[Unit]): Unit"><wbr />default<span class="attachedType">Unit</span></a></li>
-  <li><a class="reference" href="#doNothing%2CT"
-    title="doNothing[T](_: T): Unit"><wbr />do<wbr />Nothing<span class="attachedType">Unit</span></a></li>
+    title="unit(): Unit">unit_2<span class="attachedType">Unit</span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">default
+      <li><a class="reference" href="#default%2Ctypedesc%5BUnit%5D"
+    title="default(T: typedesc[Unit]): Unit">default,typedesc[Unit]<span class="attachedType">Unit</span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">doNothing
+      <li><a class="reference" href="#doNothing%2CT"
+    title="doNothing[T](_: T): Unit">doNothing,T<span class="attachedType">Unit</span></a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -136,9 +139,9 @@ function main() {
 <p>The type has only a single value. </p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/unit.nim#L2"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L2"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/unit.nim#L2" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L2" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -152,9 +155,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/unit.nim#L12"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/unit.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="default,typedesc[Unit]"></a>
@@ -163,9 +166,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/unit.nim#L16"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/unit.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="doNothing,T"></a>
@@ -174,9 +177,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/unit.nim#L21"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/unit.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -189,7 +192,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-10-15 07:26:40 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 10:59:53 UTC</small>
       </div>
     </div>
   </div>

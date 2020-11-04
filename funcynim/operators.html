@@ -20,7 +20,7 @@
 <title>funcynim/operators</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
-<script type="text/javascript" src="dochack.js"></script>
+<script type="text/javascript" src="../dochack.js"></script>
 
 <script type="text/javascript">
 function main() {
@@ -47,21 +47,12 @@ function main() {
 
   toggleSwitch.addEventListener('change', switchTheme, false);
 
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', "dark");
-    toggleSwitch.checked = true;
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.documentElement.setAttribute('data-theme', "light");
-    toggleSwitch.checked = false;
-  } else {
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
     }
   }
 }
@@ -83,6 +74,9 @@ function main() {
   </div>
   <div id="global-links">
     <ul class="simple">
+    <li>
+      <a href="../theindex.html">Index</a>
+    </li>
     </ul>
   </div>
   <div id="searchInputDiv">
@@ -100,46 +94,97 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">plus
       <li><a class="reference" href="#plus%2CT%2CT"
-    title="plus[T](x, y: T): T"><wbr />plus<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#plus1%2CT"
-    title="plus1[T](x: T): T"><wbr />plus1<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#minus%2CT%2CT"
-    title="minus[T](x, y: T): T"><wbr />minus<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#mult%2CT%2CT"
-    title="mult[T](x, y: T): T"><wbr />mult<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#divInt%2CT%2CT"
-    title="divInt[T: SomeInteger](x, y: T): T"><wbr />div<wbr />Int<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#divFloat%2CT%2CT"
-    title="divFloat[T: SomeFloat](x, y: T): T"><wbr />div<wbr />Float<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#modulo%2CT%2CT"
-    title="modulo[T: SomeInteger](x, y: T): T"><wbr />modulo<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#less%2CT%2CT"
-    title="less[T](x, y: T): bool"><wbr />less<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#lessOrEq%2CT%2CT"
-    title="lessOrEq[T](x, y: T): bool"><wbr />less<wbr />Or<wbr />Eq<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#equal%2CT%2CT"
-    title="equal[T](x, y: T): bool"><wbr />equal<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#greaterOrEq%2CT%2CT"
-    title="greaterOrEq[T](x, y: T): bool"><wbr />greater<wbr />Or<wbr />Eq<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#greater%2CT%2CT"
-    title="greater[T](x, y: T): bool"><wbr />greater<span class="attachedType"></span></a></li>
+    title="plus[T](x, y: T): T">plus,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">divInt
+      <li><a class="reference" href="#divInt%2CT%2CT"
+    title="divInt[T: SomeInteger](x, y: T): T">divInt,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">divFloat
+      <li><a class="reference" href="#divFloat%2CT%2CT"
+    title="divFloat[T: SomeFloat](x, y: T): T">divFloat,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">lessOrEq
+      <li><a class="reference" href="#lessOrEq%2CT%2CT"
+    title="lessOrEq[T](x, y: T): bool">lessOrEq,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">modulo
+      <li><a class="reference" href="#modulo%2CT%2CT"
+    title="modulo[T: SomeInteger](x, y: T): T">modulo,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">minus
+      <li><a class="reference" href="#minus%2CT%2CT"
+    title="minus[T](x, y: T): T">minus,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">greaterOrEq
+      <li><a class="reference" href="#greaterOrEq%2CT%2CT"
+    title="greaterOrEq[T](x, y: T): bool">greaterOrEq,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">plus1
+      <li><a class="reference" href="#plus1%2CT"
+    title="plus1[T](x: T): T">plus1,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">greater
+      <li><a class="reference" href="#greater%2CT%2CT"
+    title="greater[T](x, y: T): bool">greater,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">less
+      <li><a class="reference" href="#less%2CT%2CT"
+    title="less[T](x, y: T): bool">less,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">equal
+      <li><a class="reference" href="#equal%2CT%2CT"
+    title="equal[T](x, y: T): bool">equal,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">mult
+      <li><a class="reference" href="#mult%2CT%2CT"
+    title="mult[T](x, y: T): T">mult,T,T<span class="attachedType"></span></a></li>
+
+  </ul>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">logicOr
+      <li><a class="reference" href="#logicOr%2Cbool%2Cbool"
+    title="logicOr(x, y: bool): bool">logicOr,bool,bool<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">logicNot
+      <li><a class="reference" href="#logicNot%2Cbool"
+    title="logicNot(x: bool): bool">logicNot,bool<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">next
       <li><a class="reference" href="#next%2CT"
-    title="next[T: Ordinal](x: T): T"><wbr />next<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#prev%2CT"
-    title="prev[T: Ordinal](x: T): T"><wbr />prev<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#logicNot%2Cbool"
-    title="logicNot(x: bool): bool"><wbr />logic<wbr />Not<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#logicAnd%2Cbool%2Cbool"
-    title="logicAnd(x, y: bool): bool"><wbr />logic<wbr />And<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#logicOr%2Cbool%2Cbool"
-    title="logicOr(x, y: bool): bool"><wbr />logic<wbr />Or<span class="attachedType"></span></a></li>
+    title="next[T: Ordinal](x: T): T">next,T<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">logicAnd
+      <li><a class="reference" href="#logicAnd%2Cbool%2Cbool"
+    title="logicAnd(x, y: bool): bool">logicAnd,bool,bool<span class="attachedType"></span></a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">prev
+      <li><a class="reference" href="#prev%2CT"
+    title="prev[T: Ordinal](x: T): T">prev,T<span class="attachedType"></span></a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -162,9 +207,9 @@ function main() {
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L10"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L10"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="plus1,T"></a>
@@ -173,9 +218,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L14"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="minus,T,T"></a>
@@ -184,9 +229,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L18"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="mult,T,T"></a>
@@ -195,9 +240,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L22"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L22"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="divInt,T,T"></a>
@@ -206,9 +251,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L26"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="divFloat,T,T"></a>
@@ -217,9 +262,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L30"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="modulo,T,T"></a>
@@ -228,9 +273,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L34"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="less,T,T"></a>
@@ -239,9 +284,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L48"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L48"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="lessOrEq,T,T"></a>
@@ -250,9 +295,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L52"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="equal,T,T"></a>
@@ -261,9 +306,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L56"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L56"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="greaterOrEq,T,T"></a>
@@ -272,9 +317,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L60"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L60"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="greater,T,T"></a>
@@ -283,9 +328,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L64"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L64"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -299,9 +344,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L39"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="prev,T"></a>
@@ -310,9 +355,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L43"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="logicNot,bool"></a>
@@ -321,9 +366,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L69"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L69"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="logicAnd,bool,bool"></a>
@@ -332,9 +377,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L73"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L73"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L73" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L73" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <a id="logicOr,bool,bool"></a>
@@ -343,9 +388,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/funcynim/operators.nim#L77"
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/operators.nim#L77"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/main/funcynim/operators.nim#L77" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/operators.nim#L77" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -358,7 +403,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-10-15 07:26:40 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-11-04 10:59:53 UTC</small>
       </div>
     </div>
   </div>

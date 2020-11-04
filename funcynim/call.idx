@@ -2,4 +2,4 @@ call	funcynim/call.html#call,proc)	call: call[T](p: proc (): T {.nimcall.}): T
 call	funcynim/call.html#call,proc)_2	call: call[T](p: proc (): T {.closure.}): T	
 call	funcynim/call.html#call,proc)_3	call: call(p: proc () {.nimcall.})	
 call	funcynim/call.html#call,proc)_4	call: call(p: proc () {.closure.})	
-call	funcynim/call.html#call.m,proc,untyped,varargs[untyped]	call: call(p: proc; arg1: untyped; remaining: varargs[untyped]): untyped	
+call	funcynim/call.html#call.m,proc,typed,varargs[typed]	call: call(p: proc; arg1: typed; remaining: varargs[typed]): untyped	
