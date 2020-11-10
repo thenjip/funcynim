@@ -1,27 +1,18 @@
-import "../funcynim.nimble"
+import "project.nims"
 
-import pkg/taskutils/[dirs, envtypes, fileiters, filetypes, optional, parseenv]
+import pkg/taskutils/[dirs, filetypes, optional]
 
 import std/[os, sugar]
 
 
 
-export funcynim
+func nimbleCacheDir* (): AbsoluteDir =
+  getCurrentDir() / nimbleCache()
 
 
 
 type
   OutputDirBuilder = proc (): Optional[AbsoluteDir] {.nimcall, noSideEffect.}
-
-
-
-func nimbleProjectName* (): string =
-  "funcynim"
-
-
-
-func nimbleCacheDir* (): AbsoluteDir =
-  getCurrentDir() / nimbleCache()
 
 
 
@@ -52,16 +43,3 @@ func outputDirBuilder (self: Task): OutputDirBuilder =
 
 func outputDir* (self: Task): Option[AbsoluteDir] =
   self.outputDirBuilder()()
-
-
-
-proc findInEnv* (name: EnvVarName): Optional[EnvVarValue] =
-  name.findValue(existsEnv, (name) => name.getEnv())
-
-
-
-iterator libNimModules* (): AbsoluteFile =
-  yield srcDirName() / nimbleProjectName().addFileExt(nimExt())
-
-  for module in absoluteNimModules(srcDirName() / nimbleProjectName()):
-    yield module

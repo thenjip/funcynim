@@ -1,4 +1,4 @@
-import "common.nims"
+import common/["dirs.nims", "project.nims"]
 
 import pkg/taskutils/[optional]
 

@@ -1,5 +1,6 @@
-import "common.nims"
-import test/[env, nimbackend]
+import common/"dirs.nims" as taskdirs
+import common/["project.nims"]
+import test/["env.nims", taskconfig]
 
 import pkg/taskutils/[
   cmdline,
@@ -16,40 +17,18 @@ import std/[os, sequtils, strformat, sugar]
 
 
 
-func findFirst [T](self: openArray[T]; predicate: T -> bool): Optional[T] =
-  result = T.none()
-
-  for item in self:
-    if item.predicate():
-      return item.some()
-
-
-
-proc parseNimBackend (value: EnvVarValue): ParseEnvResult[Backend] =
-  func invalidValue (): ref ParseEnvError =
-    EnvVar.NimBackend.name().parseEnvError(fmt"Invalid backend: {value}")
-
-  toSeq(Backend.items())
-    .map(backend => (backend: backend, envVarValue: backend.envVarValue()))
-    .findFirst(pair => pair.envVarValue == value)
-    .map(pair => pair.backend)
-    .ifSome(parseEnvSuccess, () => invalidValue.parseEnvFailure(Backend))
-
-
-proc tryParseNimBackend (): Optional[ParseEnvResult[Backend]] =
-  EnvVar
-    .NimBackend
-    .name()
-    .tryParse(findInEnv, parseNimBackend)
-
-
-
 func defaultBackend (): Backend =
   Backend.C
 
 
-func binOutDirName (): string =
+func binGenDirName (): string =
   "bin"
+
+
+
+func tryParseEnvConfig (): TaskConfig =
+  taskConfig(tryParseNimBackend.failOr(defaultBackend))
+
 
 
 func srcGenDir (backend: Backend): AbsoluteDir =
@@ -65,6 +44,16 @@ func srcGenDir (backend: Backend): AbsoluteDir =
     ).get()
 
 
+func binGenDir (backend: Backend): AbsoluteDir =
+  let srcGenDir = backend.srcGenDir()
+
+  if backend == Backend.Js:
+    srcGenDir
+  else:
+    srcGenDir / binGenDirName()
+
+
+
 func jsFlags (backend: Backend): seq[string] =
   if backend == Backend.Js:
     @["-d:nodejs"]
@@ -72,29 +61,36 @@ func jsFlags (backend: Backend): seq[string] =
     @[]
 
 
-func compileAndRunCmd (module: AbsoluteFile; backend: Backend): string =
-  let
-    srcGenDir = backend.srcGenDir()
-    binOutDir = srcGenDir / binOutDirName()
-    jsFlags = backend.jsFlags()
-    outDirOptions =
-      {"nimcache": srcGenDir, "outdir": binOutDir}.toNimLongOptions()
 
-  @[backend.nimCmdName(), "run".nimLongOption()]
-    .concat(jsFlags, outDirOptions, @[module.quoteShell()])
+func compileAndRunCmdOptions (
+  module: AbsoluteFile;
+  config: TaskConfig
+): seq[string] =
+  let backend = config.backend
+
+  @["run".nimLongOption()]
+    .concat(
+      backend.jsFlags(),
+      {
+        "nimcache": backend.srcGenDir(),
+        "outdir": backend.binGenDir()
+      }.toNimLongOptions()
+    )
+
+
+func compileAndRunCmd (module: AbsoluteFile; config: TaskConfig): string =
+  @[config.backend.nimCmdName()]
+    .concat(module.compileAndRunCmdOptions(config), @[module.quoteShell()])
     .cmdLine()
 
 
 
 when isMainModule:
   proc main () =
-    let backend =
-      tryParseNimBackend()
-        .getOr(() => defaultBackend().parseEnvSuccess())
-        .unboxSuccessOrRaise()
+    let config = tryParseEnvConfig()
 
     for module in libNimModules():
-      module.compileAndRunCmd(backend).selfExec()
+      module.compileAndRunCmd(config).selfExec()
 
 
 
