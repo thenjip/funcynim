@@ -51,7 +51,8 @@ jobs:
       - name: 'Setup Objective-C'
         run: |
           apk add --no-cache gcc-objc
-          echo 'gcc.objc.options.linker = "-lobjc"' > ~/.config/nim/nim.cfg
+          mkdir -p ~/.config/nim && \
+            echo 'gcc.objc.options.linker = "-lobjc"' > ~/.config/nim/nim.cfg
 
       - name: 'Install the dependencies'
         run: nimble install -dy
