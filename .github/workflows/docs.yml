@@ -16,10 +16,8 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
 
-      - name: 'Install dependencies'
-        run: |
-          nimble install -y 'https://github.com/thenjip/taskutils'
-          nimble install -dy
+      - name: 'Install the dependencies'
+        run: nimble install -dy
 
       - name: 'Build API doc'
         run: nimble docs
