@@ -19,7 +19,7 @@ jobs:
     name: 'Unit tests: Nim ${{ matrix.nim_version }}, backend ${{ matrix.backend }}'
     runs-on: ubuntu-latest
     container: 'nimlang/nim:${{ matrix.nim_version }}-alpine'
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - name: 'Checkout'
@@ -31,4 +31,32 @@ jobs:
       - name: 'Build and run the tests'
         env:
           NIM_BACKEND: '${{ matrix.backend }}'
+        run: nimble test
+
+  unit_tests_objc:
+    strategy:
+      fail-fast: false
+      matrix:
+        nim_version: ['1.4.0']
+
+    name: 'Unit tests: Nim ${{ matrix.nim_version }}, backend objc'
+    runs-on: ubuntu-latest
+    container: 'nimlang/nim:${{ matrix.nim_version }}-alpine'
+    timeout-minutes: 10
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Setup Objective-C'
+        run: |
+          apk add --no-cache gcc-objc
+          echo 'gcc.objc.options.linker = "-lobjc"' > ~/.config/nim/nim.cfg
+
+      - name: 'Install the dependencies'
+        run: nimble install -dy
+
+      - name: 'Build and run the tests'
+        env:
+          NIM_BACKEND: 'objc'
         run: nimble test
