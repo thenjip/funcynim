@@ -15,7 +15,7 @@ func nimblePackageName* (): string =
 
 
 
-func nim (f: FilePath): FilePath =
+func nim* (f: FilePath): FilePath =
   f.addFileExt(nimExt())
 
 

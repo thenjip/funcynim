@@ -1,8 +1,13 @@
-import "common.nims"
+import common/["dirs.nims", "project.nims"]
 
-import pkg/taskutils/[cmdline, fileiters, nimcmdline, optional]
+import pkg/taskutils/[cmdline, fileiters, filetypes, nimcmdline, optional]
 
 import std/[os, sequtils]
+
+
+
+func html (f: FilePath): FilePath =
+  f.addFileExt("html")
 
 
 
@@ -11,26 +16,21 @@ func genDocCmdOptions (): seq[string] =
     repoUrl = "https://github.com/thenjip/funcynim"
     mainGitBranch = "main"
 
-  concat(
-    @["project".nimLongOption()],
-    {
-      "outdir": Task.Docs.outputDir().get(),
-      "git.url": repoUrl,
-      "git.devel": mainGitBranch,
-      "git.commit": mainGitBranch
-    }.toNimLongOptions()
-  )
+  @["project".nimLongOption()]
+    .concat(
+      {
+        "outdir": Task.Docs.outputDir().get(),
+        "git.url": repoUrl,
+        "git.devel": mainGitBranch,
+        "git.commit": mainGitBranch
+      }.toNimLongOptions()
+    )
 
 
 func genDocCmd (): string =
-  const mainModule = srcDirName() / nimbleProjectName().addFileExt(nimExt())
+  const mainModule = srcDirName() / nimblePackageName().nim()
 
-  @["doc"]
-    .concat(
-      genDocCmdOptions(),
-      @["project".nimLongOption()],
-      @[mainModule.quoteShell()]
-    ).cmdLine()
+  @["doc"].concat(genDocCmdOptions(), @[mainModule.quoteShell()]).cmdLine()
 
 
 
@@ -39,7 +39,7 @@ when isMainModule:
     genDocCmd().selfExec()
 
     withDir Task.Docs.outputDir().get():
-      "theindex".addFileExt("html").cpFile("index".addFileExt("html"))
+      "theindex".html().cpFile("index".html())
 
 
 
