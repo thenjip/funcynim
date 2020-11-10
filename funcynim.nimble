@@ -62,7 +62,7 @@ func identifier* (self: Task): NimNode =
 
 
 func testTaskDescription (): string =
-  let backendChoice = ["c", "cxx", "js"].join($'|')
+  let backendChoice = ["c", "cxx", "objc", "js"].join($'|')
 
   [
     "Build the tests and run them.",
