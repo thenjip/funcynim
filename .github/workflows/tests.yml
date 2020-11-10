@@ -1,4 +1,4 @@
-name: Unit tests
+name: Tests
 on:
   push:
     branches-ignore:
@@ -16,7 +16,7 @@ jobs:
         nim_version: ['1.4.0']
         backend: ['c', 'cxx', 'js']
 
-    name: 'Nim ${{ matrix.nim_version }}, backend ${{ matrix.backend }}'
+    name: 'Unit tests: Nim ${{ matrix.nim_version }}, backend ${{ matrix.backend }}'
     runs-on: ubuntu-latest
     container: 'nimlang/nim:${{ matrix.nim_version }}-alpine'
     timeout-minutes: 15
@@ -25,10 +25,8 @@ jobs:
       - name: 'Checkout'
         uses: 'actions/checkout@v2'
 
-      - name: 'Install dependencies'
-        run: |
-          nimble install -y 'https://github.com/thenjip/taskutils'
-          nimble install -dy
+      - name: 'Install the dependencies'
+        run: nimble install -dy
 
       - name: 'Build and run the tests'
         env:

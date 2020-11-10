@@ -1,6 +1,6 @@
 # funcynim
 
-[![Build Status](https://github.com/thenjip/funcynim/workflows/Unit%20tests/badge.svg?branch=main)](https://github.com/thenjip/funcynim/actions?query=workflow%3A"Unit+tests"+branch%3A"main")
+[![Build Status](https://github.com/thenjip/funcynim/workflows/Tests/badge.svg?branch=main)](https://github.com/thenjip/funcynim/actions?query=workflow%3A"Tests"+branch%3A"main")
 [![Licence](https://img.shields.io/github/license/thenjip/funcynim.svg)](https://raw.githubusercontent.com/thenjip/funcynim/main/LICENSE)
 
 Utility library to ease functional programming in Nim.
