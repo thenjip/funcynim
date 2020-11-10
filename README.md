@@ -9,6 +9,7 @@ This project focuses on maximum backend compatibility, that is:
 
 - C
 - C++
+- Objective-C
 - JavaScript
 - NimScript
 - Compile time expressions in all the backends above

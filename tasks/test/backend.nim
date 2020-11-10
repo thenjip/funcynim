@@ -2,12 +2,13 @@ type
   Backend* {.pure.} = enum
     C
     Cxx
+    Objc
     Js
 
 
 
 func backendEnvVarValues (): array[Backend, string] =
-  const values: result.typeof() = ["c", "cxx", "js"]
+  const values: result.typeof() = ["c", "cxx", "objc", "js"]
 
   values
 
@@ -18,7 +19,7 @@ func envVarValue* (self: Backend): string =
 
 
 func backendNimCmdNames (): array[Backend, string] =
-  const cmdNames: result.typeof() = ["cc", "cpp", "js"]
+  const cmdNames: result.typeof() = ["cc", "cpp", "objc", "js"]
 
   cmdNames
 
