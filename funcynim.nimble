@@ -11,7 +11,7 @@ license = "MIT"
 srcDir = srcDirName()
 
 requires "nim >= 1.4.0"
-requires "https://github.com/thenjip/taskutils >= 0.2.1"
+requires "https://github.com/thenjip/taskutils >= 0.2.2"
 
 
 
