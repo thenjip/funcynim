@@ -6,22 +6,22 @@ type
 
 
 
-func nimBackendEnvVarValues (): array[Backend, string] =
+func backendEnvVarValues (): array[Backend, string] =
   const values: result.typeof() = ["c", "cxx", "js"]
 
   values
 
 
 func envVarValue* (self: Backend): string =
-  nimBackendEnvVarValues()[self]
+  backendEnvVarValues()[self]
 
 
 
-func nimBackendNimCmdNames (): array[Backend, string] =
+func backendNimCmdNames (): array[Backend, string] =
   const cmdNames: result.typeof() = ["cc", "cpp", "js"]
 
   cmdNames
 
 
 func nimCmdName* (self: Backend): string =
-  nimBackendNimCmdNames()[self]
+  backendNimCmdNames()[self]
