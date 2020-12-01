@@ -23,5 +23,5 @@ func nim* (f: FilePath): FilePath =
 iterator libNimModules* (): AbsoluteFile =
   yield srcDirName() / nimblePackageName().nim()
 
-  for module in srcDirName().`/`(nimblePackageName()).absoluteNimModules():
+  for module in srcDirName().`/`(nimblePackageName()).absoluteNimModulesRec():
     yield module
