@@ -2,7 +2,7 @@ import std/[sugar]
 
 
 
-template lambda* [T](expr: T): proc =
+template lambda* [T](expr: T): auto =
   ##[
     It is the same as ``() => expr``, but the method or classic call syntaxes
     can be used.
@@ -14,22 +14,46 @@ template lambda* [T](expr: T): proc =
 when isMainModule:
   import call
 
-  import std/[os, unittest]
+  import std/[os, strutils, unittest]
 
 
 
   proc main () =
     suite currentSourcePath().splitFile().name:
-      test """"expr.lambda().call().typeof()" should be "expr.typeof()".""":
+      test [
+        """"expr.lambda().call().typeof()" should be the same as""",
+        """"expr.typeof()"."""
+      ].join($' '):
         template doTest [T](expr: T): proc () =
           (
             proc () =
+              let p = expr.lambda()
+
               check:
-                expr.lambda().call().typeof().`is`(T)
+                p.call().typeof().`is`(T)
           )
 
 
         for t in [doTest(1), doTest("abc"), doTest(new char)]:
+          t.call()
+
+
+
+      test [
+        """"expr.lambda().call().typeof()" should be the same as""",
+        """"expr.typeof()" at compile time."""
+      ].join($' '):
+        template doTest [T](expr: static[T]): proc () =
+          (
+            proc () =
+              const p = expr.lambda()
+
+              check:
+                p.call().typeof().`is`(T)
+          )
+
+
+        for t in [doTest(1), doTest("abc"), doTest(1 + 1)]:
           t.call()
 
 

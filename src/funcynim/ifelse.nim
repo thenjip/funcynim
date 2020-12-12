@@ -17,42 +17,23 @@ proc ifElse* [T](condition: bool; then, `else`: () -> T): T =
 
 
 when isMainModule:
-  import chain
+  import call, chain
+  import ifelse/private/test/[ifelsetrace]
 
-  import std/[os, unittest]
-
-
-
-  type
-    Path {.pure.} = enum
-      Then
-      Else
-
-    IfElseOutput [T] = tuple
-      takenPath: Path
-      output: T
-
-
-
-  func ifElseOutput [T](takenPath: Path; output: T): IfElseOutput[T] =
-    (takenPath, output)
-
-
-  func takePath [T](choice: bool; then, `else`: () -> T): IfElseOutput[T] =
-    choice.ifElse(
-      then.chain((value: T) => ifElseOutput(Path.Then, value)),
-      `else`.chain((value: T) => ifElseOutput(Path.Else, value))
-    )
+  import std/[os, strutils, unittest]
 
 
 
   proc main () =
     suite currentSourcePath().splitFile().name:
-      test """"condition.ifElse(then, else)" should take the "then" path when "condition" is "true".""":
+      test [
+        """"condition.ifElse(then, else)" should take the "then" path when""",
+        """"condition" is "true".""""
+      ].join($' '):
         proc doTest [T](then, `else`: () -> T) =
           let
-            actual = true.takePath(then, `else`)
-            expected = ifElseOutput(Path.Then, then())
+            actual = true.tracedIfElse(then, `else`)
+            expected = ifElseTrace(Path.Then, then())
 
           check:
             actual == expected
@@ -63,11 +44,14 @@ when isMainModule:
 
 
 
-      test """"condition.ifElse(then, else)" should take the "else" path when "condition" is "false".""":
+      test [
+        """"condition.ifElse(then, else)" should take the "else" path when""",
+        """"condition" is "false"."""
+      ].join($' '):
         proc doTest [T](then, `else`: () -> T) =
           let
-            actual = false.takePath(then, `else`)
-            expected = ifElseOutput(Path.Else, `else`())
+            actual = false.tracedIfElse(then, `else`)
+            expected = ifElseTrace(Path.Else, `else`())
 
           check:
             actual == expected
@@ -78,14 +62,65 @@ when isMainModule:
 
 
 
-      test """"ifElse()" should be usable in compile time expressions.""":
-        proc doTest () =
-          const someVal = true.ifElse(() => 1, () => 0)
+      test [
+        """"condition.ifElse(then, else)" should take the "then" path when""",
+        """"condition" is "true" at compile time.""""
+      ].join($' '):
+        when defined(js):
+          skip() # https://github.com/nim-lang/Nim/issues/12492
+        else:
+          proc doTest [T](
+            then, `else`: static[
+              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
+            ]
+          ) =
+            const
+              actual = true.tracedIfElse(then(), `else`())
+              expected = ifElseTrace(Path.Then, then().call())
 
-          discard someVal
+            check:
+              actual == expected
 
 
-        doTest()
+          doTest(
+            proc (): auto = () {.closure.} => 0,
+            proc (): auto = () {.closure.} => 0
+          )
+          doTest(
+            proc (): auto = () {.closure.} => "a",
+            proc (): auto = () {.closure.} => "abc"
+          )
+
+
+
+      test [
+        """"condition.ifElse(then, else)" should take the "else" path when""",
+        """"condition" is "false" at compile time."""
+      ].join($' '):
+        when defined(js):
+          skip() # https://github.com/nim-lang/Nim/issues/12492
+        else:
+          proc doTest [T](
+            then, `else`: static[
+              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
+            ]
+          ) =
+            const
+              actual = false.tracedIfElse(then(), `else`())
+              expected = ifElseTrace(Path.Else, `else`().call())
+
+            check:
+              actual == expected
+
+
+          doTest(
+            proc (): auto = () {.closure.} => 0,
+            proc (): auto = () {.closure.} => 0
+          )
+          doTest(
+            proc (): auto = () {.closure.} => "a",
+            proc (): auto = () {.closure.} => "abc"
+          )
 
 
 

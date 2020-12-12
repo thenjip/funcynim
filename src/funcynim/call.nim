@@ -37,7 +37,7 @@ macro call* (p: proc; arg1: typed; remaining: varargs[typed]): untyped =
 when isMainModule:
   import operators
 
-  import std/[os, sugar, unittest]
+  import std/[os, sugar, strutils, unittest]
 
 
 
@@ -72,7 +72,9 @@ when isMainModule:
 
 
 
-      test """"f.call(arg1, arg2, arg3)" should produce "f(arg1, arg2, arg3)".""":
+      test [
+        """"f.call(arg1, arg2, arg3)" should produce "f(arg1, arg2, arg3)"."""
+      ].join($' '):
         proc doTest [A; B; C; D](f: (A, B, C) -> D; arg1: A; arg2: B; arg3: C) =
           let
             actual = f.call(arg1, arg2, arg3)
@@ -91,26 +93,71 @@ when isMainModule:
 
 
 
-      test """"call()" should be usable in compile time expressions.""":
-        proc doTest () =
-          func test2 (arg1: (int, int)): auto =
-            arg1[0]
+      test [
+        """"f.call(arg)" should produce "f(arg)" in compile time expressions."""
+      ].join($' '):
+        proc doTest [A; R](
+          f: static proc (a: A): R {.nimcall, noSideEffect.};
+          arg: static A
+        ) =
+          const
+            actual = f.call(arg)
+            expected = f(arg)
 
-          func test4 (arg1: string, arg2: int, arg3: tuple[]): auto =
-            arg1
-
-          const results =
-            (
-              call(() => 0),
-              call(test2, (-1, 5)),
-              minus[Natural].call(10, 2),
-              call(test4, "", int.low(), ())
-            )
-
-          discard results
+          check:
+            actual == expected
 
 
-        doTest()
+        doTest((s: string) => s.len(), "abc")
+
+
+
+      test [
+        """"f.call(arg1, arg2)" should produce "f(arg1, arg2)" in compile""",
+        "time expressions."
+      ].join($' '):
+        proc doTest [A; B; C](
+          f: static proc (a: A; b: B): C {.nimcall, noSideEffect.};
+          arg1: static A;
+          arg2: static B
+        ) =
+          const
+            actual = f.call(arg1, arg2)
+            expected = f(arg1, arg2)
+
+          check:
+            actual == expected
+
+
+        doTest(plus[int], 1, 2)
+
+
+
+      test [
+        """"f.call(arg1, arg2, arg3)" should produce "f(arg1, arg2, arg3)"""",
+        "in compile time expresions."
+      ].join($' '):
+        proc doTest [A; B; C; D](
+          f: static proc (a: A; b: B; c: C): D {.nimcall, noSideEffect.};
+          arg1: static A;
+          arg2: static B;
+          arg3: static C
+        ) =
+          const
+            actual = f.call(arg1, arg2, arg3)
+            expected = f(arg1, arg2, arg3)
+
+          check:
+            actual == expected
+
+
+        doTest(
+          (b: bool, i: int, c: char) => b.ord() + i - c.ord(),
+          false,
+          -15,
+          '\n'
+        )
+
 
 
   main()
