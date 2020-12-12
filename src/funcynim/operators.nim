@@ -23,15 +23,15 @@ proc mult* [T](x, y: T): T =
   x * y
 
 
-proc divInt* [T: SomeInteger](x, y: T): T =
+func divInt* [T: SomeInteger](x, y: T): T =
   x div y
 
 
-proc divFloat* [T: SomeFloat](x, y: T): T =
+func divFloat* [T: SomeFloat](x, y: T): T =
   x / y
 
 
-proc modulo* [T: SomeInteger](x, y: T): T =
+func modulo* [T: SomeInteger](x, y: T): T =
   x mod y
 
 
