@@ -11,7 +11,7 @@ This project focuses on maximum backend compatibility, that is:
 - C++
 - Objective-C
 - JavaScript
-- NimScript
+- NimScript (not tested yet)
 - Compile time expressions in all the backends above
 
 ## Installation
@@ -22,7 +22,7 @@ nimble install -d 'https://github.com/thenjip/funcynim'
 
 ## Dependencies
 
-- [`nim`](https://nim-lang.org/) >= `1.4.0`
+- [`nim`](https://nim-lang.org/) >= `1.4.2`
 - [`taskutils`](https://github.com/thenjip/taskutils) >= `0.2.2` (only needed when executing Nimble tasks)
 
 ## Documentation
