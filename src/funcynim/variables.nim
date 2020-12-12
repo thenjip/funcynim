@@ -34,13 +34,16 @@ proc modify* [T](self: var T; f: var T -> Unit): var T =
 
 
 when isMainModule:
-  import std/[os, unittest]
+  import std/[os, strutils, unittest]
 
 
 
   proc main () =
     suite currentSourcePath().splitFile().name:
-      test """Reading a "var" after it being written should return the written value.""":
+      test [
+        """Reading a "var" after it being written should return the written""",
+        "value."
+      ].join($' '):
         proc doTest [T](value: T) =
           var sut {.noInit.}: T
 
