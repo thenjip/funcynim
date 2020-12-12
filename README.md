@@ -17,7 +17,7 @@ This project focuses on maximum backend compatibility, that is:
 ## Installation
 
 ```sh
-nimble install -d 'https://github.com/thenjip/funcynim'
+nimble install 'https://github.com/thenjip/funcynim'
 ```
 
 ## Dependencies
