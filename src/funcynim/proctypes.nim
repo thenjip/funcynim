@@ -10,6 +10,9 @@ import std/[macros]
 
 
 macro resultType* (T: typedesc[proc]): typedesc =
+  #[
+    AST of `T`: typedesc[proc[resultType, arg1Type, ...]]
+  ]#
   T.getType().secondChild().secondChild().getTypeInst()
 
 
@@ -23,11 +26,12 @@ macro paramType* (T: typedesc[proc]; position: static Natural): typedesc =
     Parameter positions start at 0.
   ]##
   let
+    paramPos = 2 + position
     procTypeNode = T.getType().secondChild()
 
-  procTypeNode.expectMinLen(2 + position)
+  procTypeNode.expectMinLen(paramPos)
 
-  T.getType().secondChild()[2 + position].getTypeInst()
+  procTypeNode[paramPos].getTypeInst()
 
 
 template paramType* (p: proc; position: static Natural): typedesc =
@@ -41,13 +45,16 @@ template paramType* (p: proc; position: static Natural): typedesc =
 when isMainModule:
   import call, operators
 
-  import std/[os, sugar, unittest]
+  import std/[os, strutils, sugar, unittest]
 
 
 
   proc main () =
     suite currentSourcePath().splitFile().name:
-      test """"T.resultType()" should return the return type of the given procedure type.""":
+      test [
+        """"T.resultType()" should return the return type of the given""",
+        "procedure type."
+      ].join($' '):
         template doTest (T: typedesc[proc]; expected: typedesc): proc () =
           (
             proc () =
@@ -79,7 +86,10 @@ when isMainModule:
 
 
 
-      test """"T.paramType(position)" should return the type of the parameter of the given procedure type at position "position".""":
+      test [
+        """"T.paramType(position)" should return the type of the parameter""",
+        """of the given procedure type at position "position"."""
+      ].join($' '):
         template doTest (
           T: typedesc[proc];
           position: static Natural;
