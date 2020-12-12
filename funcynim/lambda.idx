@@ -1,1 +1,1 @@
-lambda	funcynim/lambda.html#lambda.t,T	lambda: lambda[T; ](expr: T): proc	
+lambda	funcynim/lambda.html#lambda.t,T	lambda: lambda[T](expr: T): auto	
