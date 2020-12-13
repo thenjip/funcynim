@@ -1,2 +1,4 @@
 .nimblecache/
 nimbledeps/
+
+.vscode/
