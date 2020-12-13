@@ -44,13 +44,8 @@ func srcGenDir (backend: Backend): AbsoluteDir =
     ).get()
 
 
-func binGenDir (backend: Backend): AbsoluteDir =
-  let srcGenDir = backend.srcGenDir()
-
-  if backend == Backend.Js:
-    srcGenDir
-  else:
-    srcGenDir / binGenDirName()
+proc binGenDir (backend: Backend; module: AbsoluteFile): AbsoluteDir =
+  backend.srcGenDir().joinPath(binGenDirName(), module.relativePath(srcDir()))
 
 
 
@@ -62,7 +57,7 @@ func jsFlags (backend: Backend): seq[string] =
 
 
 
-func compileAndRunCmdOptions (
+proc compileAndRunCmdOptions (
   module: AbsoluteFile;
   config: TaskConfig
 ): seq[string] =
@@ -73,12 +68,12 @@ func compileAndRunCmdOptions (
       backend.jsFlags(),
       {
         "nimcache": backend.srcGenDir(),
-        "outdir": backend.binGenDir()
+        "outdir": backend.binGenDir(module)
       }.toNimLongOptions()
     )
 
 
-func compileAndRunCmd (module: AbsoluteFile; config: TaskConfig): string =
+proc compileAndRunCmd (module: AbsoluteFile; config: TaskConfig): string =
   @[config.backend.nimCmdName()]
     .concat(module.compileAndRunCmdOptions(config), @[module.quoteShell()])
     .cmdLine()
