@@ -23,7 +23,6 @@ nimble install 'https://github.com/thenjip/funcynim'
 ## Dependencies
 
 - [`nim`](https://nim-lang.org/) >= `1.4.2`
-- [`taskutils`](https://github.com/thenjip/taskutils) >= `0.2.2` (only needed when executing Nimble tasks)
 
 ## Documentation
 

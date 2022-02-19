@@ -1,4 +1,4 @@
-func srcDirName* (): string =
+func srcDirName*(): string =
   "src"
 
 
@@ -11,113 +11,120 @@ license = "MIT"
 srcDir = srcDirName()
 
 requires "nim >= 1.4.2"
-requires "https://github.com/thenjip/taskutils >= 0.2.2"
 
 
 
-import std/[macros, os, sequtils, strformat, strutils, sugar]
+import std/[macros, os, sequtils, strformat, strutils]
 
 
 
-func taskScriptsDirName (): string =
+func taskBuildDirName*(): string =
+  "nimble-build"
+
+
+func taskScriptDirName(): string =
   "tasks"
 
 
-func nims (file: string): string =
-  file.addFileExt("nims")
-
-
-
-# Task API
 
 type
   Task* {.pure.} = enum
-    Test
+    TestC
+    TestCxx
+    TestObjc
+    TestJs
     Docs
-    CleanTest
-    CleanDocs
     Clean
 
+  TestTask* = Task.TestC .. Task.TestJs
 
 
-func taskNames (): array[Task, string] =
-  const names = [
-    "test",
+
+func backendName*(self: TestTask): string =
+  const names: array[TestTask, string] = [
+    "C",
+    "C++",
+    "Objective-C",
+    "JavaScript"
+  ]
+
+  names[self]
+
+
+func nimCmdName*(self: TestTask): string =
+  const names: array[TestTask, string] = ["cc", "cpp", "objc", "js"]
+
+  names[self]
+
+
+
+func name*(self: Task): string =
+  const names: array[Task, string] = [
+    "test-c",
+    "test-cxx",
+    "test-objc",
+    "test-js",
     "docs",
-    "clean_test",
-    "clean_docs",
     "clean"
   ]
 
-  names
+  names[self]
 
 
-func name* (self: Task): string =
-  taskNames()[self]
+func scriptName*(self: Task): string =
+  self.name().replace('-', '_')
 
 
-func identifier* (self: Task): NimNode =
+func identifier(self: Task): NimNode =
   self.name().ident()
 
 
 
-func testTaskDescription (): string =
-  let backendChoice = ["c", "cxx", "objc", "js"].join($'|')
+func description*(self: Task): string =
+  func description(self: TestTask): string =
+    fmt"Build the tests using the {self.backendName()} backend and run them."
 
-  [
-    "Build the tests and run them.",
-    "The backend can be specified with the environment variable",
-    fmt""""NIM_BACKEND=({backendChoice})"."""
-  ].join($' ')
+  const descriptions: array[Task, string] = [
+    Task.TestC.TestTask.description(),
+    Task.TestCxx.TestTask.description(),
+    Task.TestObjc.TestTask.description(),
+    Task.TestJs.TestTask.description(),
+    "Build the API doc.",
+    fmt"""Remove "{taskBuildDirName()}" directory."""
+  ]
 
-
-func cleanOtherTaskDescription (cleaned: Task): string =
-  fmt"""Remove the build directory of the "{cleaned.name()}" task."""
-
-
-func taskDescriptions (): array[Task, string] =
-  const descriptions =
-    [
-      testTaskDescription(),
-      "Build the API doc.",
-      Task.Test.cleanOtherTaskDescription(),
-      Task.Docs.cleanOtherTaskDescription(),
-      "Remove all the build directories."
-    ]
-
-  descriptions
-
-
-func description* (self: Task): string =
-  taskDescriptions()[self]
+  descriptions[self]
 
 
 
 # Tasks
 
-macro define (self: static Task; body: Task -> void): untyped =
+proc execScript(self: Task) =
+  func nims(file: string): string =
+    file.addFileExt("nims")
+
+  let script = taskScriptDirName().`/`(self.scriptName().nims())
+
+  fmt"e {script.quoteShell()}".selfExec()
+
+
+macro define(self: static Task): untyped =
   let
-    selfIdent = self.identifier()
-    selfLit = self.newLit()
+    identifier = self.identifier()
+    literal = self.newLit()
 
   quote do:
-    task `selfIdent`, `selfLit`.description():
-      `body`(`selfLit`)
+    task `identifier`, `literal`.description():
+      `literal`.execScript()
 
 
-proc execTaskScript (self: Task) =
-  taskScriptsDirName().`/`(self.name().nims()).selfExec()
-
-
-macro defineTasks (): untyped =
+macro defineTasks(): untyped =
   toSeq(Task.items())
+    .map(newLit)
     .map(
-      proc (task: auto): auto =
-        let
-          taskLiteral = task.newLit()
-
+      proc (literal: auto): auto =
         quote do:
-          `taskLiteral`.define(execTaskScript)
+          `literal`.define()
     ).newStmtList()
 
 
