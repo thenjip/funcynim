@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>src/funcynim/unit</title>
+<title>funcynim/unit</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -34,6 +34,7 @@ function main() {
     }
   }
 
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -44,32 +45,24 @@ function main() {
       }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-  if (toggleSwitch !== null) {
-    toggleSwitch.addEventListener('change', switchTheme, false);
-  }
+  toggleSwitch.addEventListener('change', switchTheme, false);
 
-  var currentTheme = localStorage.getItem('theme');
-  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    currentTheme = 'dark';
-  }
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark' && toggleSwitch !== null) {
+    if (currentTheme === 'dark') {
       toggleSwitch.checked = true;
     }
   }
 }
-
-window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body>
+<body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">src/funcynim/unit</h1>
+    <h1 class="title">funcynim/unit</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -107,21 +100,21 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
 </li>
 <li>
-  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
+  <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">default
+      <ul class="simple nested-toc-section">unit
+      <li><a class="reference" href="#unit_2"
+    title="unit(): Unit">unit_2</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">default
       <li><a class="reference" href="#default%2Ctypedesc%5BUnit%5D"
-    title="default(T: typedesc[Unit]): Unit">default(T: typedesc[Unit]): Unit</a></li>
+    title="default(T: typedesc[Unit]): Unit">default,<wbr>typedesc[Unit]</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">doNothing
       <li><a class="reference" href="#doNothing%2CT"
-    title="doNothing[T](_: T): Unit">doNothing[T](_: T): Unit</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">unit
-      <li><a class="reference" href="#unit_2"
-    title="unit(): Unit">unit(): Unit</a></li>
+    title="doNothing[T](_: T): Unit">doNothing,<wbr>T</a></li>
 
   </ul>
 
@@ -131,11 +124,6 @@ window.addEventListener('DOMContentLoaded', main);
 </ul>
 
   </div>
-  &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L1"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
-
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -143,26 +131,36 @@ class="link-seesrc" target="_blank">Source</a>
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<div id="Unit">
+<a id="Unit"></a>
 <dt><pre><a href="unit.html#Unit"><span class="Identifier">Unit</span></a> <span class="Other">=</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Other">]</span></pre></dt>
 <dd>
 
-<p>The <tt class="docutils literal"><span class="pre"><span class="Identifier">Unit</span></span></tt> type from functional programming.</p>
+<p>The <tt class="docutils literal"><span class="pre">Unit</span></tt> type from functional programming.</p>
 <p>The type has only a single value. </p>
 
 &nbsp;&nbsp;<a
 href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L2"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L2" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L2" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-</div>
 
 </dl></div>
-<div class="section" id="12">
-<h1><a class="toc-backref" href="#12">Procs</a></h1>
+<div class="section" id="13">
+<h1><a class="toc-backref" href="#13">Funcs</a></h1>
 <dl class="item">
-<div id="default,typedesc[Unit]">
+<a id="unit_2"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#unit_2"><span class="Identifier">unit</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L12"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<a id="default,typedesc[Unit]"></a>
 <dt><pre><span class="Keyword">func</span> <a href="#default%2Ctypedesc%5BUnit%5D"><span class="Identifier">default</span></a><span class="Other">(</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><a href="unit.html#Unit"><span class="Identifier">Unit</span></a><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a></pre></dt>
 <dd>
 
@@ -170,11 +168,10 @@ class="link-seesrc" target="_blank">Source</a>
 &nbsp;&nbsp;<a
 href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-</div>
-<div id="doNothing,T">
+<a id="doNothing,T"></a>
 <dt><pre><span class="Keyword">func</span> <a href="#doNothing%2CT"><span class="Identifier">doNothing</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Operator">_</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a></pre></dt>
 <dd>
 
@@ -182,22 +179,9 @@ class="link-seesrc" target="_blank">Source</a>
 &nbsp;&nbsp;<a
 href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-</div>
-<div id="unit_2">
-<dt><pre><span class="Keyword">func</span> <a href="#unit_2"><span class="Identifier">unit</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/src/funcynim/unit.nim#L12"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim/unit.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
 
 </dl></div>
 
@@ -208,7 +192,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-11 14:09:55 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-20 10:26:54 UTC</small>
       </div>
     </div>
   </div>

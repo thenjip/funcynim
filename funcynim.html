@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>src/funcynim</title>
+<title>funcynim</title>
 <link rel="stylesheet" type="text/css" href="nimdoc.out.css">
 
 <script type="text/javascript" src="dochack.js"></script>
@@ -34,6 +34,7 @@ function main() {
     }
   }
 
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -44,32 +45,24 @@ function main() {
       }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-  if (toggleSwitch !== null) {
-    toggleSwitch.addEventListener('change', switchTheme, false);
-  }
+  toggleSwitch.addEventListener('change', switchTheme, false);
 
-  var currentTheme = localStorage.getItem('theme');
-  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    currentTheme = 'dark';
-  }
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark' && toggleSwitch !== null) {
+    if (currentTheme === 'dark') {
       toggleSwitch.checked = true;
     }
   }
 }
-
-window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body>
+<body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">src/funcynim</h1>
+    <h1 class="title">funcynim</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -114,11 +107,6 @@ window.addEventListener('DOMContentLoaded', main);
 </ul>
 
   </div>
-  &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/main/src/funcynim.nim#L1"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/main/src/funcynim.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
-
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -131,7 +119,7 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="19">
 <h1><a class="toc-backref" href="#19">Exports</a></h1>
 <dl class="item">
-<a href="funcynim/call.html#call,proc)"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call.m,proc,typed,varargs[typed]"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call,proc)_2"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call,proc)_3"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call,proc)_4"><span class="Identifier">call</span></a>, <a href="funcynim/chain.html#chain,,"><span class="Identifier">chain</span></a>, <a href="funcynim/chain.html#chain,,_2"><span class="Identifier">chain</span></a>, <a href="funcynim/convert.html#to,A,typedesc"><span class="Identifier">to</span></a>, <a href="funcynim/convert.html#convert,A"><span class="Identifier">convert</span></a>, <a href="funcynim/convert.html#convert,A,typedesc"><span class="Identifier">convert</span></a>, <a href="funcynim/convert.html#to,A"><span class="Identifier">to</span></a>, <a href="funcynim/default.html#default"><span class="Identifier">default</span></a>, <a href="funcynim/ifelse.html#ifElse,bool,,"><span class="Identifier">ifElse</span></a>, <a href="funcynim/ignore.html#ignore,T"><span class="Identifier">ignore</span></a>, <a href="funcynim/lambda.html#lambda.t,T"><span class="Identifier">lambda</span></a>, <a href="funcynim/nimnodes.html#high,NimNode"><span class="Identifier">high</span></a>, <a href="funcynim/nimnodes.html#secondChild,NimNode"><span class="Identifier">secondChild</span></a>, <a href="funcynim/nimnodes.html#low,NimNode"><span class="Identifier">low</span></a>, <a href="funcynim/nimnodes.html#NimNodeIndex"><span class="Identifier">NimNodeIndex</span></a>, <a href="funcynim/nimnodes.html#firstChild,NimNode"><span class="Identifier">firstChild</span></a>, <a href="funcynim/operators.html#next,T"><span class="Identifier">next</span></a>, <a href="funcynim/operators.html#logicOr,bool,bool"><span class="Identifier">logicOr</span></a>, <a href="funcynim/operators.html#logicAnd,bool,bool"><span class="Identifier">logicAnd</span></a>, <a href="funcynim/operators.html#equal,T,T"><span class="Identifier">equal</span></a>, <a href="funcynim/operators.html#modulo,T,T"><span class="Identifier">modulo</span></a>, <a href="funcynim/operators.html#plus1,T"><span class="Identifier">plus1</span></a>, <a href="funcynim/operators.html#less,T,T"><span class="Identifier">less</span></a>, <a href="funcynim/operators.html#lessOrEq,T,T"><span class="Identifier">lessOrEq</span></a>, <a href="funcynim/operators.html#minus,T,T"><span class="Identifier">minus</span></a>, <a href="funcynim/operators.html#prev,T"><span class="Identifier">prev</span></a>, <a href="funcynim/operators.html#logicNot,bool"><span class="Identifier">logicNot</span></a>, <a href="funcynim/operators.html#greaterOrEq,T,T"><span class="Identifier">greaterOrEq</span></a>, <a href="funcynim/operators.html#divInt,T,T"><span class="Identifier">divInt</span></a>, <a href="funcynim/operators.html#plus,T,T"><span class="Identifier">plus</span></a>, <a href="funcynim/operators.html#mult,T,T"><span class="Identifier">mult</span></a>, <a href="funcynim/operators.html#divFloat,T,T"><span class="Identifier">divFloat</span></a>, <a href="funcynim/operators.html#greater,T,T"><span class="Identifier">greater</span></a>, <a href="funcynim/partialproc.html#newLambda,seq[NimNode],NimNode,NimNode"><span class="Identifier">newLambda</span></a>, <a href="funcynim/partialproc.html#partialParamPrefix"><span class="Identifier">partialParamPrefix</span></a>, <a href="funcynim/partialproc.html#partial.m"><span class="Identifier">partial</span></a>, <a href="funcynim/partialproc.html#partialTypedParamPrefix"><span class="Identifier">partialTypedParamPrefix</span></a>, <a href="funcynim/partialproc.html#isUnderscore,NimNode"><span class="Identifier">isUnderscore</span></a>, <a href="funcynim/proctypes.html#resultType.t,proc"><span class="Identifier">resultType</span></a>, <a href="funcynim/proctypes.html#paramType.t,proc,staticNatural"><span class="Identifier">paramType</span></a>, <a href="funcynim/proctypes.html#paramType.m,typedesc[proc],staticNatural"><span class="Identifier">paramType</span></a>, <a href="funcynim/proctypes.html#resultType.m,typedesc[proc]"><span class="Identifier">resultType</span></a>, <a href="funcynim/unit.html#Unit"><span class="Identifier">Unit</span></a>, <a href="funcynim/unit.html#default,typedesc[Unit]"><span class="Identifier">default</span></a>, <a href="funcynim/unit.html#unit_2"><span class="Identifier">unit</span></a>, <a href="funcynim/unit.html#doNothing,T"><span class="Identifier">doNothing</span></a>, <a href="funcynim/variables.html#modify,T,"><span class="Identifier">modify</span></a>, <a href="funcynim/variables.html#modify,T,_2"><span class="Identifier">modify</span></a>, <a href="funcynim/variables.html#read,T"><span class="Identifier">read</span></a>, <a href="funcynim/variables.html#write,T,T"><span class="Identifier">write</span></a>
+<a href="funcynim/call.html#call,proc)"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call,proc)_2"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call,proc)_3"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call,proc)_4"><span class="Identifier">call</span></a>, <a href="funcynim/call.html#call.m,proc,typed,varargs[typed]"><span class="Identifier">call</span></a>, <a href="funcynim/chain.html#chain,,"><span class="Identifier">chain</span></a>, <a href="funcynim/chain.html#chain,,_2"><span class="Identifier">chain</span></a>, <a href="funcynim/convert.html#to,A,typedesc"><span class="Identifier">to</span></a>, <a href="funcynim/convert.html#convert,A,typedesc"><span class="Identifier">convert</span></a>, <a href="funcynim/convert.html#convert,A"><span class="Identifier">convert</span></a>, <a href="funcynim/convert.html#to,A"><span class="Identifier">to</span></a>, <a href="funcynim/default.html#default"><span class="Identifier">default</span></a>, <a href="funcynim/ifelse.html#ifElse,bool,,"><span class="Identifier">ifElse</span></a>, <a href="funcynim/ignore.html#ignore,T"><span class="Identifier">ignore</span></a>, <a href="funcynim/lambda.html#lambda.t,T"><span class="Identifier">lambda</span></a>, <a href="funcynim/nimnodes.html#secondChild,NimNode"><span class="Identifier">secondChild</span></a>, <a href="funcynim/nimnodes.html#NimNodeIndex"><span class="Identifier">NimNodeIndex</span></a>, <a href="funcynim/nimnodes.html#high,NimNode"><span class="Identifier">high</span></a>, <a href="funcynim/nimnodes.html#low,NimNode"><span class="Identifier">low</span></a>, <a href="funcynim/nimnodes.html#firstChild,NimNode"><span class="Identifier">firstChild</span></a>, <a href="funcynim/operators.html#next,T"><span class="Identifier">next</span></a>, <a href="funcynim/operators.html#logicOr,bool,bool"><span class="Identifier">logicOr</span></a>, <a href="funcynim/operators.html#logicAnd,bool,bool"><span class="Identifier">logicAnd</span></a>, <a href="funcynim/operators.html#equal,T,T"><span class="Identifier">equal</span></a>, <a href="funcynim/operators.html#plus1,T"><span class="Identifier">plus1</span></a>, <a href="funcynim/operators.html#modulo,T,T"><span class="Identifier">modulo</span></a>, <a href="funcynim/operators.html#less,T,T"><span class="Identifier">less</span></a>, <a href="funcynim/operators.html#lessOrEq,T,T"><span class="Identifier">lessOrEq</span></a>, <a href="funcynim/operators.html#minus,T,T"><span class="Identifier">minus</span></a>, <a href="funcynim/operators.html#prev,T"><span class="Identifier">prev</span></a>, <a href="funcynim/operators.html#logicNot,bool"><span class="Identifier">logicNot</span></a>, <a href="funcynim/operators.html#greaterOrEq,T,T"><span class="Identifier">greaterOrEq</span></a>, <a href="funcynim/operators.html#divInt,T,T"><span class="Identifier">divInt</span></a>, <a href="funcynim/operators.html#plus,T,T"><span class="Identifier">plus</span></a>, <a href="funcynim/operators.html#mult,T,T"><span class="Identifier">mult</span></a>, <a href="funcynim/operators.html#divFloat,T,T"><span class="Identifier">divFloat</span></a>, <a href="funcynim/operators.html#greater,T,T"><span class="Identifier">greater</span></a>, <a href="funcynim/partialproc.html#partialParamPrefix"><span class="Identifier">partialParamPrefix</span></a>, <a href="funcynim/partialproc.html#isUnderscore,NimNode"><span class="Identifier">isUnderscore</span></a>, <a href="funcynim/partialproc.html#newLambda,seq[NimNode],NimNode,NimNode"><span class="Identifier">newLambda</span></a>, <a href="funcynim/partialproc.html#partial.m"><span class="Identifier">partial</span></a>, <a href="funcynim/partialproc.html#partialTypedParamPrefix"><span class="Identifier">partialTypedParamPrefix</span></a>, <a href="funcynim/proctypes.html#resultType.t,proc"><span class="Identifier">resultType</span></a>, <a href="funcynim/proctypes.html#paramType.t,proc,staticNatural"><span class="Identifier">paramType</span></a>, <a href="funcynim/proctypes.html#paramType.m,typedesc[proc],staticNatural"><span class="Identifier">paramType</span></a>, <a href="funcynim/proctypes.html#resultType.m,typedesc[proc]"><span class="Identifier">resultType</span></a>, <a href="funcynim/unit.html#default,typedesc[Unit]"><span class="Identifier">default</span></a>, <a href="funcynim/unit.html#doNothing,T"><span class="Identifier">doNothing</span></a>, <a href="funcynim/unit.html#Unit"><span class="Identifier">Unit</span></a>, <a href="funcynim/unit.html#unit_2"><span class="Identifier">unit</span></a>, <a href="funcynim/variables.html#modify,T,"><span class="Identifier">modify</span></a>, <a href="funcynim/variables.html#modify,T,_2"><span class="Identifier">modify</span></a>, <a href="funcynim/variables.html#read,T"><span class="Identifier">read</span></a>, <a href="funcynim/variables.html#write,T,T"><span class="Identifier">write</span></a>
 </dl></div>
 
   </div>
@@ -141,7 +129,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-11 14:09:55 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-20 10:26:54 UTC</small>
       </div>
     </div>
   </div>
