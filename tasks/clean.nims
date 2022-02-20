@@ -1,10 +1,10 @@
-import common/["dirs.nims"]
+import common/["project.nims"]
 
 
 
 when isMainModule:
   proc main () =
-    nimbleCacheDir().rmDir()
+    baseBuildDir().rmDir()
 
 
 

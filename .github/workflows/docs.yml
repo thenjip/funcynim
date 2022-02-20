@@ -9,7 +9,7 @@ jobs:
   build:
     name: 'Build'
     runs-on: ubuntu-latest
-    container: 'nimlang/nim:latest-alpine'
+    container: 'nimlang/nim:1.4.2-alpine'
     timeout-minutes: 10
 
     steps:
@@ -26,4 +26,4 @@ jobs:
         uses: 'peaceiris/actions-gh-pages@v3'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: '.nimblecache/docs'
+          publish_dir: 'nimble-build/docs'

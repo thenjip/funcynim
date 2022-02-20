@@ -76,18 +76,3 @@ func logicAnd* (x, y: bool): bool =
 
 func logicOr* (x, y: bool): bool =
   x or y
-
-
-
-when isMainModule:
-  import std/[os, unittest]
-
-
-
-  proc main () =
-    suite currentSourcePath().splitFile().name:
-      discard
-
-
-
-  main()

@@ -30,35 +30,3 @@ proc modify* [T](self: var T; f: var T -> Unit): var T =
   f(self).ignore()
 
   self
-
-
-
-when isMainModule:
-  import std/[os, strutils, unittest]
-
-
-
-  proc main () =
-    suite currentSourcePath().splitFile().name:
-      test [
-        """Reading a "var" after it being written should return the written""",
-        "value."
-      ].join($' '):
-        proc doTest [T](value: T) =
-          var sut {.noInit.}: T
-
-          let
-            actual = sut.write(value).read()
-            expected = value
-
-          check:
-            actual == expected
-
-
-        doTest(2)
-        doTest("abc")
-        doTest(("a", '0'))
-
-
-
-  main()
