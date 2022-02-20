@@ -9,20 +9,20 @@ type
     Then
     Else
 
-  Trace* [T] = tuple
+  Trace*[T] = tuple
     path: Path
     output: T
 
 
 
-func trace* [T](path: Path; output: T): Trace[T] =
+func trace*[T](path: Path; output: T): Trace[T] =
   (path, output)
 
 
 
-func trace [T](self: Path; f: () -> T): () -> Trace[T] =
+func trace [T](self: Path; f: () -> T):() -> Trace[T] =
   f.chain((output: T) => trace(self, output))
 
 
-proc tracedIfElse* [T](condition: bool; then, `else`: () -> T): Trace[T] =
+proc tracedIfElse*[T](condition: bool; then, `else`:() -> T): Trace[T] =
   condition.ifElse(Path.Then.trace(then), Path.Else.trace(`else`))

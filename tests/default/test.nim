@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "default":
       discard
 

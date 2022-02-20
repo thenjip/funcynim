@@ -5,20 +5,20 @@ when isMainModule:
 
 
 
-  func plus [A: SomeNumber; B: SomeNumber; R: SomeNumber](a: A; b: B): R =
+  func plus[A: SomeNumber; B: SomeNumber; R: SomeNumber](a: A; b: B): R =
     a + b
 
 
-  func ternaryProc (a: char; b: int; c: string): bool =
+  func ternaryProc(a: char; b: int; c: string): bool =
     true
 
 
-  func sum [N: SomeNumber](a, b, c: N): N =
+  func sum[N: SomeNumber](a, b, c: N): N =
     a + b + c
 
 
 
-  proc main () =
+  proc main() =
     suite "partialproc":
       #[
         `should be equivalent to` means `should return an expression that is
@@ -60,7 +60,7 @@ when isMainModule:
       test [
         """"partial(f(a, ?:B))" should be equivalent to "(b: B) => f(a, b)"."""
       ].join($' '):
-        proc doTest[A; B; R](f: (A, B) -> R; a: A; b: B) =
+        proc doTest[A; B; R](f:(A, B) -> R; a: A; b: B) =
           let
             actual = partial(f(a, ?:B))(b)
             expected = f(a, b)
@@ -79,7 +79,7 @@ when isMainModule:
         """"partial(f(?:A, b, ?:C))" should be equivalent to""",
         """"(a: A, c: C) => f(a, b, c)"."""
       ].join($' '):
-        proc doTest[A; B; C; R](f: (A, B, C) -> R; a: A; b: B; c: C) =
+        proc doTest[A; B; C; R](f:(A, B, C) -> R; a: A; b: B; c: C) =
           let
             actual = partial(f(?:A, b, ?:C))(a, c)
             expected = f(a, b, c)
@@ -97,7 +97,7 @@ when isMainModule:
         """"f.chain(partial(g(?b, c)))" should be equivalent to""",
         """"f.chain(b => b.g(c))(a)"."""
       ].join($' '):
-        proc doTest[A; B; C; D](f: A -> B; g: (B, C) -> D; a: A; c: C) =
+        proc doTest[A; B; C; D](f: A -> B; g:(B, C) -> D; a: A; c: C) =
           let
             actual = f.chain(partial(g(?b, c)))(a)
             expected = f.chain(b => b.g(c))(a)

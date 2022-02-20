@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "call":
       test """"f.call(arg)" should produce "f(arg)".""":
         proc doTest[A; B](f: A -> B; arg: A) =
@@ -23,7 +23,7 @@ when isMainModule:
 
 
       test """"f.call(arg1, arg2)" should produce "f(arg1, arg2)".""":
-        proc doTest[A; B; C](f: (A, B) -> C; arg1: A; arg2: B) =
+        proc doTest[A; B; C](f:(A, B) -> C; arg1: A; arg2: B) =
           let
             actual = f.call(arg1, arg2)
             expected = f(arg1, arg2)
@@ -39,7 +39,7 @@ when isMainModule:
       test [
         """"f.call(arg1, arg2, arg3)" should produce "f(arg1, arg2, arg3)"."""
       ].join($' '):
-        proc doTest[A; B; C; D](f: (A, B, C) -> D; arg1: A; arg2: B; arg3: C) =
+        proc doTest[A; B; C; D](f:(A, B, C) -> D; arg1: A; arg2: B; arg3: C) =
           let
             actual = f.call(arg1, arg2, arg3)
             expected = f(arg1, arg2, arg3)

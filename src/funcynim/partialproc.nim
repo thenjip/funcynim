@@ -28,25 +28,25 @@ type
 
 
 
-func lambdaParam (name: string; `type`: NimNode): LambdaParam =
+func lambdaParam(name: string; `type`: NimNode): LambdaParam =
   (name, `type`)
 
 
-func callExpr (callee: NimNode; args: seq[NimNode]): CallExpr =
+func callExpr(callee: NimNode; args: seq[NimNode]): CallExpr =
   (callee, args)
 
 
 
-func partialParamPrefix* (): string =
+func partialParamPrefix*(): string =
   $'?'
 
 
-func partialTypedParamPrefix* (): string =
+func partialTypedParamPrefix*(): string =
   partialParamPrefix() & ':'
 
 
 
-func newLambda* (
+func newLambda*(
   params: seq[NimNode];
   body: NimNode;
   returnType: NimNode
@@ -55,38 +55,38 @@ func newLambda* (
 
 
 
-func isUnderscore* (n: NimNode): bool =
+func isUnderscore*(n: NimNode): bool =
   n.kind() == nnkIdent and n.strVal() == $'_'
 
 
 
-func collectArgs (call: NimNode): seq[NimNode] =
+func collectArgs(call: NimNode): seq[NimNode] =
   call[call.low().succ() .. call.high()]
 
 
 
-func toCallExpr (call: NimNode): CallExpr =
+func toCallExpr(call: NimNode): CallExpr =
   callExpr(call.firstChild(), call.collectArgs())
 
 
-func toCommandCallExpr (call: NimNode): CallExpr =
+func toCommandCallExpr(call: NimNode): CallExpr =
   call.toCallExpr()
 
 
-func toPrefixCallExpr (call: NimNode): CallExpr =
+func toPrefixCallExpr(call: NimNode): CallExpr =
   callExpr(nnkAccQuoted.newTree(call.firstChild()), @[call.secondChild()])
 
 
-func toStrLitCallExpr (call: NimNode): CallExpr =
+func toStrLitCallExpr(call: NimNode): CallExpr =
   call.toPrefixCallExpr()
 
 
-func toInfixCallExpr (call: NimNode): CallExpr =
+func toInfixCallExpr(call: NimNode): CallExpr =
   callExpr(nnkAccQuoted.newTree(call.firstChild()), call.collectArgs())
 
 
 
-func callExprBuilder (kind: NimNodeKind): toCallExpr.typeof() =
+func callExprBuilder(kind: NimNodeKind): toCallExpr.typeof() =
   case kind:
     of nnkCall:
       toCallExpr
@@ -102,20 +102,20 @@ func callExprBuilder (kind: NimNodeKind): toCallExpr.typeof() =
       raise newException(ValueError, fmt"Expected a call AST, but got: {kind}")
 
 
-func astToCallExpr (call: NimNode): CallExpr =
+func astToCallExpr(call: NimNode): CallExpr =
   call.kind().callExprBuilder()(call)
 
 
 
-func isValidPrefix (prefix: NimNode): bool =
+func isValidPrefix(prefix: NimNode): bool =
   prefix.kind() == nnkIdent and prefix.strVal().startsWith(partialParamPrefix())
 
 
-func isPartialParamPrefixed (arg: NimNode): bool =
+func isPartialParamPrefixed(arg: NimNode): bool =
   arg.kind() == nnkPrefix and arg.firstChild().isValidPrefix()
 
 
-func splitArgs (callExpr: CallExpr): SplitArgPair =
+func splitArgs(callExpr: CallExpr): SplitArgPair =
   for pos, arg in callExpr.args:
     if arg.isPartialParamPrefixed():
       let paramName = nskParam.genSym(fmt"a{pos}")
@@ -133,7 +133,7 @@ func splitArgs (callExpr: CallExpr): SplitArgPair =
 
 
 
-macro partial* (call: untyped{call}): untyped =
+macro partial*(call: untyped{call}): untyped =
   ##[
     Transforms a call expression of any kind into a lambda expression.
 
@@ -152,13 +152,13 @@ macro partial* (call: untyped{call}): untyped =
 
         import std/[sugar]
 
-        proc plus [T](a, b: T): T =
+        proc plus[T](a, b: T): T =
           a + b
 
-        proc chain [A; B; C](f: A -> B; g: B -> C): A -> C =
+        proc chain[A; B; C](f: A -> B; g: B -> C): A -> C =
           (a: A) => a.f().g()
 
-        proc `not` [T](predicate: T -> bool): T -> bool =
+        proc `not`[T](predicate: T -> bool): T -> bool =
           predicate.chain(partial(not ?_))
 
         let

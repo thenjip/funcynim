@@ -4,18 +4,18 @@
 
 
 
-func convert* [A](a: A; B: typedesc): B =
+func convert*[A](a: A; B: typedesc): B =
   a.B
 
 
-func convert* [A; B](a: A): B =
+func convert*[A; B](a: A): B =
   a.convert(B)
 
 
 
-func to* [A](a: A; B: typedesc): B =
+func to*[A](a: A; B: typedesc): B =
   a.convert(B)
 
 
-func to* [A; B](a: A): B =
+func to*[A; B](a: A): B =
   a.convert(B)

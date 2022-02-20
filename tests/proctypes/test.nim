@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "proctypes":
       test [
         """"T.resultType()" should return the return type of the given""",

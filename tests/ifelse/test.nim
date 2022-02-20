@@ -7,13 +7,13 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "ifelse":
       test [
         """"condition.ifElse(then, else)" should take the "then" path when""",
         """"condition" is "true".""""
       ].join($' '):
-        proc doTest[T](then, `else`: () -> T) =
+        proc doTest[T](then, `else`:() -> T) =
           let
             actual = true.tracedIfElse(then, `else`)
             expected = trace(Path.Then, then())
@@ -31,7 +31,7 @@ when isMainModule:
         """"condition.ifElse(then, else)" should take the "else" path when""",
         """"condition" is "false"."""
       ].join($' '):
-        proc doTest[T](then, `else`: () -> T) =
+        proc doTest[T](then, `else`:() -> T) =
           let
             actual = false.tracedIfElse(then, `else`)
             expected = trace(Path.Else, `else`())
@@ -54,7 +54,7 @@ when isMainModule:
         else:
           proc doTest[T](
             then, `else`: static[
-              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
+              proc (): proc(): T {.noSideEffect.} {.nimcall, noSideEffect.}
             ]
           ) =
             const
@@ -66,12 +66,12 @@ when isMainModule:
 
 
           doTest(
-            proc (): auto = () {.closure.} => 0,
-            proc (): auto = () {.closure.} => 0
+            proc (): auto =() {.closure.} => 0,
+            proc (): auto =() {.closure.} => 0
           )
           doTest(
-            proc (): auto = () {.closure.} => "a",
-            proc (): auto = () {.closure.} => "abc"
+            proc (): auto =() {.closure.} => "a",
+            proc (): auto =() {.closure.} => "abc"
           )
 
 
@@ -85,7 +85,7 @@ when isMainModule:
         else:
           proc doTest[T](
             then, `else`: static[
-              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
+              proc (): proc(): T {.noSideEffect.} {.nimcall, noSideEffect.}
             ]
           ) =
             const
@@ -97,12 +97,12 @@ when isMainModule:
 
 
           doTest(
-            proc (): auto = () {.closure.} => 0,
-            proc (): auto = () {.closure.} => 0
+            proc (): auto =() {.closure.} => 0,
+            proc (): auto =() {.closure.} => 0
           )
           doTest(
-            proc (): auto = () {.closure.} => "a",
-            proc (): auto = () {.closure.} => "abc"
+            proc (): auto =() {.closure.} => "a",
+            proc (): auto =() {.closure.} => "abc"
           )
 
 
