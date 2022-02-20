@@ -10,12 +10,12 @@ export funcynim except srcDirName, taskBuildDirName, taskScriptDirName
 
 
 
-func packageName* (): string =
+func packageName*(): string =
   "funcynim"
 
 
 
-func nimExt (): string =
+func nimExt(): string =
   "nim"
 
 
@@ -44,7 +44,7 @@ func baseBuildDir*(): RelativeDir =
   taskBuildDirName()
 
 
-func buildDir* (self: Task): Option[RelativeDir] =
+func buildDir*(self: Task): Option[RelativeDir] =
   ##[
     Returns the path to the task build directory relative to the project root
     directory, if `self` can generate files.

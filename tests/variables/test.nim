@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "variables":
       test [
         """Reading a "var" after it being written should return the written""",

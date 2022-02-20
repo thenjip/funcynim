@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "unit":
       test """"Unit.default()" should be equal to "unit()".""":
         proc doTest() =

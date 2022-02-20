@@ -9,14 +9,14 @@ type
 
 
 
-func unit* (): Unit =
+func unit*(): Unit =
   ()
 
 
-func default* (T: typedesc[Unit]): Unit =
+func default*(T: typedesc[Unit]): Unit =
   unit()
 
 
 
-func doNothing* [T](_: T): Unit =
+func doNothing*[T](_: T): Unit =
   unit()

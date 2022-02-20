@@ -38,7 +38,7 @@ func docCmd(): string =
 
 
 when isMainModule:
-  proc main () =
+  proc main() =
     docCmd().selfExec()
 
     withDir BuildDir:

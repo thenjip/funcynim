@@ -15,18 +15,18 @@ type
 
 
 
-func low* (self: NimNode): NimNodeIndex =
+func low*(self: NimNode): NimNodeIndex =
   0
 
 
-func high* (self: NimNode): NimNodeIndex =
+func high*(self: NimNode): NimNodeIndex =
   ## Returns ``-1`` if `self` has no children.
   self.len().pred()
 
 
-func firstChild* (self: NimNode): NimNode =
+func firstChild*(self: NimNode): NimNode =
   self[self.low()]
 
 
-func secondChild* (self: NimNode): NimNode =
+func secondChild*(self: NimNode): NimNode =
   self[self.low().succ()]

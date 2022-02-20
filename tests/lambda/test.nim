@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "lambda":
       test [
         """"expr.lambda().call().typeof()" should be the same as""",

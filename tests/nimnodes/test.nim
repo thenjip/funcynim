@@ -5,7 +5,7 @@ when isMainModule:
 
 
 
-  proc main () =
+  proc main() =
     suite "nimnodes":
       test """"self.high()" should return -1 when "self.len() == 0".""":
         proc doTest() =

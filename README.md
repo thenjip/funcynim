@@ -38,7 +38,7 @@ nimble install 'https://github.com/thenjip/funcynim'
 import pkg/funcynim/[unit]
 
 
-proc println* (s: string): Unit =
+proc println*(s: string): Unit =
   echo(s)
   #[
     No need for explicit return.
@@ -50,10 +50,10 @@ proc println* (s: string): Unit =
 ### Procedure composition
 
 ```Nim
-func pow2 [N: SomeNumber](n: N): N =
+func pow2[N: SomeNumber](n: N): N =
   n * n
 
-proc debugPrintlnAndReturn [T](x: T): T =
+proc debugPrintlnAndReturn[T](x: T): T =
   debugEcho(x)
   x
 
@@ -98,10 +98,10 @@ echo(paramCount().`==`(0).ifElse(() => "no args", () => "got args"))
 #### Procedure calls with any number of arguments
 
 ```Nim
-func pow2 [N: SomeNumber](n: N): N =
+func pow2[N: SomeNumber](n: N): N =
   n * n
 
-proc debugPrintlnAndReturn [T](x: T): T =
+proc debugPrintlnAndReturn[T](x: T): T =
   debugEcho(x)
   x
 

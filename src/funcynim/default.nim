@@ -1,2 +1,2 @@
-proc default* [T](): T =
+proc default*[T](): T =
   T.default()
