@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write
     uses: './.github/workflows/docs.yml'
     with:
       git_commit: '${{ github.sha }}'
