@@ -1,6 +1,6 @@
 import filetypes
 
-import "funcynim.nimble"
+import "../../funcynim.nimble"
 
 import std/[options, os, strutils]
 
