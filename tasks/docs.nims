@@ -14,18 +14,10 @@ func html(f: FilePath): FilePath =
 
 
 func docCmdOptions(): seq[string] =
-  const
-    repoUrl = "https://github.com/thenjip/funcynim"
-    mainGitBranch = "main"
+  const repoUrl = "https://github.com/thenjip/funcynim"
 
   let valuedOptions =
-    {
-      "outdir": BuildDir,
-      "index": "on",
-      "git.url": repoUrl,
-      "git.devel": mainGitBranch,
-      "git.commit": mainGitBranch
-    }.map(toLongOption)
+    {"outdir": BuildDir, "index": "on", "git.url": repoUrl}.map(toLongOption)
 
   "project".toLongOption() & valuedOptions
 

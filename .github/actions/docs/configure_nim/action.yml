@@ -1,0 +1,18 @@
+name: 'Configure Nim'
+description: 'Setup "ci/docs/nim.cfg.in" with substitutions.'
+inputs:
+  git_commit:
+    description: 'The commit hash or tag that triggered the workflow.'
+    required: true
+
+
+runs:
+  using: composite
+  steps:
+    - name: 'Install the Nim config file with substitutions'
+      shell: sh
+      run: |
+        nim_cfg_dir="$HOME/.config/nim"
+        mkdir -p "$nim_cfg_dir"
+        sed -e 's|@GIT_COMMIT@|${{ inputs.git_commit }}|g' \
+          'ci/docs/nim.cfg.in' > "$nim_cfg_dir/nim.cfg"

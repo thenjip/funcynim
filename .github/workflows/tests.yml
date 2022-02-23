@@ -1,4 +1,4 @@
-name: Tests
+name: 'Tests'
 on:
   push:
     branches-ignore:
@@ -18,7 +18,7 @@ jobs:
         backend: ['c', 'cxx', 'objc', 'js']
 
     name: 'Unit tests: Nim ${{ matrix.nim_version }}, backend ${{ matrix.backend }}'
-    runs-on: ubuntu-latest
+    runs-on: 'ubuntu-latest'
     container: 'nimlang/nim:${{ matrix.nim_version }}-alpine'
     timeout-minutes: 10
 
@@ -30,8 +30,8 @@ jobs:
         if: matrix.backend == 'objc'
         run: |
           apk add --no-cache gcc-objc
-          mkdir -p ~/.config/nim
-          echo 'gcc.objc.options.linker = "-lobjc"' > ~/.config/nim/nim.cfg
+          nim_cfg_dir="$HOME/.config/nim"
+          mkdir -p "$nim_cfg_dir" && cp 'ci/tests/objc/nim.cfg' "$nim_cfg_dir/"
 
       - name: 'Install the dependencies of the project'
         run: nimble install -dy

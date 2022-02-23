@@ -24,9 +24,10 @@ nimble install 'https://github.com/thenjip/funcynim'
 
 - [`nim`](https://nim-lang.org/) >= `1.4.2`
 
-## Documentation
+## API documentation
 
-- [API](https://thenjip.github.io/funcynim)
+- [Stable](https://thenjip.github.io/funcynim/releases)
+- [Development branch](https://thenjip.github.io/funcynim/devel)
 
 ## Overview
 
