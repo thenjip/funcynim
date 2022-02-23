@@ -30,7 +30,7 @@ jobs:
         run: nimble install -dy
 
       - name: 'Configure the Nim compiler'
-        uses: './.github/actions/docs/configure_nim/action.yml'
+        uses: './.github/actions/docs/configure_nim'
         with:
           git_commit: '${{ inputs.git_commit }}'
 
@@ -38,6 +38,6 @@ jobs:
         run: nimble docs
 
       - name: 'Deploy'
-        uses: './.github/actions/docs/deploy/action.yml'
+        uses: './.github/actions/docs/deploy'
         with:
           destination_dir: '${{ inputs.gh_pages_dest_dir }}'
