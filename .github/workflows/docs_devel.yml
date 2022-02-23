@@ -1,0 +1,13 @@
+name: 'Docs (devel)'
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    uses: './.github/workflows/docs.yaml'
+    with:
+      git_commit: '${{ github.sha }}'
+      gh_pages_dest_dir: './devel'

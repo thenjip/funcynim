@@ -1,0 +1,18 @@
+name: 'Deploy to GitHub Pages'
+inputs:
+  destination_dir:
+    description: 'The directory where the site will be put on the publishing side.'
+    required: true
+
+
+runs:
+  using: composite
+  steps:
+    - name: 'Deploy'
+      uses: 'peaceiris/actions-gh-pages@v3'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: './nimble-build/docs'
+        destination_dir: '${{ inputs.destination_dir }}'
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
