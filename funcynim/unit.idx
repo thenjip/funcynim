@@ -1,4 +1,0 @@
-Unit	funcynim/unit.html#Unit	unit: Unit	
-unit	funcynim/unit.html#unit_2	unit: unit(): Unit	
-default	funcynim/unit.html#default,typedesc[Unit]	unit: default(T: typedesc[Unit]): Unit	
-doNothing	funcynim/unit.html#doNothing,T	unit: doNothing[T](_: T): Unit	

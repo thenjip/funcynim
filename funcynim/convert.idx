@@ -1,4 +1,0 @@
-convert	funcynim/convert.html#convert,A,typedesc	convert: convert[A](a: A; B: typedesc): B:type	
-convert	funcynim/convert.html#convert,A	convert: convert[A; B](a: A): B	
-to	funcynim/convert.html#to,A,typedesc	convert: to[A](a: A; B: typedesc): B:type	
-to	funcynim/convert.html#to,A	convert: to[A; B](a: A): B	

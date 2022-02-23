@@ -1,1 +1,0 @@
-ifElse	funcynim/ifelse.html#ifElse,bool,,	ifelse: ifElse[T](condition: bool; then, else: () -&gt; T): T	
