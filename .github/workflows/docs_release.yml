@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: './.github/workflows/docs.yaml'
+    uses: './.github/workflows/docs.yml'
     with:
       git_commit: '${{ github.ref_name }}'
       gh_pages_dest_dir: './releases/${{ github.ref_name }}'
