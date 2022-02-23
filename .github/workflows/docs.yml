@@ -41,3 +41,4 @@ jobs:
         uses: './.github/actions/docs/deploy'
         with:
           destination_dir: '${{ inputs.gh_pages_dest_dir }}'
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
