@@ -1,0 +1,3 @@
+# `funcynim` API documentation
+
+## Releases
