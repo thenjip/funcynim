@@ -1,3 +1,4 @@
-# `funcynim` API documentation
+---
+---
 
 ## Releases
