@@ -1,4 +1,5 @@
-# `funcynim` API documentation
+---
+---
 
 ## Channels
 
