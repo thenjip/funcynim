@@ -1,0 +1,2 @@
+chain	funcynim/chain.html#chain,,	chain: chain[A; B; C](f: A -&gt; B; g: B -&gt; C): A -&gt; C	
+chain	funcynim/chain.html#chain,,_2	chain: chain[A; B](f: () -&gt; A; g: A -&gt; B): () -&gt; B	
