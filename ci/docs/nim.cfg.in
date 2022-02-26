@@ -1,2 +1,2 @@
 git.commit = "@GIT_COMMIT@"
-git.devel = "main"
+git.devel = "@GIT_DEVEL@"

@@ -5,6 +5,10 @@ inputs:
     description: 'The commit hash or tag that triggered the workflow.'
     required: true
 
+  git_devel:
+    description: 'The commit hash or tag used to generate the "Edit" link.'
+    required: true
+
 
 runs:
   using: composite
@@ -15,4 +19,5 @@ runs:
         nim_cfg_dir="$HOME/.config/nim"
         mkdir -p "$nim_cfg_dir"
         sed -e 's|@GIT_COMMIT@|${{ inputs.git_commit }}|g' \
+          -e 's|@GIT_DEVEL@|${{ inputs.git_devel }}|g'\
           'ci/docs/nim.cfg.in' > "$nim_cfg_dir/nim.cfg"

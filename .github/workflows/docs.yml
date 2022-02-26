@@ -7,9 +7,16 @@ on:
         description: 'The commit hash or tag that triggered the workflow.'
         required: true
 
+      git_devel:
+        type: 'string'
+        description: 'The commit hash or tag used to generate the "Edit" link.'
+        required: false
+        default: ${{ inputs.git_commit }}
+
       gh_pages_dest_dir:
         type: 'string'
-        description: 'The directory where the site will be contained on the publishing side.'
+        description: |
+          The directory where the site will be contained on the publishing side.
         required: true
 
 
@@ -33,6 +40,7 @@ jobs:
         uses: './.github/actions/docs/configure_nim'
         with:
           git_commit: '${{ inputs.git_commit }}'
+          git_devel: '${{ inputs.git_devel }}'
 
       - name: 'Build the API doc'
         run: nimble docs
