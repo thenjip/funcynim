@@ -1,0 +1,5 @@
+NimNodeIndex	funcynim/nimnodes.html#NimNodeIndex	nimnodes: NimNodeIndex	
+low	funcynim/nimnodes.html#low,NimNode	nimnodes: low(self: NimNode): NimNodeIndex	
+high	funcynim/nimnodes.html#high,NimNode	nimnodes: high(self: NimNode): NimNodeIndex	
+firstChild	funcynim/nimnodes.html#firstChild,NimNode	nimnodes: firstChild(self: NimNode): NimNode	
+secondChild	funcynim/nimnodes.html#secondChild,NimNode	nimnodes: secondChild(self: NimNode): NimNode	
