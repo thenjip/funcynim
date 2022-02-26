@@ -1,0 +1,5 @@
+partialParamPrefix	funcynim/partialproc.html#partialParamPrefix	partialproc: partialParamPrefix(): string	
+partialTypedParamPrefix	funcynim/partialproc.html#partialTypedParamPrefix	partialproc: partialTypedParamPrefix(): string	
+newLambda	funcynim/partialproc.html#newLambda,seq[NimNode],NimNode,NimNode	partialproc: newLambda(params: seq[NimNode]; body: NimNode; returnType: NimNode): NimNode	
+isUnderscore	funcynim/partialproc.html#isUnderscore,NimNode	partialproc: isUnderscore(n: NimNode): bool	
+partial	funcynim/partialproc.html#partial.m	partialproc: partial(call: untyped{call}): untyped	
