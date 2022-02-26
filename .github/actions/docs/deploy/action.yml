@@ -19,5 +19,6 @@ runs:
         github_token: '${{ inputs.github_token }}'
         publish_dir: './nimble-build/docs'
         destination_dir: '${{ inputs.destination_dir }}'
+        enable_jekyll: true
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
