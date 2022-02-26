@@ -10,8 +10,7 @@ on:
       git_devel:
         type: 'string'
         description: 'The commit hash or tag used to generate the "Edit" link.'
-        required: false
-        default: ${{ inputs.git_commit }}
+        required: true
 
       gh_pages_dest_dir:
         type: 'string'
