@@ -1,0 +1,4 @@
+resultType	funcynim/proctypes.html#resultType.m,typedesc[proc]	proctypes: resultType(T: typedesc[proc]): typedesc	
+resultType	funcynim/proctypes.html#resultType.t,proc	proctypes: resultType(p: proc): typedesc	
+paramType	funcynim/proctypes.html#paramType.m,typedesc[proc],staticNatural	proctypes: paramType(T: typedesc[proc]; position: static Natural): typedesc	
+paramType	funcynim/proctypes.html#paramType.t,proc,staticNatural	proctypes: paramType(p: proc; position: static Natural): typedesc	

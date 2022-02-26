@@ -1,0 +1,4 @@
+read	funcynim/variables.html#read,T	variables: read[T](self: var T): T	
+write	funcynim/variables.html#write,T,T	variables: write[T](self: var T; value: T): var T	
+modify	funcynim/variables.html#modify,T,	variables: modify[T](self: var T; f: T -&gt; T): var T	
+modify	funcynim/variables.html#modify,T,_2	variables: modify[T](self: var T; f: var T -&gt; Unit): var T	
