@@ -12,4 +12,5 @@ jobs:
     uses: './.github/workflows/docs.yml'
     with:
       git_commit: '${{ github.sha }}'
+      git_devel: '${{ github.sha }}'
       gh_pages_dest_dir: './devel'
