@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>funcynim/operators</title>
+<title>src/funcynim/operators</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -34,7 +34,6 @@ function main() {
     }
   }
 
-  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
   function switchTheme(e) {
       if (e.target.checked) {
           document.documentElement.setAttribute('data-theme', 'dark');
@@ -45,24 +44,32 @@ function main() {
       }
   }
 
-  toggleSwitch.addEventListener('change', switchTheme, false);
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  if (toggleSwitch !== null) {
+    toggleSwitch.addEventListener('change', switchTheme, false);
+  }
 
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  var currentTheme = localStorage.getItem('theme');
+  if (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    currentTheme = 'dark';
+  }
   if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'dark' && toggleSwitch !== null) {
       toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">funcynim/operators</h1>
+    <h1 class="title">src/funcynim/operators</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -94,95 +101,89 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">plus
-      <li><a class="reference" href="#plus%2CT%2CT"
-    title="plus[T](x, y: T): T">plus,<wbr>T,<wbr>T</a></li>
+      <ul class="simple nested-toc-section">divFloat
+      <li><a class="reference" href="#divFloat%2CT%2CT"
+    title="divFloat[T: SomeFloat](x, y: T): T">divFloat[T: SomeFloat](x, y: T): T</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">lessOrEq
-      <li><a class="reference" href="#lessOrEq%2CT%2CT"
-    title="lessOrEq[T](x, y: T): bool">lessOrEq,<wbr>T,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">minus
-      <li><a class="reference" href="#minus%2CT%2CT"
-    title="minus[T](x, y: T): T">minus,<wbr>T,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">greaterOrEq
-      <li><a class="reference" href="#greaterOrEq%2CT%2CT"
-    title="greaterOrEq[T](x, y: T): bool">greaterOrEq,<wbr>T,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">plus1
-      <li><a class="reference" href="#plus1%2CT"
-    title="plus1[T](x: T): T">plus1,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">greater
-      <li><a class="reference" href="#greater%2CT%2CT"
-    title="greater[T](x, y: T): bool">greater,<wbr>T,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">less
-      <li><a class="reference" href="#less%2CT%2CT"
-    title="less[T](x, y: T): bool">less,<wbr>T,<wbr>T</a></li>
+  <ul class="simple nested-toc-section">divInt
+      <li><a class="reference" href="#divInt%2CT%2CT"
+    title="divInt[T: SomeInteger](x, y: T): T">divInt[T: SomeInteger](x, y: T): T</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">equal
       <li><a class="reference" href="#equal%2CT%2CT"
-    title="equal[T](x, y: T): bool">equal,<wbr>T,<wbr>T</a></li>
+    title="equal[T](x, y: T): bool">equal[T](x, y: T): bool</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">mult
-      <li><a class="reference" href="#mult%2CT%2CT"
-    title="mult[T](x, y: T): T">mult,<wbr>T,<wbr>T</a></li>
+  <ul class="simple nested-toc-section">greater
+      <li><a class="reference" href="#greater%2CT%2CT"
+    title="greater[T](x, y: T): bool">greater[T](x, y: T): bool</a></li>
 
   </ul>
+  <ul class="simple nested-toc-section">greaterOrEq
+      <li><a class="reference" href="#greaterOrEq%2CT%2CT"
+    title="greaterOrEq[T](x, y: T): bool">greaterOrEq[T](x, y: T): bool</a></li>
 
   </ul>
-</li>
-<li>
-  <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
-  <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">divInt
-      <li><a class="reference" href="#divInt%2CT%2CT"
-    title="divInt[T: SomeInteger](x, y: T): T">divInt,<wbr>T,<wbr>T</a></li>
+  <ul class="simple nested-toc-section">less
+      <li><a class="reference" href="#less%2CT%2CT"
+    title="less[T](x, y: T): bool">less[T](x, y: T): bool</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">divFloat
-      <li><a class="reference" href="#divFloat%2CT%2CT"
-    title="divFloat[T: SomeFloat](x, y: T): T">divFloat,<wbr>T,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">logicOr
-      <li><a class="reference" href="#logicOr%2Cbool%2Cbool"
-    title="logicOr(x, y: bool): bool">logicOr,<wbr>bool,<wbr>bool</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">modulo
-      <li><a class="reference" href="#modulo%2CT%2CT"
-    title="modulo[T: SomeInteger](x, y: T): T">modulo,<wbr>T,<wbr>T</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">logicNot
-      <li><a class="reference" href="#logicNot%2Cbool"
-    title="logicNot(x: bool): bool">logicNot,<wbr>bool</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">next
-      <li><a class="reference" href="#next%2CT"
-    title="next[T: Ordinal](x: T): T">next,<wbr>T</a></li>
+  <ul class="simple nested-toc-section">lessOrEq
+      <li><a class="reference" href="#lessOrEq%2CT%2CT"
+    title="lessOrEq[T](x, y: T): bool">lessOrEq[T](x, y: T): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">logicAnd
       <li><a class="reference" href="#logicAnd%2Cbool%2Cbool"
-    title="logicAnd(x, y: bool): bool">logicAnd,<wbr>bool,<wbr>bool</a></li>
+    title="logicAnd(x, y: bool): bool">logicAnd(x, y: bool): bool</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">logicNot
+      <li><a class="reference" href="#logicNot%2Cbool"
+    title="logicNot(x: bool): bool">logicNot(x: bool): bool</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">logicOr
+      <li><a class="reference" href="#logicOr%2Cbool%2Cbool"
+    title="logicOr(x, y: bool): bool">logicOr(x, y: bool): bool</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">minus
+      <li><a class="reference" href="#minus%2CT%2CT"
+    title="minus[T](x, y: T): T">minus[T](x, y: T): T</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">modulo
+      <li><a class="reference" href="#modulo%2CT%2CT"
+    title="modulo[T: SomeInteger](x, y: T): T">modulo[T: SomeInteger](x, y: T): T</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">mult
+      <li><a class="reference" href="#mult%2CT%2CT"
+    title="mult[T](x, y: T): T">mult[T](x, y: T): T</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">next
+      <li><a class="reference" href="#next%2CT"
+    title="next[T: Ordinal](x: T): T">next[T: Ordinal](x: T): T</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">plus
+      <li><a class="reference" href="#plus%2CT%2CT"
+    title="plus[T](x, y: T): T">plus[T](x, y: T): T</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">plus1
+      <li><a class="reference" href="#plus1%2CT"
+    title="plus1[T](x: T): T">plus1[T](x: T): T</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">prev
       <li><a class="reference" href="#prev%2CT"
-    title="prev[T: Ordinal](x: T): T">prev,<wbr>T</a></li>
+    title="prev[T: Ordinal](x: T): T">prev[T: Ordinal](x: T): T</a></li>
 
   </ul>
 
@@ -192,6 +193,11 @@ function main() {
 </ul>
 
   </div>
+  &nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L1"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -201,198 +207,210 @@ function main() {
   <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a id="plus,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#plus%2CT%2CT"><span class="Identifier">plus</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L10"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="plus1,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#plus1%2CT"><span class="Identifier">plus1</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L14"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="minus,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#minus%2CT%2CT"><span class="Identifier">minus</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L18"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="mult,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#mult%2CT%2CT"><span class="Identifier">mult</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L22"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="less,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#less%2CT%2CT"><span class="Identifier">less</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L48"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="lessOrEq,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#lessOrEq%2CT%2CT"><span class="Identifier">lessOrEq</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L52"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="equal,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#equal%2CT%2CT"><span class="Identifier">equal</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L56"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="greaterOrEq,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#greaterOrEq%2CT%2CT"><span class="Identifier">greaterOrEq</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L60"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="greater,T,T"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#greater%2CT%2CT"><span class="Identifier">greater</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L64"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-
-</dl></div>
-<div class="section" id="13">
-<h1><a class="toc-backref" href="#13">Funcs</a></h1>
-<dl class="item">
-<a id="divInt,T,T"></a>
-<dt><pre><span class="Keyword">func</span> <a href="#divInt%2CT%2CT"><span class="Identifier">divInt</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeInteger</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L26"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="divFloat,T,T"></a>
+<div id="divFloat,T,T">
 <dt><pre><span class="Keyword">func</span> <a href="#divFloat%2CT%2CT"><span class="Identifier">divFloat</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeFloat</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L30"
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="modulo,T,T"></a>
+</div>
+<div id="divInt,T,T">
+<dt><pre><span class="Keyword">func</span> <a href="#divInt%2CT%2CT"><span class="Identifier">divInt</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeInteger</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L26"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="equal,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#equal%2CT%2CT"><span class="Identifier">equal</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L56"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="greater,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#greater%2CT%2CT"><span class="Identifier">greater</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L64"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="greaterOrEq,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#greaterOrEq%2CT%2CT"><span class="Identifier">greaterOrEq</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L60"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="less,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#less%2CT%2CT"><span class="Identifier">less</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L48"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="lessOrEq,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#lessOrEq%2CT%2CT"><span class="Identifier">lessOrEq</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L52"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="logicAnd,bool,bool">
+<dt><pre><span class="Keyword">func</span> <a href="#logicAnd%2Cbool%2Cbool"><span class="Identifier">logicAnd</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L73"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L73" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="logicNot,bool">
+<dt><pre><span class="Keyword">func</span> <a href="#logicNot%2Cbool"><span class="Identifier">logicNot</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L69"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="logicOr,bool,bool">
+<dt><pre><span class="Keyword">func</span> <a href="#logicOr%2Cbool%2Cbool"><span class="Identifier">logicOr</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L77"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L77" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="minus,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#minus%2CT%2CT"><span class="Identifier">minus</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L18"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="modulo,T,T">
 <dt><pre><span class="Keyword">func</span> <a href="#modulo%2CT%2CT"><span class="Identifier">modulo</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">SomeInteger</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L34"
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="next,T"></a>
+</div>
+<div id="mult,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#mult%2CT%2CT"><span class="Identifier">mult</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L22"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="next,T">
 <dt><pre><span class="Keyword">func</span> <a href="#next%2CT"><span class="Identifier">next</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Ordinal</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L39"
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="prev,T"></a>
+</div>
+<div id="plus1,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#plus1%2CT"><span class="Identifier">plus1</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L14"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="plus,T,T">
+<dt><pre><span class="Keyword">proc</span> <a href="#plus%2CT%2CT"><span class="Identifier">plus</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L10"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="prev,T">
 <dt><pre><span class="Keyword">func</span> <a href="#prev%2CT"><span class="Identifier">prev</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">Ordinal</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">T</span></pre></dt>
 <dd>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L43"
+href="https://github.com/thenjip/funcynim/tree/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/67a8ceef0de092103b934969bced9c354a786472/src/funcynim/operators.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<a id="logicNot,bool"></a>
-<dt><pre><span class="Keyword">func</span> <a href="#logicNot%2Cbool"><span class="Identifier">logicNot</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L69"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L69" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="logicAnd,bool,bool"></a>
-<dt><pre><span class="Keyword">func</span> <a href="#logicAnd%2Cbool%2Cbool"><span class="Identifier">logicAnd</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L73"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L73" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<a id="logicOr,bool,bool"></a>
-<dt><pre><span class="Keyword">func</span> <a href="#logicOr%2Cbool%2Cbool"><span class="Identifier">logicOr</span></a><span class="Other">(</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L77"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/thenjip/funcynim/edit/21b51ccf31f817e499134bad7891d86119cecd62/src/funcynim/operators.nim#L77" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
+</div>
 
 </dl></div>
 
@@ -403,7 +421,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-27 09:48:07 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-27 10:10:17 UTC</small>
       </div>
     </div>
   </div>
