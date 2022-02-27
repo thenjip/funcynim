@@ -8,7 +8,7 @@ import std/[sugar]
 
 
 
-proc ifElse*[T](condition: bool; then, `else`:() -> T): T =
+proc ifElse*[T](condition: bool; then, `else`: () -> T): T =
   if condition:
     then()
   else:

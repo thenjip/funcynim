@@ -13,7 +13,7 @@ when isMainModule:
         """"condition.ifElse(then, else)" should take the "then" path when""",
         """"condition" is "true".""""
       ].join($' '):
-        proc doTest[T](then, `else`:() -> T) =
+        proc doTest[T](then, `else`: () -> T) =
           let
             actual = true.tracedIfElse(then, `else`)
             expected = trace(Path.Then, then())
@@ -31,7 +31,7 @@ when isMainModule:
         """"condition.ifElse(then, else)" should take the "else" path when""",
         """"condition" is "false"."""
       ].join($' '):
-        proc doTest[T](then, `else`:() -> T) =
+        proc doTest[T](then, `else`: () -> T) =
           let
             actual = false.tracedIfElse(then, `else`)
             expected = trace(Path.Else, `else`())
