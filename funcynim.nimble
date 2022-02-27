@@ -10,7 +10,7 @@ license = "MIT"
 
 srcDir = srcDirName()
 
-requires "nim >= 1.4.2"
+requires "nim >= 1.6.0"
 
 
 
