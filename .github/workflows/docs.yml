@@ -23,7 +23,7 @@ jobs:
   build:
     name: 'Build'
     runs-on: 'ubuntu-latest'
-    container: 'nimlang/nim:1.4.2-alpine'
+    container: 'nimlang/nim:1.6.0-alpine'
     timeout-minutes: 10
     permissions:
       contents: write
