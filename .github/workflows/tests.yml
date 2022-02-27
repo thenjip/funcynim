@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        nim_version: ['1.4.2', '1.4.4', '1.4.6', '1.4.8', '1.6.0', '1.6.2', '1.6.4']
+        nim_version: ['1.6.0', '1.6.2', '1.6.4']
         backend: ['c', 'cxx', 'objc', 'js']
 
     name: 'Unit tests: Nim ${{ matrix.nim_version }}, backend ${{ matrix.backend }}'
