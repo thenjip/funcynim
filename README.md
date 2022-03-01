@@ -23,6 +23,7 @@ nimble install 'https://github.com/thenjip/funcynim'
 ## Dependencies
 
 - [`nim`](https://nim-lang.org/) >= `1.4.2`
+- [`nim_curry`](https://nimble.directory/pkg/nimcurry) >= `0.1.0`
 
 ## Documentation
 
