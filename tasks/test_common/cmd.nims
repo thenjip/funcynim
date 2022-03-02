@@ -17,7 +17,7 @@ proc relativeTo(path, base: string): Option[string] =
 func compileRunCmdOptions*(module: RelativeFile; task: TestTask): seq[string] =
   let valuedOptions =
     {
-      "nimcache": task.srcGenDir(),
+      "nimcache": task.srcGenDir(module),
       "outdir": task.binGenDir(module)
     }.map(toLongOption)
 
