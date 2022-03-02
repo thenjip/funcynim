@@ -5,19 +5,10 @@ import std/[options, os, sequtils]
 
 
 
-proc relativeTo(path, base: string): Option[string] =
-  let cutPath = path.relativePath(base)
-
-  if cutPath.len() == 0:
-    string.none()
-  else:
-    cutPath.some()
-
-
 func compileRunCmdOptions*(module: RelativeFile; task: TestTask): seq[string] =
   let valuedOptions =
     {
-      "nimcache": task.srcGenDir(),
+      "nimcache": task.srcGenDir(module),
       "outdir": task.binGenDir(module)
     }.map(toLongOption)
 

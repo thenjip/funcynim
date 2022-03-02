@@ -4,13 +4,15 @@ import std/[options, os]
 
 
 
-func srcGenDir*(self: TestTask): RelativeDir =
+func srcGenDir*(self: TestTask; module: RelativeFile): RelativeDir =
   ##[
     Returns the path to the cache directory for the generated source files.
 
-    The path is relative to the project root directory.
+    `module` path is assumed to be relative to the project source directory.
+
+    The returned path is relative to the project root directory.
   ]##
-  self.buildDir().get() / "nimcache"
+  self.buildDir().get() / "nimcache" / module
 
 
 func binGenDir*(self: TestTask; module: RelativeFile): RelativeDir =
@@ -20,6 +22,6 @@ func binGenDir*(self: TestTask; module: RelativeFile): RelativeDir =
 
     `module` path is assumed to be relative to the project source directory.
 
-    The path is relative to the project root directory.
+    The returned path is relative to the project root directory.
   ]##
   self.buildDir().get() / "bin" / module
