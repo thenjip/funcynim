@@ -1,7 +1,7 @@
 when isMainModule:
   import trace
 
-  import pkg/funcynim/[call, chain]
+  import pkg/funcynim/[chain, run]
 
   import std/[strutils, sugar, unittest]
 
@@ -54,24 +54,24 @@ when isMainModule:
         else:
           proc doTest[T](
             then, `else`: static[
-              proc (): proc(): T {.noSideEffect.} {.nimcall, noSideEffect.}
+              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
             ]
           ) =
             const
               actual = true.tracedIfElse(then(), `else`())
-              expected = trace(Path.Then, then().call())
+              expected = trace(Path.Then, then().run())
 
             check:
               actual == expected
 
 
           doTest(
-            proc (): auto =() {.closure.} => 0,
-            proc (): auto =() {.closure.} => 0
+            proc (): auto = () {.closure.} => 0,
+            proc (): auto = () {.closure.} => 0
           )
           doTest(
-            proc (): auto =() {.closure.} => "a",
-            proc (): auto =() {.closure.} => "abc"
+            proc (): auto = () {.closure.} => "a",
+            proc (): auto = () {.closure.} => "abc"
           )
 
 
@@ -85,24 +85,24 @@ when isMainModule:
         else:
           proc doTest[T](
             then, `else`: static[
-              proc (): proc(): T {.noSideEffect.} {.nimcall, noSideEffect.}
+              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
             ]
           ) =
             const
               actual = false.tracedIfElse(then(), `else`())
-              expected = trace(Path.Else, `else`().call())
+              expected = trace(Path.Else, `else`().run())
 
             check:
               actual == expected
 
 
           doTest(
-            proc (): auto =() {.closure.} => 0,
-            proc (): auto =() {.closure.} => 0
+            proc (): auto = () {.closure.} => 0,
+            proc (): auto = () {.closure.} => 0
           )
           doTest(
-            proc (): auto =() {.closure.} => "a",
-            proc (): auto =() {.closure.} => "abc"
+            proc (): auto = () {.closure.} => "a",
+            proc (): auto = () {.closure.} => "abc"
           )
 
 

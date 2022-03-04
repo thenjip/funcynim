@@ -96,31 +96,6 @@ import std/[os, sugar]
 echo(paramCount().`==`(0).ifElse(() => "no args", () => "got args"))
 ```
 
-#### Procedure calls with any number of arguments
-
-```Nim
-func pow2[N: SomeNumber](n: N): N =
-  n * n
-
-proc debugPrintlnAndReturn[T](x: T): T =
-  debugEcho(x)
-  x
-
-when isMainModule:
-  import pkg/funcynim/[call, chain]
-  import std/[sugar]
-
-  const
-    input = 4.Natural
-    expected = input.pow2()
-    got = pow2[input.typeof()].chain(debugPrintlnAndReturn).call(input)
-
-  doAssert(got == expected)
-
-  let f = () => pow2[input.typeof()].chain(debugPrintlnAndReturn)
-  doAssert(f.call().call(input) == expected)
-```
-
 #### Common math operators
 
 ```Nim
@@ -130,18 +105,18 @@ doAssert(5.plus(5).divInt(5) == 2)
 doAssert(not true.logicOr(false).logicNot())
 ```
 
-### Partial procedure application
+### Partial application
 
 Not to be confused with [currying](https://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application).
 
 ```Nim
-import pkg/funcynim/[call, chain, operators, partialproc]
+import pkg/funcynim/[chain, operators, partialproc]
 
 let f =
   partial(1 + ?:int) # (i: int) => 1 + i
     .chain(partial(1.mult(?_))) # (i: auto) => 1.mult(i)
 
-doAssert(f.call(10) == 11)
+doAssert(f(10) == 11)
 ```
 
 ### And more
