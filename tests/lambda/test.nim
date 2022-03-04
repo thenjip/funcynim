@@ -1,7 +1,7 @@
 when isMainModule:
-  import pkg/funcynim/[lambda, run]
+  import pkg/funcynim/[ignore, lambda, run, unit]
 
-  import std/[strutils, unittest]
+  import std/[strutils, sugar, unittest]
 
 
 
@@ -11,9 +11,9 @@ when isMainModule:
         """"expr.lambda().run().typeof()" should be the same as""",
         """"expr.typeof()"."""
       ].join($' '):
-        template doTest[T](expr: T): proc () =
+        template doTest[T](expr: T): Unit -> Unit =
           (
-            proc () =
+            proc (_: Unit): Unit =
               let p = expr.lambda()
 
               check:
@@ -22,7 +22,7 @@ when isMainModule:
 
 
         for t in [doTest(1), doTest("abc"), doTest(new char)]:
-          t.run()
+          t.run().ignore()
 
 
 
@@ -30,9 +30,9 @@ when isMainModule:
         """"expr.lambda().run().typeof()" should be the same as""",
         """"expr.typeof()" at compile time."""
       ].join($' '):
-        template doTest[T](expr: static[T]): proc () =
+        template doTest[T](expr: static[T]): Unit -> Unit =
           (
-            proc () =
+            proc (_: Unit): Unit =
               const p = expr.lambda()
 
               check:
@@ -41,7 +41,7 @@ when isMainModule:
 
 
         for t in [doTest(1), doTest("abc"), doTest(1 + 1)]:
-          t.run()
+          t.run().ignore()
 
 
 

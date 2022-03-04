@@ -1,5 +1,5 @@
 when isMainModule:
-  import pkg/funcynim/[operators, proctypes, run]
+  import pkg/funcynim/[ignore, operators, proctypes, run, unit]
 
   import std/[strutils, sugar, unittest]
 
@@ -11,9 +11,9 @@ when isMainModule:
         """"T.resultType()" should return the return type of the given""",
         "procedure type."
       ].join($' '):
-        template doTest(T: typedesc[proc]; expected: typedesc): proc () =
+        template doTest(T: typedesc[proc]; expected: typedesc): Unit -> Unit =
           (
-            proc () =
+            proc (_: Unit): Unit =
               check:
                 T.resultType().`is`(expected)
           )
@@ -38,7 +38,7 @@ when isMainModule:
           ),
           doTest(() -> var int, var int)
         ]:
-          t.run()
+          t.run().ignore()
 
 
 
@@ -50,9 +50,9 @@ when isMainModule:
           T: typedesc[proc];
           position: static Natural;
           expected: typedesc
-        ): proc () =
+        ): Unit -> Unit =
           (
-            proc () =
+            proc (_: Unit): Unit =
               check:
                 T.paramType(position).`is`(expected)
           )
@@ -63,7 +63,7 @@ when isMainModule:
           doTest(divFloat[cfloat].typeof(), 1, cfloat),
           doTest((int, char, bool) -> (char, int), 1, char)
         ]:
-          t.run()
+          t.run().ignore()
 
 
 
