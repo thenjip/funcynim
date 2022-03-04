@@ -54,7 +54,7 @@ when isMainModule:
         else:
           proc doTest[T](
             then, `else`: static[
-              proc (): proc(): T {.noSideEffect.} {.nimcall, noSideEffect.}
+              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
             ]
           ) =
             const
@@ -66,12 +66,12 @@ when isMainModule:
 
 
           doTest(
-            proc (): auto =() {.closure.} => 0,
-            proc (): auto =() {.closure.} => 0
+            proc (): auto = () {.closure.} => 0,
+            proc (): auto = () {.closure.} => 0
           )
           doTest(
-            proc (): auto =() {.closure.} => "a",
-            proc (): auto =() {.closure.} => "abc"
+            proc (): auto = () {.closure.} => "a",
+            proc (): auto = () {.closure.} => "abc"
           )
 
 
@@ -85,7 +85,7 @@ when isMainModule:
         else:
           proc doTest[T](
             then, `else`: static[
-              proc (): proc(): T {.noSideEffect.} {.nimcall, noSideEffect.}
+              proc (): proc (): T {.noSideEffect.} {.nimcall, noSideEffect.}
             ]
           ) =
             const
@@ -97,12 +97,12 @@ when isMainModule:
 
 
           doTest(
-            proc (): auto =() {.closure.} => 0,
-            proc (): auto =() {.closure.} => 0
+            proc (): auto = () {.closure.} => 0,
+            proc (): auto = () {.closure.} => 0
           )
           doTest(
-            proc (): auto =() {.closure.} => "a",
-            proc (): auto =() {.closure.} => "abc"
+            proc (): auto = () {.closure.} => "a",
+            proc (): auto = () {.closure.} => "abc"
           )
 
 
