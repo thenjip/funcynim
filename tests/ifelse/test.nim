@@ -1,7 +1,7 @@
 when isMainModule:
   import trace
 
-  import pkg/funcynim/[call, chain]
+  import pkg/funcynim/[chain, run]
 
   import std/[strutils, sugar, unittest]
 
@@ -59,7 +59,7 @@ when isMainModule:
           ) =
             const
               actual = true.tracedIfElse(then(), `else`())
-              expected = trace(Path.Then, then().call())
+              expected = trace(Path.Then, then().run())
 
             check:
               actual == expected
@@ -90,7 +90,7 @@ when isMainModule:
           ) =
             const
               actual = false.tracedIfElse(then(), `else`())
-              expected = trace(Path.Else, `else`().call())
+              expected = trace(Path.Else, `else`().run())
 
             check:
               actual == expected

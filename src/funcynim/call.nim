@@ -6,6 +6,10 @@
 
 
 
+{.deprecated: """Since "0.3.0". Use the "run" module instead.""".}
+
+
+
 import std/[macros]
 
 

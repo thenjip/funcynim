@@ -1,5 +1,5 @@
 when isMainModule:
-  import pkg/funcynim/[call, operators, proctypes]
+  import pkg/funcynim/[operators, proctypes, run]
 
   import std/[strutils, sugar, unittest]
 
@@ -38,7 +38,7 @@ when isMainModule:
           ),
           doTest(() -> var int, var int)
         ]:
-          t.call()
+          t.run()
 
 
 
@@ -63,7 +63,7 @@ when isMainModule:
           doTest(divFloat[cfloat].typeof(), 1, cfloat),
           doTest((int, char, bool) -> (char, int), 1, char)
         ]:
-          t.call()
+          t.run()
 
 
 

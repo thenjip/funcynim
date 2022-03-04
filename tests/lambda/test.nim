@@ -1,5 +1,5 @@
 when isMainModule:
-  import pkg/funcynim/[call, lambda]
+  import pkg/funcynim/[lambda, run]
 
   import std/[strutils, unittest]
 
@@ -8,7 +8,7 @@ when isMainModule:
   proc main() =
     suite "lambda":
       test [
-        """"expr.lambda().call().typeof()" should be the same as""",
+        """"expr.lambda().run().typeof()" should be the same as""",
         """"expr.typeof()"."""
       ].join($' '):
         template doTest[T](expr: T): proc () =
@@ -17,17 +17,17 @@ when isMainModule:
               let p = expr.lambda()
 
               check:
-                p.call().typeof().`is`(T)
+                p.run().typeof().`is`(T)
           )
 
 
         for t in [doTest(1), doTest("abc"), doTest(new char)]:
-          t.call()
+          t.run()
 
 
 
       test [
-        """"expr.lambda().call().typeof()" should be the same as""",
+        """"expr.lambda().run().typeof()" should be the same as""",
         """"expr.typeof()" at compile time."""
       ].join($' '):
         template doTest[T](expr: static[T]): proc () =
@@ -36,12 +36,12 @@ when isMainModule:
               const p = expr.lambda()
 
               check:
-                p.call().typeof().`is`(T)
+                p.run().typeof().`is`(T)
           )
 
 
         for t in [doTest(1), doTest("abc"), doTest(1 + 1)]:
-          t.call()
+          t.run()
 
 
 
