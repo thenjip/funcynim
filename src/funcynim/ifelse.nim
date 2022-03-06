@@ -4,6 +4,10 @@
 
 
 
+{.deprecated: """Since "0.3.0". Use the "fold" module instead.""".}
+
+
+
 import std/[sugar]
 
 
