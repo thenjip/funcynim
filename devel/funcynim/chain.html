@@ -99,6 +99,12 @@ window.addEventListener('DOMContentLoaded', main);
   </div>
   <ul class="simple simple-toc" id="toc-list">
 <li>
+  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
+  <ul class="simple simple-toc-section">
+    
+  </ul>
+</li>
+<li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
       <ul class="simple nested-toc-section">chain
@@ -106,6 +112,11 @@ window.addEventListener('DOMContentLoaded', main);
     title="chain[A; B; C](f: A -&gt; B; g: B -&gt; C): A -&gt; C">chain[A; B; C](f: A -&gt; B; g: B -&gt; C): A -&gt; C</a></li>
   <li><a class="reference" href="#chain%2C%2C_2"
     title="chain[A; B](f: () -&gt; A; g: A -&gt; B): () -&gt; B">chain[A; B](f: () -&gt; A; g: A -&gt; B): () -&gt; B</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">compose
+      <li><a class="reference" href="#compose%2C%2C"
+    title="compose[A; B; C](self: B -&gt; C; prev: A -&gt; B): A -&gt; C">compose[A; B; C](self: B -&gt; C; prev: A -&gt; B): A -&gt; C</a></li>
 
   </ul>
 
@@ -116,15 +127,20 @@ window.addEventListener('DOMContentLoaded', main);
 
   </div>
   &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21ab93b087bb4e4eae52fd9ef83f5a0badc27f4e/src/funcynim/chain.nim#L1"
+href="https://github.com/thenjip/funcynim/tree/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L1"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/21ab93b087bb4e4eae52fd9ef83f5a0badc27f4e/src/funcynim/chain.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
 
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
   <p class="module-desc">The bread and butter of functional programming: function composition. </p>
-  <div class="section" id="12">
+  <div class="section" id="6">
+<h1><a class="toc-backref" href="#6">Imports</a></h1>
+<dl class="item">
+<a class="reference external" href="into.html">into</a>
+</dl></div>
+<div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
 <div id="chain,,">
@@ -133,21 +149,37 @@ class="link-seesrc" target="_blank">Source</a>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21ab93b087bb4e4eae52fd9ef83f5a0badc27f4e/src/funcynim/chain.nim#L11"
+href="https://github.com/thenjip/funcynim/tree/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L13"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/21ab93b087bb4e4eae52fd9ef83f5a0badc27f4e/src/funcynim/chain.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
 <div id="chain,,_2">
-<dt><pre><span class="Keyword">func</span> <a href="#chain%2C%2C_2"><span class="Identifier">chain</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span></pre></dt>
+<dt><pre><span class="Keyword">func</span> <a href="#chain%2C%2C_2"><span class="Identifier">chain</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">g</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">deprecated</span><span class="Other">:</span> <span class="StringLit">&quot;&quot;&quot;Since &quot;0.3.0&quot;.&quot;&quot;&quot;</span></span>.}</pre></dt>
 <dd>
+  <div class="deprecation-message">
+    <b>Deprecated:</b> Since &quot;0.3.0&quot;.
+  </div>
 
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/21ab93b087bb4e4eae52fd9ef83f5a0badc27f4e/src/funcynim/chain.nim#L16"
+href="https://github.com/thenjip/funcynim/tree/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L17"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/21ab93b087bb4e4eae52fd9ef83f5a0badc27f4e/src/funcynim/chain.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="compose,,">
+<dt><pre><span class="Keyword">func</span> <a href="#compose%2C%2C"><span class="Identifier">compose</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">;</span> <span class="Identifier">C</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">B</span> <span class="Operator">-&gt;</span> <span class="Identifier">C</span><span class="Other">;</span> <span class="Identifier">prev</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">B</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">A</span> <span class="Operator">-&gt;</span> <span class="Identifier">C</span></pre></dt>
+<dd>
+
+Since <tt class="docutils literal"><span class="pre"><span class="FloatNumber">0.3</span><span class="Operator">.</span><span class="DecNumber">0</span></span></tt>. 
+&nbsp;&nbsp;<a
+href="https://github.com/thenjip/funcynim/tree/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L24"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/55013d14a8c544a11ffcc43086d656436002b42a/src/funcynim/chain.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -161,7 +193,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-03-06 19:35:06 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-03-07 17:42:49 UTC</small>
       </div>
     </div>
   </div>
