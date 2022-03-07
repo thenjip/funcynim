@@ -19,5 +19,10 @@ func chain*[A; B](f: () -> A; g: A -> B): () -> B {.
 .} =
   () => f().into(g)
 
-func chain*[A; B](f: () -> A; g: A -> B): () -> B =
-  () => f().g()
+
+
+func compose*[A; B; C](self: B -> C; prev: A -> B): A -> C =
+  ##[
+    Since `0.3.0`.
+  ]##
+  prev.chain(self)
