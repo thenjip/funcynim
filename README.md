@@ -22,7 +22,7 @@ nimble install 'https://github.com/thenjip/funcynim'
 
 ## Dependencies
 
-- [`nim`](https://nim-lang.org/) >= `1.4.2`
+- [`nim`](https://nim-lang.org/) >= `1.6.0`
 - [`nim_curry`](https://nimble.directory/pkg/nimcurry) >= `0.1.0`
 
 ## Documentation
@@ -87,13 +87,16 @@ discard
   .ignore()
 ```
 
-#### `if ...: else: ...` expressions
+#### `if ...: else: ...` expression as a `proc`
 
 ```Nim
-import pkg/funcynim/[ifelse]
+import pkg/funcynim/[fold, into, unit]
 import std/[os, sugar]
 
-echo(paramCount().`==`(0).ifElse(() => "no args", () => "got args"))
+paramCount()
+  .`==`(0)
+  .fold((_: Unit) => "no args", (_: Unit) => "got args")
+  .into(s => echo(s))
 ```
 
 #### Common math operators
@@ -105,6 +108,23 @@ doAssert(5.plus(5).divInt(5) == 2)
 doAssert(not true.logicOr(false).logicNot())
 ```
 
+### Currying
+
+Thanks to [nim_curry](https://nimble.directory/pkg/nimcurry).
+
+```Nim
+import pkg/funcynim/[curry, ignore, run, unit]
+import std/[terminal]
+
+proc writeLn(f: File; styles: set[Style]; self: string): Unit {.curry.} =
+  f.styledWriteLine(styles, self)
+
+writeLn(stdout)
+  .with({styleUnderscore})
+  .run("abc")
+  .ignore()
+```
+
 ### Partial application
 
 Not to be confused with [currying](https://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application).
@@ -114,7 +134,7 @@ import pkg/funcynim/[chain, operators, partialproc]
 
 let f =
   partial(1 + ?:int) # (i: int) => 1 + i
-    .chain(partial(1.mult(?_))) # (i: auto) => 1.mult(i)
+  .chain(partial(1.mult(?_))) # (_: auto) => 1.mult(_)
 
 doAssert(f(10) == 11)
 ```
