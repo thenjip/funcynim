@@ -1,3 +1,3 @@
-curry	funcynim/curry.html#curry.t	curry: curry(self: untyped{nkProcDef | nkFuncDef})	
-curry	funcynim/curry.html#curry.t_2	curry: curry(self: untyped{nkLambda}): untyped	
+curry	funcynim/curry.html#curry.t	curry: curry(self: untyped{nkProcDef | nkFuncDef}): auto	
+curry	funcynim/curry.html#curry.t_2	curry: curry(self: untyped{nkLambda}): auto	
 with	funcynim/curry.html#with,,A	curry: with[A; B; C](curried: A -&gt; (B -&gt; C); arg: A): B -&gt; C	
