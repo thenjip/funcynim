@@ -17,7 +17,7 @@ import std/[sugar]
 
 
 
-template curry*(self: untyped{nkProcDef | nkFuncDef}) =
+template curry*(self: untyped{nkProcDef | nkFuncDef}): auto =
   ##[
     Transforms a `proc` or `func` definition into a curried one.
 
@@ -40,7 +40,7 @@ template curry*(self: untyped{nkProcDef | nkFuncDef}) =
   nim_curry.curry(self)
 
 
-template curry*(self: untyped{nkLambda}): untyped =
+template curry*(self: untyped{nkLambda}): auto =
   ##[
     Transforms an anonymous `proc` into a curried one.
 
