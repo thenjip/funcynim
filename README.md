@@ -108,6 +108,23 @@ doAssert(5.plus(5).divInt(5) == 2)
 doAssert(not true.logicOr(false).logicNot())
 ```
 
+### Currying
+
+Thanks to [nim_curry](https://nimble.directory/pkg/nimcurry).
+
+```Nim
+import pkg/funcynim/[curry, ignore, run, unit]
+import std/[terminal]
+
+proc writeLn(f: File; styles: set[Style]; self: string): Unit {.curry.} =
+  f.styledWriteLine(styles, self)
+
+writeLn(stdout)
+  .with({styleUnderscore})
+  .run("abc")
+  .ignore()
+```
+
 ### Partial application
 
 Not to be confused with [currying](https://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application).
