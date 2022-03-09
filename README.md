@@ -134,7 +134,7 @@ import pkg/funcynim/[chain, operators, partialproc]
 
 let f =
   partial(1 + ?:int) # (i: int) => 1 + i
-    .chain(partial(1.mult(?_))) # (i: auto) => 1.mult(i)
+  .chain(partial(1.mult(?_))) # (_: auto) => 1.mult(_)
 
 doAssert(f(10) == 11)
 ```
