@@ -87,13 +87,16 @@ discard
   .ignore()
 ```
 
-#### `if ...: else: ...` expressions
+#### `if ...: else: ...` expression as a `proc`
 
 ```Nim
-import pkg/funcynim/[ifelse]
+import pkg/funcynim/[fold, into, unit]
 import std/[os, sugar]
 
-echo(paramCount().`==`(0).ifElse(() => "no args", () => "got args"))
+paramCount()
+  .`==`(0)
+  .fold((_: Unit) => "no args", (_: Unit) => "got args")
+  .into(s => echo(s))
 ```
 
 #### Common math operators
