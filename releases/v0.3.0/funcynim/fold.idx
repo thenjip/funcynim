@@ -1,0 +1,1 @@
+fold	funcynim/fold.html#fold,bool,,	fold: fold[T](self: bool; then, else: Unit -&gt; T): T	

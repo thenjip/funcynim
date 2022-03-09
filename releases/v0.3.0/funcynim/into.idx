@@ -1,0 +1,1 @@
+into	funcynim/into.html#into,A,	into: into[A; B](self: A; f: A -&gt; B): B	
