@@ -3,7 +3,7 @@ func srcDirName*(): string =
 
 
 
-version = "0.2.5"
+version = "0.3.0"
 author = "thenjip"
 description = "Utility library to ease functional programming in Nim."
 license = "MIT"
