@@ -42,7 +42,7 @@ when isMainModule:
 
 
       test [
-        """Compile time: Folding a "bool" when it is "true" should take the""",
+        """(Compile time) Folding a "bool" when it is "true" should take the""",
         """"then" path."""
       ].join($' '):
         when defined(js):
@@ -74,8 +74,8 @@ when isMainModule:
 
 
       test [
-        """Compile time: Folding a "bool" when it is "false" should take the""",
-        """"else" path."""
+        """(Compile time) Folding a "bool" when it is "false" should take""",
+        """the "else" path."""
       ].join($' '):
         when defined(js):
           skip() # https://github.com/nim-lang/Nim/issues/12492

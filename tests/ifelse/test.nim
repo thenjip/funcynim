@@ -46,8 +46,8 @@ when isMainModule:
 
 
       test [
-        """"condition.ifElse(then, else)" should take the "then" path when""",
-        """"condition" is "true" at compile time.""""
+        """(Compile time) "condition.ifElse(then, else)" should take the""",
+        """"then" path when "condition" is "true"."""
       ].join($' '):
         when defined(js):
           skip() # https://github.com/nim-lang/Nim/issues/12492
@@ -77,8 +77,8 @@ when isMainModule:
 
 
       test [
-        """"condition.ifElse(then, else)" should take the "else" path when""",
-        """"condition" is "false" at compile time."""
+        """(Compile time) "condition.ifElse(then, else)" should take the""",
+        """"else" path when "condition" is "false"."""
       ].join($' '):
         when defined(js):
           skip() # https://github.com/nim-lang/Nim/issues/12492

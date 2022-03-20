@@ -27,8 +27,8 @@ when isMainModule:
 
 
       test [
-        """"expr.lambda().run().typeof()" should be the same as""",
-        """"expr.typeof()" at compile time."""
+        """(Compile time) "expr.lambda().run().typeof()" should be the same""",
+        """as "expr.typeof()"."""
       ].join($' '):
         template doTest[T](expr: static[T]): Unit -> Unit =
           (
