@@ -7,7 +7,7 @@
 
 
 
-import ifelse, nimnodes
+import fold, nimnodes, unit
 
 import std/[macros, sequtils, strformat, strutils, sugar, tables]
 
@@ -122,9 +122,9 @@ func splitArgs(callExpr: CallExpr): SplitArgPair =
 
       result.partialParams[pos] =
         paramName.strVal().lambdaParam(
-          arg.firstChild().strVal().`==`(partialParamPrefix()).ifElse(
-            () => ident"auto",
-            () => arg.secondChild()
+          arg.firstChild().strVal().`==`(partialParamPrefix()).fold(
+            (_: Unit) => ident"auto",
+            (_: Unit) => arg.secondChild()
           )
         )
       result.callArgs.add(paramName.strVal().ident())
