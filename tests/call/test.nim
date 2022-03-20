@@ -57,9 +57,7 @@ when isMainModule:
 
 
 
-      test [
-        """"f.call(arg)" should produce "f(arg)" in compile time expressions."""
-      ].join($' '):
+      test """(Compile time) "f.call(arg)" should produce "f(arg)".""":
         proc doTest[A; R](
           f: static proc (a: A): R {.nimcall, noSideEffect.};
           arg: static A
@@ -77,8 +75,8 @@ when isMainModule:
 
 
       test [
-        """"f.call(arg1, arg2)" should produce "f(arg1, arg2)" in compile""",
-        "time expressions."
+        """(Compile time) "f.call(arg1, arg2)" should produce"""",
+        """f(arg1, arg2)"."""
       ].join($' '):
         proc doTest[A; B; C](
           f: static proc (a: A; b: B): C {.nimcall, noSideEffect.};
@@ -98,8 +96,8 @@ when isMainModule:
 
 
       test [
-        """"f.call(arg1, arg2, arg3)" should produce "f(arg1, arg2, arg3)"""",
-        "in compile time expresions."
+        """(Compile time) "f.call(arg1, arg2, arg3)" should produce""",
+        """"f(arg1, arg2, arg3)""""
       ].join($' '):
         proc doTest[A; B; C; D](
           f: static proc (a: A; b: B; c: C): D {.nimcall, noSideEffect.};

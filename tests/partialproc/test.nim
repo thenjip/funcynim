@@ -111,8 +111,8 @@ when isMainModule:
 
 
       test [
-        """"partial(a + ?:N)" should be equivalent to "(b: N) => a + b" at""",
-        "compile time."
+        """(Compile time) "partial(a + ?:N)" should be equivalent to""",
+        """"(b: N) => a + b"."""
       ].join($' '):
         proc doTest[N: SomeNumber](a, b: static N) =
           const
@@ -129,8 +129,8 @@ when isMainModule:
 
 
       test [
-        """"partial($ ?:T)" should be equivalent to "(a: T) => $a" at""",
-        "compile time."
+        """(Compile time) "partial($ ?:T)" should be equivalent to""",
+        """"(a: T) => $a"."""
       ].join($' '):
         proc doTest[T](a: static[T]) =
           const
@@ -150,8 +150,8 @@ when isMainModule:
 
 
       test [
-        """"partial(f(a, ?:B))" should be equivalent to "(b: B) => f(a, b)"""",
-        "at compile time."
+        """(Compile time) "partial(f(a, ?:B))" should be equivalent to""",
+        """"(b: B) => f(a, b)"."""
       ].join($' '):
         proc doTest[A; B; R](
           f: static proc (a: A; b: B): R {.nimcall.};
@@ -173,8 +173,8 @@ when isMainModule:
 
 
       test [
-        """"partial(f(?:A, b, ?:C))" should be equivalent to""",
-        """"(a: A, c: C) => f(a, b, c)" at compile time."""
+        """(Compile time) "partial(f(?:A, b, ?:C))" should be equivalent to""",
+        """"(a: A, c: C) => f(a, b, c)"."""
       ].join($' '):
         proc doTest[A; B; C; R](
           f: static proc (a: A; b: B; c: C): R {.nimcall.};
@@ -196,8 +196,8 @@ when isMainModule:
 
 
       test [
-        """"f.chain(partial(g(?b, c)))" should be equivalent to""",
-        """"f.chain(b => b.g(c))(a)" at compile time."""
+        """(Compile time) "f.chain(partial(g(?b, c)))" should be equivalent""",
+        """to "f.chain(b => b.g(c))(a)"."""
       ].join($' '):
         when defined(js):
           skip() # https://github.com/nim-lang/Nim/issues/12492
