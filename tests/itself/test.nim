@@ -34,22 +34,22 @@ when isMainModule:
 
 
 
-    test "(Compile time) The identity function should be idempotent.":
-      when defined(js):
-        skip() # https://github.com/nim-lang/Nim/issues/12492
-      else:
-        proc doTest[T](input: static[T]; n: static Positive) =
-          const
-            actual = itself.itself[T].repeat(n).run(input)
-            expected = input.itself()
+      test "(Compile time) The identity function should be idempotent.":
+        when defined(js):
+          skip() # https://github.com/nim-lang/Nim/issues/12492
+        else:
+          proc doTest[T](input: static[T]; n: static Positive) =
+            const
+              actual = itself.itself[T].repeat(n).run(input)
+              expected = input.itself()
 
-          check:
-            actual == expected
+            check:
+              actual == expected
 
 
-        doTest("a", 1)
-        doTest('a', 3)
-        doTest(-1, 11)
+          doTest("a", 1)
+          doTest('a', 3)
+          doTest(-1, 11)
 
 
 

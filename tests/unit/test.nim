@@ -21,4 +21,17 @@ when isMainModule:
 
 
 
+      test """"self.doNothing()" should compile.""":
+        proc doTest[T](self: T) =
+          discard self.doNothing()
+
+
+        doTest(1687)
+        doTest(6.3)
+        doTest("abc ")
+        doTest(unit())
+        doTest((-7, 1.2))
+
+
+
   main()
