@@ -7,7 +7,14 @@ when isMainModule:
 
   proc main() =
     suite "ignore":
-      discard
+      test """"self.ignore()" should compile.""":
+        proc doTest[T](self: T) =
+          self.ignore()
+
+
+        doTest(114u)
+        doTest("abc")
+        doTest(-9.2)
 
 
 
