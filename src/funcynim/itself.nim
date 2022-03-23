@@ -4,7 +4,7 @@
 
 
 
-proc itself*[T](self: T): T =
+func itself*[T](self: T): T =
   ##[
     The identity function.
 
