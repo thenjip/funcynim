@@ -10,8 +10,8 @@ import std/[sugar]
 
 
 
-func chain*[A; B; C](f: A -> B; g: B -> C): A -> C =
-  (a: A) => f(a).into(g)
+func chain*[A; B; C](self: A -> B; next: B -> C): A -> C =
+  (a: A) => self(a).into(next)
 
 
 func chain*[A; B](f: () -> A; g: A -> B): () -> B {.
