@@ -67,7 +67,7 @@ template curry*(self: untyped{nkLambda}): auto =
 
 
 
-func with*[A; B; C](curried: A -> (B -> C); arg: A): B -> C =
+proc with*[A; B; C](curried: A -> (B -> C); arg: A): B -> C =
   ##[
     Gives an argument to a curried `proc`.
 
