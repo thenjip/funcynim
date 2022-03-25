@@ -8,7 +8,7 @@ when isMainModule:
 
 
   proc main() =
-    suite "folders":
+    suite "fold":
       test [
         """Folding a "bool" when it is "true" should take the "then" path."""
       ].join($' '):
