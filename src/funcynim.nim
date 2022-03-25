@@ -1,15 +1,12 @@
 import funcynim/[
-  call,
   chain,
   convert,
   curry,
   default,
   fold,
-  ifelse,
   ignore,
   into,
   itself,
-  lambda,
   nimnodes,
   operators,
   partialproc,
@@ -22,17 +19,14 @@ import funcynim/[
 
 
 export
-  call,
   chain,
   convert,
   curry,
   default,
   fold,
-  ifelse,
   ignore,
   into,
   itself,
-  lambda,
   nimnodes,
   operators,
   partialproc,
