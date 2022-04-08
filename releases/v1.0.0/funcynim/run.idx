@@ -1,0 +1,3 @@
+run	funcynim/run.html#run,,A	run: run[A; B](self: A -&gt; B; arg: A): B	
+run	funcynim/run.html#run	run: run[T](self: Unit -&gt; T): T	
+run	funcynim/run.html#run_2	run: run[T](self: () -&gt; T): T	
