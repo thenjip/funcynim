@@ -1,3 +1,2 @@
 chain	funcynim/chain.html#chain,,	chain: chain[A; B; C](self: A -&gt; B; next: B -&gt; C): A -&gt; C	
-chain	funcynim/chain.html#chain,,_2	chain: chain[A; B](f: () -&gt; A; g: A -&gt; B): () -&gt; B	
 compose	funcynim/chain.html#compose,,	chain: compose[A; B; C](self: B -&gt; C; prev: A -&gt; B): A -&gt; C	
