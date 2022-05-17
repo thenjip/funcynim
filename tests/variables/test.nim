@@ -1,7 +1,8 @@
 when isMainModule:
-  import pkg/funcynim/[variables]
+  import
+    pkg/funcynim/[variables],
 
-  import std/[strutils, unittest]
+    std/[strutils, unittest]
 
 
 

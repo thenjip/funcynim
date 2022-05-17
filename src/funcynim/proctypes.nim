@@ -3,9 +3,10 @@
 ]##
 
 
-import nimnodes
+import
+  nimnodes,
 
-import std/[macros]
+  std/[macros]
 
 
 

@@ -1,7 +1,8 @@
 when isMainModule:
-  import pkg/funcynim/[curry]
+  import
+    pkg/funcynim/[curry],
 
-  import std/[sugar, strutils, unittest]
+    std/[sugar, strutils, unittest]
 
 
 

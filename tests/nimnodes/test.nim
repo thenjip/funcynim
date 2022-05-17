@@ -1,7 +1,8 @@
 when isMainModule:
-  import pkg/funcynim/[nimnodes]
+  import
+    pkg/funcynim/[nimnodes],
 
-  import std/[macros, unittest]
+    std/[macros, unittest]
 
 
 

@@ -1,6 +1,7 @@
-import pkg/funcynim/[chain, fold, unit]
+import
+  pkg/funcynim/[chain, fold, unit],
 
-import std/[sugar]
+  std/[sugar]
 
 
 

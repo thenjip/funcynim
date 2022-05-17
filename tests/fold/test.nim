@@ -1,9 +1,10 @@
 when isMainModule:
-  import booltrace
+  import
+    booltrace,
 
-  import pkg/funcynim/[fold, run, unit]
+    pkg/funcynim/[fold, run, unit],
 
-  import std/[strutils, sugar, unittest]
+    std/[strutils, sugar, unittest]
 
 
 

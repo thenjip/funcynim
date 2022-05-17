@@ -1,7 +1,8 @@
 when isMainModule:
-  import pkg/funcynim/[into]
+  import
+    pkg/funcynim/[into],
 
-  import std/[sugar, unittest]
+    std/[sugar, unittest]
 
 
 

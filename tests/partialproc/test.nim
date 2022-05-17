@@ -1,7 +1,8 @@
 when isMainModule:
-  import pkg/funcynim/[chain, partialproc]
+  import
+    pkg/funcynim/[chain, partialproc],
 
-  import std/[strutils, sugar, unittest]
+    std/[strutils, sugar, unittest]
 
 
 
