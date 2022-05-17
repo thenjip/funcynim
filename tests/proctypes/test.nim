@@ -1,7 +1,8 @@
 when isMainModule:
-  import pkg/funcynim/[ignore, operators, proctypes, run, unit]
+  import
+    pkg/funcynim/[ignore, operators, proctypes, run, unit],
 
-  import std/[strutils, sugar, unittest]
+    std/[strutils, sugar, unittest]
 
 
 
