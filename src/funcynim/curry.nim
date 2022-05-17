@@ -11,9 +11,10 @@
 
 
 
-import pkg/[nim_curry]
+import
+  pkg/[nim_curry],
 
-import std/[sugar]
+  std/[sugar]
 
 
 
