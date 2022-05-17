@@ -130,3 +130,6 @@ macro defineTasks(): untyped =
 
 
 defineTasks()
+
+task test, """An alias for "test-c".""":
+  `test-cTask`()
