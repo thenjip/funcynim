@@ -7,9 +7,10 @@
 
 
 
-import fold, nimnodes, unit
+import
+  fold, nimnodes, unit,
 
-import std/[macros, sequtils, strformat, strutils, sugar, tables]
+  std/[macros, sequtils, strformat, strutils, sugar, tables]
 
 
 
