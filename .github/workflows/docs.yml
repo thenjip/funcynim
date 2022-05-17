@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    name: 'Build'
+    name: 'Build and deploy to gh-pages'
     runs-on: 'ubuntu-latest'
     container: 'nimlang/nim:1.6.0-alpine'
     timeout-minutes: 10
