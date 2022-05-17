@@ -1,0 +1,29 @@
+name: 'Docs (pull request)'
+on:
+  pull_request:
+    branches-ignore:
+      - gh-pages
+
+
+jobs:
+  build:
+    name: 'Build the API doc'
+    runs-on: 'ubuntu-latest'
+    container: 'nimlang/nim:1.6.0-alpine'
+    timeout-minutes: 10
+
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+
+      - name: 'Install the project dependencies'
+        run: nimble install -dy
+
+      - name: 'Configure the Nim compiler'
+        uses: './.github/actions/docs/configure_nim'
+        with:
+          git_commit: '${{ github.sha }}'
+          git_devel: '${{ github.sha }}'
+
+      - name: 'Build the API doc'
+        run: nimble docs
