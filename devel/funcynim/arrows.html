@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>src/funcynim/convert</title>
+<title>src/funcynim/arrows</title>
 <link rel="stylesheet" type="text/css" href="../nimdoc.out.css">
 
 <script type="text/javascript" src="../dochack.js"></script>
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', main);
 <body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">src/funcynim/convert</h1>
+    <h1 class="title">src/funcynim/arrows</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -99,20 +99,22 @@ window.addEventListener('DOMContentLoaded', main);
   </div>
   <ul class="simple simple-toc" id="toc-list">
 <li>
-  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
+  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">convert
-      <li><a class="reference" href="#convert%2CA"
-    title="convert[A; B](a: A): B">convert[A; B](a: A): B</a></li>
-  <li><a class="reference" href="#convert%2CA%2Ctypedesc"
-    title="convert[A](a: A; B: typedesc): B:type">convert[A](a: A; B: typedesc): B:type</a></li>
+    
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
+  <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">->
+      <li><a class="reference" href="#-%3E.t%2CUnit%2Ctypedesc"
+    title="`-&gt;`(_: Unit; R: typedesc): typedesc[proc]">`-&gt;`(_: Unit; R: typedesc): typedesc[proc]</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">to
-      <li><a class="reference" href="#to%2CA"
-    title="to[A; B](a: A): B">to[A; B](a: A): B</a></li>
-  <li><a class="reference" href="#to%2CA%2Ctypedesc"
-    title="to[A](a: A; B: typedesc): B:type">to[A](a: A; B: typedesc): B:type</a></li>
+  <ul class="simple nested-toc-section">=>
+      <li><a class="reference" href="#%3D%3E.t%2CUnit%2CR"
+    title="`=&gt;`[R](u: Unit; body: R): proc">`=&gt;`[R](u: Unit; body: R): proc</a></li>
 
   </ul>
 
@@ -123,62 +125,51 @@ window.addEventListener('DOMContentLoaded', main);
 
   </div>
   &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L1"
+href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/arrows.nim#L1"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/arrows.nim#L1" class="link-seesrc" target="_blank" >Edit</a>
 
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc">Functions to alias the explicit conversion operator. </p>
-  <div class="section" id="12">
-<h1><a class="toc-backref" href="#12">Procs</a></h1>
+  <p class="module-desc"><p>This module provides sugar for writing <tt class="docutils literal"><span class="pre"><span class="Identifier">Unit</span> <span class="Operator">-&gt;</span> <span class="Identifier">T</span></span></tt> procedures.</p>
+<p>Since <tt class="docutils literal"><span class="pre">1.1.0</span></tt>. </p>
+</p>
+  <div class="section" id="6">
+<h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<div id="convert,A">
-<dt><pre><span class="Keyword">proc</span> <a href="#convert%2CA"><span class="Identifier">convert</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">A</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">B</span></pre></dt>
+<a class="reference external" href="unit.html">unit</a>
+</dl></div>
+<div class="section" id="18">
+<h1><a class="toc-backref" href="#18">Templates</a></h1>
+<dl class="item">
+<div id="->.t,Unit,typedesc">
+<dt><pre><span class="Keyword">template</span> <a href="#-%3E.t%2CUnit%2Ctypedesc"><span class="Identifier">`-&gt;`</span></a><span class="Other">(</span><span class="Operator">_</span><span class="Other">:</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a><span class="Other">;</span> <span class="Identifier">R</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">[</span><span class="Keyword">proc</span><span class="Other">]</span></pre></dt>
 <dd>
 
+<p>Allows to write <tt class="docutils literal"><span class="pre"><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">T</span></span></tt> instead of <tt class="docutils literal"><span class="pre"><span class="Identifier">Unit</span> <span class="Operator">-&gt;</span> <span class="Identifier">T</span></span></tt>.</p>
+<p>Pragmas are not supported.</p>
+<p>Since <tt class="docutils literal"><span class="pre">1.1.0</span></tt>. </p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L11"
+href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/arrows.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L11" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/arrows.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="convert,A,typedesc">
-<dt><pre><span class="Keyword">proc</span> <a href="#convert%2CA%2Ctypedesc"><span class="Identifier">convert</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">B:type</span></pre></dt>
+<div id="=>.t,Unit,R">
+<dt><pre><span class="Keyword">template</span> <a href="#%3D%3E.t%2CUnit%2CR"><span class="Identifier">`=&gt;`</span></a><span class="Other">[</span><span class="Identifier">R</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">u</span><span class="Other">:</span> <a href="unit.html#Unit"><span class="Identifier">Unit</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">R</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">proc</span></pre></dt>
 <dd>
 
+<p>Allows to write <tt class="docutils literal"><span class="pre"><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Operator">=&gt;</span> <span class="Identifier">body</span></span></tt> instead of <tt class="docutils literal"><span class="pre"><span class="Punctuation">(</span><span class="Identifier">_</span><span class="Punctuation">:</span> <span class="Identifier">Unit</span><span class="Punctuation">)</span> <span class="Operator">=&gt;</span> <span class="Identifier">body</span></span></tt>.</p>
+<p>Pragmas are not supported.</p>
+<p>Since <tt class="docutils literal"><span class="pre">1.1.0</span></tt>. </p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L7"
+href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/arrows.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L7" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
-<div id="to,A">
-<dt><pre><span class="Keyword">proc</span> <a href="#to%2CA"><span class="Identifier">to</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">A</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">B</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L20"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
-<div id="to,A,typedesc">
-<dt><pre><span class="Keyword">proc</span> <a href="#to%2CA%2Ctypedesc"><span class="Identifier">to</span></a><span class="Other">[</span><span class="Identifier">A</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">A</span><span class="Other">;</span> <span class="Identifier">B</span><span class="Other">:</span> <span class="Identifier">typedesc</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">B:type</span></pre></dt>
-<dd>
-
-
-&nbsp;&nbsp;<a
-href="https://github.com/thenjip/funcynim/tree/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L16"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/convert.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/thenjip/funcynim/edit/aef7b1e6e87860ac920cc48c1c86de04bab8544a/src/funcynim/arrows.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>

@@ -1,0 +1,2 @@
+`-&gt;`	funcynim/arrows.html#->.t,Unit,typedesc	arrows: `-&gt;`(_: Unit; R: typedesc): typedesc[proc]	
+`=&gt;`	funcynim/arrows.html#=>.t,Unit,R	arrows: `=&gt;`[R](u: Unit; body: R): proc	
