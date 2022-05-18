@@ -1,5 +1,4 @@
 import funcynim/[
-  arrows,
   chain,
   convert,
   curry,
@@ -20,7 +19,6 @@ import funcynim/[
 
 
 export
-  arrows,
   chain,
   convert,
   curry,
