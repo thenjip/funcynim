@@ -21,7 +21,7 @@ func trace*[T](path: Path; output: T): Trace[T] =
 
 
 
-func addTrace [T](self: Unit -> T; path: Path): Unit -> Trace[T] =
+func addTrace[T](self: Unit -> T; path: Path): Unit -> Trace[T] =
   self.chain((output: T) => trace(path, output))
 
 
