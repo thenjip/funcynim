@@ -70,10 +70,40 @@ window.addEventListener('DOMContentLoaded', main);
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="funcynim/chain.html">funcynim/chain</a>, <a href="funcynim/convert.html">funcynim/convert</a>, <a href="funcynim/curry.html">funcynim/curry</a>, <a href="funcynim/default.html">funcynim/default</a>, <a href="funcynim/fold.html">funcynim/fold</a>, <a href="funcynim/ignore.html">funcynim/ignore</a>, <a href="funcynim/into.html">funcynim/into</a>, <a href="funcynim/itself.html">funcynim/itself</a>, <a href="funcynim/nimnodes.html">funcynim/nimnodes</a>, <a href="funcynim/operators.html">funcynim/operators</a>, <a href="funcynim/partialproc.html">funcynim/partialproc</a>, <a href="funcynim/proctypes.html">funcynim/proctypes</a>, <a href="funcynim/run.html">funcynim/run</a>, <a href="funcynim/unit.html">funcynim/unit</a>, <a href="funcynim/variables.html">funcynim/variables</a>.<br/><p /><h2>API symbols</h2>
-<dl><dt><a name="chain" href="#chain"><span>chain:</span></a></dt><dd><ul class="simple">
+    Modules: <a href="funcynim/chain.html">funcynim/chain</a>, <a href="funcynim/convert.html">funcynim/convert</a>, <a href="funcynim/curry.html">funcynim/curry</a>, <a href="funcynim/default.html">funcynim/default</a>, <a href="funcynim/fold.html">funcynim/fold</a>, <a href="funcynim/ignore.html">funcynim/ignore</a>, <a href="funcynim/into.html">funcynim/into</a>, <a href="funcynim/itself.html">funcynim/itself</a>, <a href="funcynim/nimnodes.html">funcynim/nimnodes</a>, <a href="funcynim/operators.html">funcynim/operators</a>, <a href="funcynim/partialproc.html">funcynim/partialproc</a>, <a href="funcynim/predicate.html">funcynim/predicate</a>, <a href="funcynim/proctypes.html">funcynim/proctypes</a>, <a href="funcynim/run.html">funcynim/run</a>, <a href="funcynim/unit.html">funcynim/unit</a>, <a href="funcynim/variables.html">funcynim/variables</a>.<br/><p /><h2>API symbols</h2>
+<dl><dt><a name="%60and%60" href="#%60and%60"><span>`and`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: `and`[T](left, right: Predicate[T]): Predicate[T]" href="funcynim/predicate.html#and%2CPredicate%5BT%5D%2CPredicate%5BT%5D">predicate: `and`[T](left, right: Predicate[T]): Predicate[T]</a></li>
+          </ul></dd>
+<dt><a name="%60not%60" href="#%60not%60"><span>`not`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: `not`[T](self: Predicate[T]): Predicate[T]" href="funcynim/predicate.html#not%2CPredicate%5BT%5D">predicate: `not`[T](self: Predicate[T]): Predicate[T]</a></li>
+          </ul></dd>
+<dt><a name="%60or%60" href="#%60or%60"><span>`or`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: `or`[T](left, right: Predicate[T]): Predicate[T]" href="funcynim/predicate.html#or%2CPredicate%5BT%5D%2CPredicate%5BT%5D">predicate: `or`[T](left, right: Predicate[T]): Predicate[T]</a></li>
+          </ul></dd>
+<dt><a name="alwaysFalse" href="#alwaysFalse"><span>alwaysFalse:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: alwaysFalse[T](_: T): bool" href="funcynim/predicate.html#alwaysFalse%2CT">predicate: alwaysFalse[T](_: T): bool</a></li>
+          </ul></dd>
+<dt><a name="alwaysTrue" href="#alwaysTrue"><span>alwaysTrue:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: alwaysTrue[T](_: T): bool" href="funcynim/predicate.html#alwaysTrue%2CT">predicate: alwaysTrue[T](_: T): bool</a></li>
+          </ul></dd>
+<dt><a name="chain" href="#chain"><span>chain:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="chain: chain[A; B; C](self: A -&gt; B; next: B -&gt; C): A -&gt; C" href="funcynim/chain.html#chain%2C%2C">chain: chain[A; B; C](self: A -&gt; B; next: B -&gt; C): A -&gt; C</a></li>
+          </ul></dd>
+<dt><a name="combine" href="#combine"><span>combine:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: combine[T](left: Predicate[T]; right: Predicate[T];
+           combiner: (right: bool) -&gt; ((left: bool) -&gt; bool)): Predicate[T]" href="funcynim/predicate.html#combine%2CPredicate%5BT%5D%2CPredicate%5BT%5D%2C">predicate: combine[T](left: Predicate[T]; right: Predicate[T];
+           combiner: (right: bool) -&gt; ((left: bool) -&gt; bool)): Predicate[T]</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="predicate: combine[T](left: Predicate[T]; right: Predicate[T];
+           combiner: (left: bool, right: bool) -&gt; bool): Predicate[T]" href="funcynim/predicate.html#combine%2CPredicate%5BT%5D%2CPredicate%5BT%5D%2C_2">predicate: combine[T](left: Predicate[T]; right: Predicate[T];
+           combiner: (left: bool, right: bool) -&gt; bool): Predicate[T]</a></li>
           </ul></dd>
 <dt><a name="compose" href="#compose"><span>compose:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -120,6 +150,8 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="fold" href="#fold"><span>fold:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="fold: fold[T](self: bool; then, else: Unit -&gt; T): T" href="funcynim/fold.html#fold%2Cbool%2C%2C">fold: fold[T](self: bool; then, else: Unit -&gt; T): T</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="predicate: fold[A; B](self: Predicate[A]; then, else: A -&gt; B): A -&gt; B" href="funcynim/predicate.html#fold%2CPredicate%5BA%5D%2C%2C">predicate: fold[A; B](self: Predicate[A]; then, else: A -&gt; B): A -&gt; B</a></li>
           </ul></dd>
 <dt><a name="greater" href="#greater"><span>greater:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -229,6 +261,10 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="operators: plus1[T](x: T): T" href="funcynim/operators.html#plus1%2CT">operators: plus1[T](x: T): T</a></li>
           </ul></dd>
+<dt><a name="Predicate" href="#Predicate"><span>Predicate:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: Predicate" href="funcynim/predicate.html#Predicate">predicate: Predicate</a></li>
+          </ul></dd>
 <dt><a name="prev" href="#prev"><span>prev:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="operators: prev[T: Ordinal](x: T): T" href="funcynim/operators.html#prev%2CT">operators: prev[T: Ordinal](x: T): T</a></li>
@@ -254,6 +290,10 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="secondChild" href="#secondChild"><span>secondChild:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="nimnodes: secondChild(self: NimNode): NimNode" href="funcynim/nimnodes.html#secondChild%2CNimNode">nimnodes: secondChild(self: NimNode): NimNode</a></li>
+          </ul></dd>
+<dt><a name="test" href="#test"><span>test:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="predicate: test[T](self: Predicate[T]; value: T): bool" href="funcynim/predicate.html#test%2CPredicate%5BT%5D%2CT">predicate: test[T](self: Predicate[T]; value: T): bool</a></li>
           </ul></dd>
 <dt><a name="to" href="#to"><span>to:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -282,7 +322,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-05-18 14:17:52 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-05-31 14:58:38 UTC</small>
       </div>
     </div>
   </div>

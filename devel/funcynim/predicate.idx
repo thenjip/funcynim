@@ -1,0 +1,10 @@
+Predicate	funcynim/predicate.html#Predicate	predicate: Predicate	
+test	funcynim/predicate.html#test,Predicate[T],T	predicate: test[T](self: Predicate[T]; value: T): bool	
+`not`	funcynim/predicate.html#not,Predicate[T]	predicate: `not`[T](self: Predicate[T]): Predicate[T]	
+fold	funcynim/predicate.html#fold,Predicate[A],,	predicate: fold[A; B](self: Predicate[A]; then, else: A -&gt; B): A -&gt; B	
+combine	funcynim/predicate.html#combine,Predicate[T],Predicate[T],	predicate: combine[T](left: Predicate[T]; right: Predicate[T];\n           combiner: (right: bool) -&gt; ((left: bool) -&gt; bool)): Predicate[T]	
+combine	funcynim/predicate.html#combine,Predicate[T],Predicate[T],_2	predicate: combine[T](left: Predicate[T]; right: Predicate[T];\n           combiner: (left: bool, right: bool) -&gt; bool): Predicate[T]	
+`and`	funcynim/predicate.html#and,Predicate[T],Predicate[T]	predicate: `and`[T](left, right: Predicate[T]): Predicate[T]	
+`or`	funcynim/predicate.html#or,Predicate[T],Predicate[T]	predicate: `or`[T](left, right: Predicate[T]): Predicate[T]	
+alwaysFalse	funcynim/predicate.html#alwaysFalse,T	predicate: alwaysFalse[T](_: T): bool	
+alwaysTrue	funcynim/predicate.html#alwaysTrue,T	predicate: alwaysTrue[T](_: T): bool	
