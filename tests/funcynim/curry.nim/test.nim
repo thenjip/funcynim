@@ -1,56 +1,51 @@
-when isMainModule:
-  import
-    pkg/funcynim/[curry],
+import
+  pkg/funcynim/[curry],
 
-    std/[sugar, strutils, unittest]
-
-
-
-  proc plus(first: int16, second: int32): int64 {.curry.} =
-    first.int64 + second.int64
-
-
-  func inter[T: Ordinal](self, other: set[T]): set[T] {.curry.} =
-    self * other
+  std/[sugar, unittest]
 
 
 
-  proc main() =
-    suite "curry":
-      test [
-        "A curried binary proc definition should have the type A -> (B -> C)."
-      ].join($' '):
-        proc doTest[A; B; C](_: A -> (B -> C)) =
-          discard
+proc plus(first: int16, second: int32): int64 {.curry.} =
+  first.int64 + second.int64
 
 
-        doTest(plus)
+func inter[T: Ordinal](self, other: set[T]): set[T] {.curry.} =
+  self * other
 
 
 
-      test [
-        "A curried binary func definition should have the type A -> (B -> C)."
-      ].join($' '):
-        proc doTest[A; B; C](f: proc (_: A): B -> C {.noSideEffect.}) =
-          discard
+proc main() =
+  suite "curry":
+    test "A curried binary proc definition should have the type A -> (B -> C).":
+      proc doTest[A; B; C](_: A -> (B -> C)) =
+        discard
 
 
-        doTest(inter[char])
-
-
-
-      test [
-        "A curried binary lambda expression should have the type A -> (B -> C)."
-      ].join($' '):
-        proc doTest() =
-          let f = proc (a, b: int): char {.curry.} = '\0'
-
-          check:
-            f(0)(0).typeof() is char
-
-
-        doTest()
+      doTest(plus)
 
 
 
-  main()
+    test "A curried binary func definition should have the type A -> (B -> C).":
+      proc doTest[A; B; C](f: proc (_: A): B -> C {.noSideEffect.}) =
+        discard
+
+
+      doTest(inter[char])
+
+
+
+    test(
+      "A curried binary lambda expression should have the type A -> (B -> C)."
+    ):
+      proc doTest() =
+        let f = proc (a, b: int): char {.curry.} = '\0'
+
+        check:
+          f(0)(0).typeof() is char
+
+
+      doTest()
+
+
+
+main()

@@ -1,5 +1,5 @@
 import
-  trace as modTrace,
+  trace,
 
   pkg/funcynim/[chain, itself as modItself, partialproc, predicate, run, unit],
 
@@ -78,7 +78,7 @@ proc main () =
       proc doTest[A; B](self: Predicate[A]; then, `else`: A -> B; value: A) =
         let
           actual = self.tracedFold(then, `else`).run(value)
-          expected = trace[B](Path.Then)(then.run(value))
+          expected = trace(Path.Then, then.run(value))
 
         check:
           actual == expected
@@ -96,7 +96,7 @@ proc main () =
       proc doTest [A; B](self: Predicate[A]; then, `else`: A -> B; value: A) =
         let
           actual = self.tracedFold(then, `else`).run(value)
-          expected = trace[B](Path.Else)(`else`.run(value))
+          expected = trace(Path.Else, `else`.run(value))
 
         check:
           actual == expected

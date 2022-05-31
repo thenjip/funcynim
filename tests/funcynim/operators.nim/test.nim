@@ -1,15 +1,14 @@
-when isMainModule:
-  import
-    pkg/funcynim/[operators],
+import
+  pkg/funcynim/[operators],
 
-    std/[unittest]
-
-
-
-  proc main() =
-    suite "operators":
-      discard
+  std/[unittest]
 
 
 
-  main()
+proc main() =
+  suite "operators":
+    discard
+
+
+
+main()
