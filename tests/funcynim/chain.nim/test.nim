@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "chain":
+  suite "funcynim/chain":
     test "Chaining procs should be associative.":
       proc doTest[A; B; C; D](
         first: A -> B;

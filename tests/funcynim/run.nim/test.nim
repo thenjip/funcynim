@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "run":
+  suite "funcynim/run":
     test """"self.run(input)" should compile.""":
       proc doTest[A; B](self: A -> B; input: A) =
         discard self.run(input)

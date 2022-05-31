@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "into":
+  suite "funcynim/into":
     test """"self.into(f)" should compile.""":
       proc doTest[A; B](self: A; f: A -> B) =
         discard self.into(f)

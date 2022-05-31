@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "variables":
+  suite "funcynim/variables":
     test [
       """Reading a "var", then writing the read value should be the same as""",
       """leaving the "var" unmodified."""

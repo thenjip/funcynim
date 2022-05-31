@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "proctypes":
+  suite "funcynim/proctypes":
     test [
       """"T.resultType()" should return the return type of the given""",
       "procedure type."

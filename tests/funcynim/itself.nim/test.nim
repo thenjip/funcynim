@@ -16,7 +16,7 @@ proc repeat[T](self: T -> T; n: Positive): T -> T =
 
 
 proc main() =
-  suite "itself":
+  suite "funcynim/itself":
     test "The identity function should be idempotent.":
       proc doTest[T](input: T; n: Positive) =
         let

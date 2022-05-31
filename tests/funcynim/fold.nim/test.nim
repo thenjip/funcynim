@@ -8,7 +8,7 @@ import
 
 
 proc main() =
-  suite "fold":
+  suite "funcynim/fold":
     test """"true.fold(then, `else`)" should take the "then" path.""":
       proc doTest[T](then, `else`: Unit -> T) =
         let

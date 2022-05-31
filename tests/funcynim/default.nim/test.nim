@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "default":
+  suite "funcynim/default":
     discard
 
 

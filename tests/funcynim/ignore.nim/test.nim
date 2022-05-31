@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "ignore":
+  suite "funcynim/ignore":
     test """"self.ignore()" should compile.""":
       proc doTest[T](self: T) =
         self.ignore()

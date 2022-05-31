@@ -19,7 +19,7 @@ func sum[N: SomeNumber](a, b, c: N): N =
 
 
 proc main() =
-  suite "partialproc":
+  suite "funcynim/partialproc":
     #[
       `should be equivalent to` means `should return an expression that is
       effectively the same as`.

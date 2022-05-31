@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "unit":
+  suite "funcynim/unit":
     test """"Unit.default()" should be equal to "unit()".""":
       proc doTest() =
         let

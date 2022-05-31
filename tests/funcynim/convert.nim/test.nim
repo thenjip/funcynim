@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "convert":
+  suite "funcynim/convert":
     test """"self.to(B)" should compile.""":
       proc doTest[A](self: A; B: typedesc) =
         discard self.to(B)

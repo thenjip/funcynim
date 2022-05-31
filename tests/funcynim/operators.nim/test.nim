@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "operators":
+  suite "funcynim/operators":
     discard
 
 

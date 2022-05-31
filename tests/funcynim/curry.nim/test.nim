@@ -15,7 +15,7 @@ func inter[T: Ordinal](self, other: set[T]): set[T] {.curry.} =
 
 
 proc main() =
-  suite "curry":
+  suite "funcynim/curry":
     test "A curried binary proc definition should have the type A -> (B -> C).":
       proc doTest[A; B; C](_: A -> (B -> C)) =
         discard

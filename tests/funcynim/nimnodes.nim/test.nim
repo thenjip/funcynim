@@ -6,7 +6,7 @@ import
 
 
 proc main() =
-  suite "nimnodes":
+  suite "funcynim/nimnodes":
     test """"self.high()" should return -1 when "self.len() == 0".""":
       proc doTest() =
         const
