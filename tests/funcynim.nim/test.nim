@@ -1,16 +1,15 @@
-when isMainModule:
-  import
-    pkg/[funcynim],
+import
+  pkg/[funcynim],
 
-    std/[unittest]
-
-
-
-  proc main() =
-    suite "funcynim":
-      test "The module should compile.":
-        discard
+  std/[unittest]
 
 
 
-  main()
+proc main() =
+  suite "funcynim":
+    test "The module should compile.":
+      discard
+
+
+
+main()

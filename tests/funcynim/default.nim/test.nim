@@ -1,15 +1,14 @@
-when isMainModule:
-  import
-    pkg/funcynim/[default],
+import
+  pkg/funcynim/[default],
 
-    std/[unittest]
-
-
-
-  proc main() =
-    suite "default":
-      discard
+  std/[unittest]
 
 
 
-  main()
+proc main() =
+  suite "funcynim/default":
+    discard
+
+
+
+main()
